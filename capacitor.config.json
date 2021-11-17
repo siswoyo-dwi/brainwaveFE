@@ -1,0 +1,10 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "brainwave",
+	"server": {
+		"url": "http://192.168.123.5:8100",
+		"cleartext": true
+	  },
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

@@ -1,0 +1,7 @@
+{
+  "name": "brainwave",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
