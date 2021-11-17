@@ -24,7 +24,7 @@
     "@ionic/vue-router": "^5.4.0",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
-    "swiper": "^7.2.0",
+    "swiper": "^6.8.4",
     "vue": "^3.2.1",
     "vue-moment": "^4.1.0",
     "vue-router": "^4.0.0-0"

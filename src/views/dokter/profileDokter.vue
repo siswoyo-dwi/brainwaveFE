@@ -1,22 +1,22 @@
 <template>
   <div v-if="spinner">
-      <ion-progress-bar color="primary" value="0.5"></ion-progress-bar>
+    <ion-progress-bar color="primary" value="0.5"></ion-progress-bar>
   </div>
   <ion-page v-else>
-    <ion-content color="primary">
-      <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
+    <ion-content>
+      <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
 
       <ion-grid>
         <ion-row id="row1">
           <ion-col>
             <ion-grid>
               <ion-row>
-                <ion-col size="5">
+                <ion-col size="3">
                   <ion-avatar>
                     <img
                       class="imgFotoPribadi"
                       v-if="profile.profilPicture"
-                      :src="ip+profile.profilPicture"
+                      :src="ip + profile.profilPicture"
                       alt=""
                     />
 
@@ -27,24 +27,28 @@
                     />
                   </ion-avatar>
                 </ion-col>
+                <ion-col size="8">
+                  <ion-text color="light">Selamat datang </ion-text><br />
+                  <ion-text color="light">Dr.{{ profile.nama }}</ion-text>
+                </ion-col>
               </ion-row>
             </ion-grid>
           </ion-col>
         </ion-row>
         <ion-row id="row2"> </ion-row>
       </ion-grid>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-button @click="$router.push('/registerjadwal')">
-              Register jadwal
-            </ion-button>
-            <ion-button @click="$router.push('/listJadwalByDokterId')">
-              List jadwal
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-button @click="$router.push('/registerjadwal')">
+            Register jadwal
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-button @click="$router.push('/listJadwalByDokterId')">
+            List jadwal
+          </ion-button>
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ion-page>
 </template>
@@ -58,8 +62,11 @@ import {
   IonRow,
   IonCol,
   IonGrid,
+  IonList,
+  IonItem,
+  IonText,
   IonAvatar,
-  IonIcon,
+  // IonIcon,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -76,18 +83,21 @@ export default defineComponent({
   data() {
     return {
       profile: "",
-      ip:ipBackend,
+      ip: ipBackend,
       spinner: false,
     };
   },
   components: {
     IonPage,
-    IonIcon,
+    // IonIcon,
     IonContent,
     IonProgressBar,
     IonRow,
     IonButton,
     IonCol,
+    IonList,
+    IonItem,
+    IonText,
     IonGrid,
     IonAvatar,
   },

@@ -49,121 +49,93 @@
           </ion-card-header>
         </ion-card>
         <ion-card>
-          <ion-row>
-            <ion-col size="2">
-              <img src="../../../assets/Group69.svg" alt="" />
-            </ion-col>
-            <ion-col size="4">
-              <div class="ion-text-start">
-                <ion-text @click="cekAll"> Full name </ion-text>
-              </div>
-            </ion-col>
-            <ion-col size="6">
-              <div class="ion-text-end">
-                <ion-text v-if="cek1 == true" @click="cekSatu"
-                  >{{ form.nama }}
-                </ion-text>
-                <!-- <ion-input v-else v-model="form.nama" type="text"></ion-input> -->
-                <ion-item v-else>
-                  <ion-input
-                    class="input"
-                    type="text"
-                    v-model="form.nama"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="2">
-              <img src="../../../assets/Group70.svg" alt="" />
-            </ion-col>
-            <ion-col size="4">
-              <ion-text @click="cekAll">Birth Date</ion-text>
-            </ion-col>
-            <ion-col size="6" class="ion-text-end">
-              <ion-text v-if="cek2" @click="cekDua">
-                {{ tanggal }}
-              </ion-text>
-              <ion-datetime
-                v-else
-                v-model="form.tanggalLahir"
-                placeholder=""
-              ></ion-datetime>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="2">
-              <img src="../../../assets/Group72.svg" alt="" />
-            </ion-col>
-            <ion-col size="4">
-              <ion-text @click="cekAll">Blood type</ion-text>
-            </ion-col>
-            <ion-col size="6" class="ion-text-end">
-              <ion-text v-if="cek3" @click="cekTiga">
-                {{ form.golonganDarah }}
-              </ion-text>
-              <ion-select
-                v-else
-                multiple="true"
-                v-model="form.golonganDarah"
-                cancel-text="Cancel"
-                ok-text="Ok"
-              >
-                <ion-select-option value="A">A</ion-select-option>
-                <ion-select-option value="B">B</ion-select-option>
-                <ion-select-option value="AB">AB</ion-select-option>
-                <ion-select-option value="O">O</ion-select-option>
-              </ion-select>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="2"
-              ><img src="../../../assets/Group73.svg" alt="" />
-            </ion-col>
-            <ion-col size="4">
-              <ion-text @click="cekAll">Body height</ion-text>
-            </ion-col>
-            <ion-col size="6" class="ion-text-end"
-              ><ion-text v-if="cek4" @click="cekEmpat">
-                {{ form.tinggiBadan }} cm
-              </ion-text>
-              <ion-item v-else>
-                <ion-input
-                  class="input"
-                  type="text"
-                  v-model="form.tinggiBadan"
-                ></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="2">
-              <img src="../../../assets/Group75.svg" alt="" />
-            </ion-col>
-            <ion-col size="4">
-              <ion-text @click="cekAll">Body weight</ion-text>
-            </ion-col>
-            <ion-col size="6" class="ion-text-end">
-              <ion-text v-if="cek5" @click="cekLima">
-                {{ form.beratBadan }} kgs
-              </ion-text>
-              <ion-item v-else>
-                <ion-input
-                  class="input"
-                  type="text"
-                  v-model="form.beratBadan"
-                ></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
+          <ion-item>
+            <img slot="start" src="../../../assets/Group69.svg" alt="" />
+
+            <ion-text @click="cekAll"> Full name </ion-text>
+
+            <ion-text slot="end" v-if="cek1 == true" @click="cekSatu"
+              >{{ form.nama }}
+            </ion-text>
+            <ion-input
+              slot="end"
+              v-else
+              type="text"
+              v-model="form.nama"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <img slot="start" src="../../../assets/Group70.svg" alt="" />
+
+            <ion-text @click="cekAll">Birth Date</ion-text>
+
+            <ion-text slot="end" v-if="cek2" @click="cekDua">
+              {{ tanggal }}
+            </ion-text>
+            <ion-datetime
+              slot="end"
+              v-else
+              v-model="form.tanggalLahir"
+              placeholder=""
+            ></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <img slot="start" src="../../../assets/Group72.svg" alt="" />
+
+            <ion-text @click="cekAll">Blood type</ion-text>
+
+            <ion-text slot="end" v-if="cek3" @click="cekTiga">
+              {{ form.golonganDarah }}
+            </ion-text>
+            <ion-select
+              slot="end"
+              v-else
+              multiple="true"
+              v-model="form.golonganDarah"
+              cancel-text="Cancel"
+              ok-text="Ok"
+            >
+              <ion-select-option value="A">A</ion-select-option>
+              <ion-select-option value="B">B</ion-select-option>
+              <ion-select-option value="AB">AB</ion-select-option>
+              <ion-select-option value="O">O</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <img slot="start" src="../../../assets/Group73.svg" alt="" />
+            <ion-text @click="cekAll">Body height</ion-text>
+            <ion-text slot="end" v-if="cek4" @click="cekEmpat">
+              {{ form.tinggiBadan }} cm
+            </ion-text>
+            <ion-item slot="end" v-else>
+              <ion-input
+                class="input"
+                type="text"
+                v-model="form.tinggiBadan"
+              ></ion-input>
+            </ion-item>
+          </ion-item>
+          <ion-item>
+            <img slot="start" src="../../../assets/Group75.svg" alt="" />
+            <ion-text @click="cekAll">Body weight</ion-text>
+            <ion-text slot="end" v-if="cek5" @click="cekLima">
+              {{ form.beratBadan }} kgs
+            </ion-text>
+            <ion-item slot="end" v-else>
+              <ion-input
+                class="input"
+                type="text"
+                v-model="form.beratBadan"
+              ></ion-input>
+            </ion-item>
+          </ion-item>
         </ion-card>
       </ion-grid>
       <ion-list>
         <ion-item lines="none"
           ><ion-button @click="update()">Update My form </ion-button>
         </ion-item>
-
       </ion-list>
     </ion-content>
   </ion-page>
@@ -182,15 +154,12 @@ import {
   IonFabButton,
   IonDatetime,
   IonIcon,
- 
   IonPage,
   IonGrid,
-  IonRow,
   IonCard,
   IonCardHeader,
   IonLabel,
   IonProgressBar,
-  IonCol,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -217,7 +186,7 @@ export default defineComponent({
     IonText,
     IonButton,
     IonInput,
-    
+
     IonPage,
     IonCard,
     IonCardHeader,
@@ -227,12 +196,11 @@ export default defineComponent({
     IonFabButton,
     IonIcon,
     IonGrid,
-    IonRow,
-    IonCol,
+  
   },
   setup() {
     const router = useRouter();
-   
+
     return {
       router,
       chevronBackCircleOutline,
@@ -456,7 +424,10 @@ h3 {
   font-weight: 700;
   text-align: center;
 }
-ion-icon{
-    font-size: 20px;
+ion-icon {
+  font-size: 20px;
+}
+ion-card-header {
+  border-radius: 0 0 50% 50%;
 }
 </style>

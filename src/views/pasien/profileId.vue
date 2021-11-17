@@ -36,76 +36,34 @@
                   <ion-row>
                     <strong><h4>USER INFORMATION</h4></strong>
                   </ion-row>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img src="../../../assets/Group69.svg" alt="" />
-                      <div class="ion-text-start"></div>
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-text> Full name </ion-text>
-                    </ion-col>
-                    <ion-col size="6">
-                      <div class="ion-text-end">
-                        <ion-text>{{ profile.nama }} </ion-text>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img src="../../../assets/Group70.svg" alt="" />
-                    </ion-col>
-                    <ion-col>
-                      <ion-text size="4">Age</ion-text>
-                    </ion-col>
-                    <ion-col size="6">
-                      <div class="ion-text-end">
-                        <ion-text> {{ age }}</ion-text>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
+                 <ion-item>
+                  <img slot="start" src="../../../assets/Group69.svg" alt="" />
+                  <ion-text> Full name </ion-text>
+                  <ion-text slot="end">{{ profile.nama }} </ion-text>
+                </ion-item>
+                <ion-item>
+                  <img slot="start" src="../../../assets/Group70.svg" alt="" />
+                  <ion-text>Age</ion-text>
+                  <ion-text slot="end"> {{ age }}</ion-text>
+                </ion-item>
 
-              <ion-item>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img src="../../../assets/Group72.svg" alt="" />
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-text>Blood type</ion-text>
-                    </ion-col>
-                    <ion-col size="6">
-                      <div class="ion-text-end">
-                        <ion-text>
-                          {{ profile.golonganDarah }}
-                        </ion-text>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img src="../../../assets/Group73.svg" alt="" />
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-text>Body height</ion-text>
-                    </ion-col>
-                    <ion-col size="6">
-                      <div class="ion-text-end">
-                        <ion-text>
-                          {{ profile.tinggiBadan }} cm
-                        </ion-text>
-                      </div>
-                    </ion-col>
-                  </ion-row>
+                <ion-item>
+                  <img slot="start" src="../../../assets/Group72.svg" alt="" />
+                  <ion-text>Blood type</ion-text>
+                  <ion-text slot="end">
+                    {{ profile.golonganDarah }}
+                  </ion-text>
+                </ion-item>
+                <ion-item>
+                  <img slot="start" src="../../../assets/Group73.svg" alt="" />
+                  <ion-text>Body height</ion-text>
+                  <ion-text slot="end"> {{ profile.tinggiBadan }} cm </ion-text>
+                </ion-item>
+                <ion-item>
+                  <img slot="start" src="../../../assets/Group75.svg" alt="" />
+                  <ion-text>Body weight</ion-text>
+                  <ion-text slot="end"> {{ profile.beratBadan }} kgs </ion-text>
+                </ion-item>
                 </ion-grid>
               </ion-item>
 

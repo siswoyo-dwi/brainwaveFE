@@ -70,7 +70,7 @@
                 <ion-button @click="cancel(idx)"> cancel </ion-button>
               </div>
             </ion-col>
-            <ion-col size="6">
+            <ion-col size="6" v-else>
               <ion-button @click="cancel(idx)"> cancel </ion-button>
             </ion-col>
           </ion-card>

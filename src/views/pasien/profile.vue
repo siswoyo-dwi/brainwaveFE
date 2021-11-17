@@ -18,6 +18,7 @@
                     <ion-label>
                       <!-- <ion-icon
                         :icon="chevronBackCircleOutline"
+                        
                         @click="$router.go(-1)"
                       ></ion-icon> -->
                       <h3>{{ profile.nama }} Profile</h3>
@@ -37,109 +38,82 @@
                   </ion-card-header>
                 </ion-card>
 
-                <ion-item>
+                <ion-item lines="none">
                   <ion-grid>
                     <ion-row>
                       <strong><h4>USER INFORMATION</h4></strong>
                     </ion-row>
-                    <ion-item>
-                      <img
-                        slot="start"
-                        src="../../../assets/Group69.svg"
-                        alt=""
-                      />
-                        <ion-text  slot="start"> Full name </ion-text>
-                        <ion-text slot="end">{{ profile.nama }} </ion-text>
-                    </ion-item>
-                    <!-- <ion-row>
-                      <ion-col size="2">
-                        <img src="../../../assets/Group69.svg" alt="" />
-                        <div class="ion-text-start"></div>
-                      </ion-col>
-                      <ion-col size="4">
-                        <ion-text> Full name </ion-text>
-                      </ion-col>
-                      <ion-col size="6">
-                        <div class="ion-text-end">
-                          <ion-text>{{ profile.nama }} </ion-text>
-                        </div>
-                      </ion-col>
-                    </ion-row> -->
                   </ion-grid>
                 </ion-item>
                 <ion-item>
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col size="2">
-                        <img src="../../../assets/Group70.svg" alt="" />
-                      </ion-col>
-                      <ion-col>
-                        <ion-text size="4">Age</ion-text>
-                      </ion-col>
-                      <ion-col size="6">
-                        <div class="ion-text-end">
-                          <ion-text> {{ age }}</ion-text>
-                        </div>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
+                  <img slot="start" src="../../../assets/Group69.svg" alt="" />
+                  <ion-text> Full name </ion-text>
+                  <ion-text slot="end">{{ profile.nama }} </ion-text>
+                </ion-item>
+                <ion-item>
+                  <img slot="start" src="../../../assets/Group70.svg" alt="" />
+                  <ion-text>Age</ion-text>
+                  <ion-text slot="end"> {{ age }}</ion-text>
                 </ion-item>
 
                 <ion-item>
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col size="2">
-                        <img src="../../../assets/Group72.svg" alt="" />
-                      </ion-col>
-                      <ion-col size="4">
-                        <ion-text>Blood type</ion-text>
-                      </ion-col>
-                      <ion-col size="6">
-                        <div class="ion-text-end">
-                          <ion-text>
-                            {{ profile.golonganDarah }}
-                          </ion-text>
-                        </div>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
+                  <img slot="start" src="../../../assets/Group72.svg" alt="" />
+                  <ion-text>Blood type</ion-text>
+                  <ion-text slot="end">
+                    {{ profile.golonganDarah }}
+                  </ion-text>
                 </ion-item>
                 <ion-item>
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col size="2">
-                        <img src="../../../assets/Group73.svg" alt="" />
-                      </ion-col>
-                      <ion-col size="4">
-                        <ion-text>Body height</ion-text>
-                      </ion-col>
-                      <ion-col size="6">
-                        <div class="ion-text-end">
-                          <ion-text> {{ profile.tinggiBadan }} cm </ion-text>
-                        </div>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
+                  <img slot="start" src="../../../assets/Group73.svg" alt="" />
+                  <ion-text>Body height</ion-text>
+                  <ion-text slot="end"> {{ profile.tinggiBadan }} cm </ion-text>
                 </ion-item>
-
                 <ion-item>
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col size="2">
-                        <img src="../../../assets/Group75.svg" alt="" />
-                      </ion-col>
-                      <ion-col size="4">
-                        <ion-text>Body weight</ion-text>
-                      </ion-col>
-                      <ion-col size="6">
-                        <div class="ion-text-end">
-                          <ion-text> {{ profile.beratBadan }} kgs </ion-text>
-                        </div>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row> </ion-row>
-                  </ion-grid>
+                  <img slot="start" src="../../../assets/Group75.svg" alt="" />
+                  <ion-text>Body weight</ion-text>
+                  <ion-text slot="end"> {{ profile.beratBadan }} kgs </ion-text>
                 </ion-item>
+                <ion-item lines="none">
+                  <ion-text><h4>Medical Record</h4></ion-text>
+                  <div slot="end" @click="$router.push(`/testHistory/${id}`)">
+                    <ion-text color="medium"> See more </ion-text>
+                    <ion-icon
+                      class="grey"
+                      :icon="chevronForwardCircleOutline"
+                    ></ion-icon>
+                  </div>
+                </ion-item>
+                  <div v-if="scanUser.length > 0">
+                    <swiper
+                      @swiper="setSwiperInstance"
+                      
+                      :loop="true"
+                    >
+                      <swiper-slide v-for="scan in scanUser"
+                      :key="scan.id">
+                        <ion-card id="swiper-slide">
+                          <ion-list class="card"  lines="none">
+                            <ion-item class="card" >
+                              <ion-text slot="end">
+                                Illness Classification
+                              </ion-text>
+                            </ion-item >
+                            <ion-item class="card" > 
+                              <h4>{{ scan.hasil }}</h4>
+                            </ion-item>
+                            <ion-item class="card" >
+                              {{ moment(scan.tanggalJadwal).format("Do MMM YYYY") }}
+                            </ion-item>
+                          </ion-list>
+                        </ion-card>
+                      </swiper-slide>
+                    </swiper>
+                  </div>
+                  <div v-else>
+                    <ion-card>
+                      <ion-item> Belum ada Medical Record </ion-item>
+                    </ion-card>
+                  </div>
                 <ion-item
                   ><ion-button @click="$router.push('/update')"
                     >Update My Profile</ion-button
@@ -175,9 +149,18 @@ import {
   IonPage,
   IonIcon,
 } from "@ionic/vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
 import axios from "axios";
-import { chevronBackCircleOutline, logOutOutline } from "ionicons/icons";
+import moment from "moment";
+import "moment/locale/id";
+import "swiper/swiper-bundle.min.css";
+
+import {
+  chevronBackCircleOutline,
+  logOutOutline,
+  chevronForwardCircleOutline,
+} from "ionicons/icons";
 import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
@@ -189,6 +172,8 @@ export default defineComponent({
     IonGrid,
     IonItem,
     IonIcon,
+    Swiper,
+    SwiperSlide,
     IonCard,
     IonCardHeader,
     IonProgressBar,
@@ -200,17 +185,25 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
-    const slideOpts = {
-      initialSlide: 1,
-      speed: 400,
+    const slides = ref();
+    const setSwiperInstance = (swiper) => {
+      slides.value = swiper;
     };
-    return { slideOpts, router, chevronBackCircleOutline, logOutOutline };
+    return {
+      router,
+      chevronBackCircleOutline,
+      logOutOutline,
+      chevronForwardCircleOutline,
+      setSwiperInstance,
+    };
   },
   data() {
     return {
       profile: "",
       ip: ipBackend,
+      moment,
       scanUser: "",
+      id: "",
       spinner: false,
       age: "",
     };
@@ -229,16 +222,15 @@ export default defineComponent({
         url: ipBackend + `users/profil`,
       });
       const set = await Storage.get({ key: "id" });
-      const id = JSON.parse(set.value);
+      vm.id = JSON.parse(set.value);
       const user = await axios({
         method: "get",
-        url: ipBackend + `scanning/listScanningByUserId/${id}`,
+        url: ipBackend + `scanning/listScanningByUserId/${vm.id}`,
         headers: { token: token },
       });
       vm.scanUser = user.data.data;
       vm.profile = data.data.data[0];
-      console.log(vm.scanUser);
-      console.log(vm.profile);
+   
       vm.spinner = false;
       vm.age = Math.floor(
         (new Date().getTime() -
@@ -324,10 +316,27 @@ h3 {
   font-weight: 700;
   text-align: center;
 }
-ion-icon {
-  font-size: 20px;
+.grey {
+  color: gray !important;
 }
 ion-text {
   font-size: 18px;
 }
+h4 {
+  font-weight: 700;
+}
+#swiper-slide {
+  width: 70vw;
+  height: 30vh;
+}
+ion-card-header{
+  border-radius:  0 0 50%  50% ;
+}
+.card{
+  background-color: turquoise;
+}
+ion-item.card{
+  --background:turquoise;
+}
+
 </style>

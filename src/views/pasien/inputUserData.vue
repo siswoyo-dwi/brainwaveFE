@@ -10,7 +10,7 @@
     <ion-content :fullscreen="true">
       <ion-grid>
         <ion-row id="row1">
-          <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
+          <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col>
             <ion-grid>
               <ion-row>
@@ -40,7 +40,7 @@
                     :src="profilPicture"
                     alt=""
                   />
-                  <ion-fab vertical="bottom" horizontal="end" edge>
+                  <ion-fab vertical="bottom"  horizontal="end" edge>
                     <ion-fab-button @click="takePhoto()">
                       <ion-icon :icon="create"></ion-icon>
                     </ion-fab-button>

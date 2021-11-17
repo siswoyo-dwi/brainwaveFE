@@ -1,69 +1,71 @@
 <template>
   <ion-page>
     <ion-content>
-      <ion-grid>
-        <ion-row>
-          <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
-          <ion-col>
-            <div id="text-welcome">
-              <ion-text color="primary">Hello there!</ion-text>
-              <img
-                id="img-home"
-                src="../../../assets/Group-38.svg"
-                style="width: 20px"
-                alt=""
-              />
-              <br />
-              <ion-text
-                >Please enter your email address and your password to Sign Up to
-                our app.</ion-text
-              >
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <div id="container" class="registerBox">
-              <ion-item>
-                <ion-label position="floating">Email</ion-label>
-                <ion-input
-                  class="input"
-                  type="email"
-                  v-model="username"
-                ></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="floating">Password</ion-label>
-                <ion-input
-                  type="password"
-                  v-if="this.cek.length == 0"
-                  v-model="password"
-                ></ion-input>
-                <ion-input v-else v-model="password"></ion-input>
-              </ion-item>
-              <input
-                type="checkbox"
-                class="form-check-input"
-                v-model="cek"
-                value="yes"
-                id="check"
-              />
-              <label class="form-check-label" for="exampleCheck1"
-                >show password</label
-              >
-              <ion-button expand="block" color="primary" @click="doRegister()"
-                >Sign Up</ion-button
-              >
-            </div>
-            <ion-text style="margin-left: 5px"
-              ><p>You already have an account?</p></ion-text
+      <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
+      <ion-list lines="none">
+        <ion-item>
+          <ion-text color="primary">Hello there!</ion-text>
+          <img
+            class="my2"
+            src="../../../assets/Group-38.svg"
+            style="width: 20px"
+            alt=""
+          />
+        </ion-item>
+        <ion-item>
+          <ion-text
+            >Please enter your email address and your password to Sign Up to our
+            app.</ion-text
+          >
+        </ion-item>
+        <ion-item>
+          <div id="container" class="registerBox">
+            <ion-item lines="full">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input
+                class="input"
+                type="email"
+                v-model="username"
+              ></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input
+                type="password"
+                v-if="this.cek.length == 0"
+                v-model="password"
+              ></ion-input>
+              <ion-input v-else v-model="password"></ion-input>
+            </ion-item>
+            <input
+              type="checkbox"
+              class="form-check-input"
+              v-model="cek"
+              value="yes"
+              id="check"
+            />
+            <label class="form-check-label" for="exampleCheck1"
+              >show password</label
             >
-            <ion-text color="primary"
-              ><p @click="$router.push('/login')">Login</p></ion-text
+            <ion-button expand="block" color="primary" @click="doRegister()"
+              >Sign Up</ion-button
             >
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-text 
+            ><p>You already have an account?</p></ion-text
+          ><ion-text color="primary"
+            ><p @click="$router.push('/login')" class="my2">Login</p></ion-text
+          ></ion-item
+        >
+      </ion-list>
+      <ion-col>
+        <br />
+      </ion-col>
+      <ion-row>
+        <ion-col> </ion-col>
+      </ion-row>
     </ion-content>
   </ion-page>
 </template>
@@ -71,8 +73,9 @@
 <script>
 import {
   IonContent,
-  IonGrid,
+  // IonGrid,
   IonRow,
+  IonList,
   IonCol,
   IonText,
   IonPage,
@@ -80,7 +83,7 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  IonIcon,
+  // IonIcon,
   alertController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -93,9 +96,11 @@ import { useRouter } from "vue-router";
 export default defineComponent({
   components: {
     IonContent,
-    IonGrid,
-    IonIcon,
+    // IonGrid,
+    // IonIcon,
     IonRow,
+    IonList,
+
     IonCol,
     IonText,
     IonPage,
@@ -205,7 +210,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .registerBox {
-  margin: 45% auto;
+  margin: 20% auto;
   width: 85%;
   display: flex;
   flex-direction: column;
@@ -243,7 +248,7 @@ export default defineComponent({
 #button-home {
   margin-top: 50px;
 }
-ion-icon{
-    font-size: 20px;
+.my2 {
+  margin-left: 5px;
 }
 </style>

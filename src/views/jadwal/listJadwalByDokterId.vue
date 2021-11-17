@@ -114,4 +114,5 @@ export default defineComponent({
 ion-icon{
     font-size: 20px;
 }
+
 </style>

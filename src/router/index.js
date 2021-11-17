@@ -98,6 +98,7 @@ const routes = [
     name: "testHistory",
     component: () => import("@/views/pasien/testHistory.vue"),
   },
+
 ];
 
 const router = createRouter({

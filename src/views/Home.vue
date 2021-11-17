@@ -1,14 +1,18 @@
 <template>
   <ion-page>
     <ion-content>
-      <ion-row>
-        <ion-col>
-          <div id="text-welcome">
-            <ion-text color="primary">Welcome!</ion-text> <br />
-            <ion-text>Please login first to continue.</ion-text>
-          </div>
-          <img id="img-home" src="../../assets/Group-38.svg" alt="" />
-          <ion-text id="text-home">EEG DroMo</ion-text>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-text color="primary">Welcome!</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-text>Please login first to continue.</ion-text>
+        </ion-item>
+
+        <img id="img-home" src="../../assets/Group-38.svg" alt="" />
+        <ion-text id="text-home">EEG DroMo</ion-text>
+
+        <ion-item>
           <ion-button
             @click="goToRegister"
             id="button-home"
@@ -17,21 +21,19 @@
           >
             Create an Account
           </ion-button>
+        </ion-item>
+      </ion-list>
 
-          <div id="line-or">
-            <img class="line-black" src="../../assets/line.svg" alt="" /> OR
-            <img class="line-black" src="../../assets/line.svg" alt="" />
-          </div>
-          <div id="text-login">
-            <ion-text style="margin-left: 5px"
-              ><p>You already have an account?</p></ion-text
-            >
-            <ion-text color="primary"
-              ><p @click="goToLogin()">Login</p></ion-text
-            >
-          </div>
-        </ion-col>
-      </ion-row>
+      <div id="line-or">
+        <img class="line-black" src="../../assets/line.svg" alt="" /> OR
+        <img class="line-black" src="../../assets/line.svg" alt="" />
+      </div>
+      <div id="text-login">
+        <ion-text style="margin-left: 5px"
+          ><p>You already have an account?</p></ion-text
+        >
+        <ion-text color="primary"><p @click="goToLogin()">Login</p></ion-text>
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -39,10 +41,11 @@
 import {
   IonPage,
   IonContent,
-  IonRow,
-  IonCol,
+  // IonCard,
+  // IonCardHeader,
+  IonItem,
+  IonList,
   IonButton,
-
   IonText,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -51,15 +54,17 @@ export default defineComponent({
   components: {
     IonPage,
     IonContent,
-    IonRow,
-    IonCol,
+    IonItem,
+    IonList,
+    // IonCard,
+    // IonCardHeader,
     IonButton,
     IonText,
   },
   setup() {
     const router = useRouter();
 
-    return { router};
+    return { router };
   },
   methods: {
     goToLogin() {
@@ -145,5 +150,8 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+#text-center {
+  text-align: center;
 }
 </style>

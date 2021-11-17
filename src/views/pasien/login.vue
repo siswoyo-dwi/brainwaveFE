@@ -1,22 +1,21 @@
 <template>
   <ion-page>
     <ion-content :fullscreen="true">
-      <ion-row>
-        <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
-        <ion-col>
-          <div id="text-welcome">
-            <ion-text color="primary">Login</ion-text>
-            <img
-              id="img-home"
-              src="../../../assets/Group-38.svg"
-              style="width: 20px"
-              alt=""
-            />
-            <br />
-            <ion-text>Please login to continue using our app.</ion-text>
-          </div>
-        </ion-col>
-      </ion-row>
+      <ion-list lines="none">
+        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
+        <ion-item>
+          <ion-text color="primary">Login</ion-text>
+          <img
+            id="img-home"
+            src="../../../assets/Group-38.svg"
+            style="width: 20px; margin-right: 10px"
+            alt=""
+          />
+        </ion-item>
+        <ion-item>
+          <ion-text>Please login to continue using our app.</ion-text>
+        </ion-item>
+      </ion-list>
       <div id="container" class="loginBox">
         <h1>Login</h1>
         <ion-item>
@@ -48,10 +47,11 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  IonCol,
-  IonRow,
+  // IonCol,
+  // IonRow,
   IonText,
-  IonIcon,
+  IonList,
+  // IonIcon,
   alertController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -65,13 +65,14 @@ export default defineComponent({
   components: {
     IonContent,
     IonPage,
-    IonIcon,
+    IonList,
+    // IonIcon,
     IonItem,
     IonLabel,
     IonInput,
     IonButton,
-    IonCol,
-    IonRow,
+    // IonCol,
+    // IonRow,
     IonText,
   },
   data() {
@@ -172,8 +173,8 @@ export default defineComponent({
           url: ipBackend + `users/profil`,
         });
         const dataItem = data.data.data[0];
-
-        if (ret == "Dokter") {
+        console.log(ret.value == `"Dokter"`);
+        if (ret.value == `"Dokter"`) {
           vm.$router.push("/profileDokter");
         } else {
           if (
@@ -241,7 +242,7 @@ export default defineComponent({
 #button-home {
   margin-top: 50px;
 }
-ion-icon{
-    font-size: 20px;
+ion-icon {
+  font-size: 20px;
 }
 </style>
