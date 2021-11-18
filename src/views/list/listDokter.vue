@@ -8,6 +8,8 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
         <div
@@ -76,6 +78,8 @@ import { defineComponent } from "vue";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 import axios from "axios";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 import { chevronBackCircleOutline, bookOutline, person } from "ionicons/icons";
 export default defineComponent({
   components: {
@@ -84,6 +88,8 @@ export default defineComponent({
     IonFabButton,
     IonFabList,
     IonCardHeader,
+    Menu,
+    Tab,
     // IonList,
     IonItem,
     IonCard,

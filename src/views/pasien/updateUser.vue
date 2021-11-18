@@ -8,8 +8,10 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
-        <ion-card style="margin-top:50px;">
+        <ion-card>
           <ion-card-header color="primary">
             <ion-label>
               <!-- <ion-icon
@@ -132,9 +134,9 @@
           </ion-item>
         </ion-card>
       </ion-grid>
-        <ion-item lines="none"
-          ><ion-button @click="update()">Update My form </ion-button>
-        </ion-item>
+      <ion-item lines="none"
+        ><ion-button @click="update()">Update My form </ion-button>
+      </ion-item>
     </ion-content>
   </ion-page>
 </template>
@@ -172,10 +174,14 @@ import { Storage } from "@capacitor/storage";
 import moment from "moment";
 import "moment/locale/id";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
     // IonList,
+    Menu,
+    Tab,
     IonSelect,
     IonProgressBar,
     IonItem,
@@ -194,7 +200,6 @@ export default defineComponent({
     IonFabButton,
     IonIcon,
     IonGrid,
-  
   },
   setup() {
     const router = useRouter();
@@ -428,5 +433,4 @@ ion-icon {
 ion-card-header {
   border-radius: 0 0 50% 50%;
 }
-
 </style>

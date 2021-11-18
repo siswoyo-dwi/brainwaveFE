@@ -1,43 +1,45 @@
 <template>
   <ion-page>
     <ion-content>
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <!-- <ion-icon
           :icon="chevronBackCircleOutline"
           @click="$router.go(-1)"
         ></ion-icon> -->
         <ion-row>
-          <ion-col style="margin-top: 50px"> Register Jadwal </ion-col>
+          <ion-col> Register Jadwal </ion-col>
         </ion-row>
       </ion-grid>
       <ion-card>
         <!-- <ion-list> -->
-          <ion-item>
-            <ion-label>Tanggal</ion-label>
-            <ion-datetime
-              v-model="tanggalJadwal"
-              display-format="YYYY:MM:DD"
-            ></ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-label>Jam Mulai</ion-label>
-            <ion-datetime
-              display-format="HH:mm"
-              minute-values="0,15,30,45"
-              v-model="jamMulai"
-            ></ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-label>Jam selesai</ion-label>
-            <ion-datetime
-              display-format="HH:mm"
-              minute-values="0,15,30,45"
-              v-model="jamSelesai"
-            ></ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-button @click="submit()"> Register Jadwal </ion-button>
-          </ion-item>
+        <ion-item>
+          <ion-label>Tanggal</ion-label>
+          <ion-datetime
+            v-model="tanggalJadwal"
+            display-format="YYYY:MM:DD"
+          ></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Jam Mulai</ion-label>
+          <ion-datetime
+            display-format="HH:mm"
+            minute-values="0,15,30,45"
+            v-model="jamMulai"
+          ></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Jam selesai</ion-label>
+          <ion-datetime
+            display-format="HH:mm"
+            minute-values="0,15,30,45"
+            v-model="jamSelesai"
+          ></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-button @click="submit()"> Register Jadwal </ion-button>
+        </ion-item>
         <!-- </ion-list> -->
       </ion-card>
     </ion-content>
@@ -61,6 +63,8 @@ import {
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import moment from "moment";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 import "moment/locale/id";
 import { ipBackend } from "@/ipBackend";
 import { Storage } from "@capacitor/storage";
@@ -69,6 +73,8 @@ import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   components: {
     IonPage,
+    Menu,
+    Tab,
     IonContent,
     IonGrid,
     IonButton,

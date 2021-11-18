@@ -1,7 +1,6 @@
 <template>
   <ion-app>
-    <Menu></Menu>
-    <Tab></Tab>
+   
     <!-- <Menu></Menu> -->
     <ion-router-outlet id="main"/>
   </ion-app>
@@ -14,18 +13,17 @@ import {
  
 } from "@ionic/vue";
 import { defineComponent } from "vue";
-import Menu from "./views/menu.vue";
-import Tab from "./views/tab.vue";
+// import Menu from "./views/menu.vue";
+// import Tab from "./views/tab.vue";
 export default defineComponent({
   name: "App",
 
   components: {
-    Menu,
-    Tab,
+    // Menu,
+    // Tab,
     IonApp,
     IonRouterOutlet,
   },
-    Menu
 });
 </script>
 <style>

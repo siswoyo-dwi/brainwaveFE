@@ -8,13 +8,15 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <ion-row id="row1">
           <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col>
             <ion-grid>
               <ion-row>
-                <ion-col style="margin-top:10px;" size="7">
+                <ion-col size="7">
                   <ion-text color="light"><h5>Let Us Know You !</h5> </ion-text
                   ><br />
                   <ion-text color="light"
@@ -40,7 +42,7 @@
                     :src="profilPicture"
                     alt=""
                   />
-                  <ion-fab vertical="bottom"  horizontal="end" edge>
+                  <ion-fab vertical="bottom" horizontal="end" edge>
                     <ion-fab-button @click="takePhoto()">
                       <ion-icon :icon="create"></ion-icon>
                     </ion-fab-button>
@@ -122,12 +124,23 @@ import { Storage } from "@capacitor/storage";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/id";
-import { chevronBackCircleOutline, logOutOutline, create, trash, close } from "ionicons/icons";
+import {
+  chevronBackCircleOutline,
+  logOutOutline,
+  create,
+  trash,
+  close,
+} from "ionicons/icons";
 import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
+
 export default defineComponent({
   components: {
     IonContent,
+    Menu,
+    Tab,
     IonDatetime,
     IonPage,
     IonItem,
@@ -355,7 +368,7 @@ img {
   margin: auto;
   border-radius: 50%;
 }
-ion-icon{
-    font-size: 20px;
+ion-icon {
+  font-size: 20px;
 }
 </style>

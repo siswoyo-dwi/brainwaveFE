@@ -1,9 +1,15 @@
 <template>
   <div v-if="spinner">
-    <ion-progress-bar type="indeterminate" color="primary" value="0.5"></ion-progress-bar>
+    <ion-progress-bar
+      type="indeterminate"
+      color="primary"
+      value="0.5"
+    ></ion-progress-bar>
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <ion-row id="row1">
           <ion-col>
@@ -16,7 +22,9 @@
                         :icon="chevronBackCircleOutline"
                         @click="$router.go(-1)"
                       ></ion-icon> -->
-                      <ion-text style="margin-top:10px;" color="light"><h5>Test History</h5> </ion-text>
+                      <ion-text style="margin-top: 10px" color="light"
+                        ><h5>Test History</h5>
+                      </ion-text>
                     </ion-row>
                   </ion-grid>
                 </ion-col>
@@ -31,11 +39,11 @@
         <ion-row v-for="scan in scanUser" :key="scan.id">
           <ion-card>
             <!-- <ion-list> -->
-              <ion-item>
-                {{ moment(scan.tanggalJadwal).format("ddd LL") }}
-              </ion-item>
-              <ion-item> {{ scan.nama }} </ion-item>
-              <ion-item> {{ scan.hasil }} </ion-item>
+            <ion-item>
+              {{ moment(scan.tanggalJadwal).format("ddd LL") }}
+            </ion-item>
+            <ion-item> {{ scan.nama }} </ion-item>
+            <ion-item> {{ scan.hasil }} </ion-item>
             <!-- </ion-list> -->
           </ion-card>
         </ion-row>
@@ -67,8 +75,13 @@ import "moment/locale/id";
 import { chevronBackCircleOutline } from "ionicons/icons";
 import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
+
 export default defineComponent({
   components: {
+    Menu,
+    Tab,
     IonContent,
     IonPage,
     IonProgressBar,
@@ -88,7 +101,7 @@ export default defineComponent({
   data() {
     return {
       moment,
-      ip:ipBackend,
+      ip: ipBackend,
       spinner: false,
       dataJadwal: "",
       scanUser: "",

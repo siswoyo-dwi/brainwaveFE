@@ -4,6 +4,8 @@
   </div>
   <ion-page v-else>
     <ion-content>
+      <Menu></Menu>
+      <Tab></Tab>
       <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
 
       <ion-grid>
@@ -72,7 +74,8 @@ import { defineComponent } from "vue";
 import axios from "axios";
 import { ipBackend } from "@/ipBackend";
 import { Storage } from "@capacitor/storage";
-
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   setup() {
@@ -90,6 +93,8 @@ export default defineComponent({
   components: {
     IonPage,
     // IonIcon,
+    Menu,
+    Tab,
     IonContent,
     IonProgressBar,
     IonRow,

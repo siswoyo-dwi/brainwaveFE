@@ -8,7 +8,13 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <ion-card style="margin-top:50px;" v-if="dataJadwal.length == 0" class="tidak-ada-jadwal">
+      <Menu></Menu>
+      <Tab></Tab>
+      <ion-card
+        style="margin-top: 50px"
+        v-if="dataJadwal.length == 0"
+        class="tidak-ada-jadwal"
+      >
         <ion-item color="primary">
           <!-- <ion-icon
             :icon="chevronBackCircleOutline"
@@ -23,7 +29,11 @@
           :icon="chevronBackCircleOutline"
           @click="$router.go(-1)"
         ></ion-icon> -->
-        <ion-row style="margin-top:50px;" v-for="jadwal in dataJadwal" :key="jadwal.id">
+        <ion-row
+          style="margin-top: 50px"
+          v-for="jadwal in dataJadwal"
+          :key="jadwal.id"
+        >
           <ion-card>
             <ion-col size="4">
               <ion-avatar>
@@ -105,6 +115,8 @@ import {
 } from "@ionic/vue";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 import {
@@ -117,6 +129,8 @@ import {
 export default defineComponent({
   components: {
     IonPage,
+    Menu,
+    Tab,
     IonAvatar,
     IonContent,
     IonGrid,
@@ -169,7 +183,6 @@ export default defineComponent({
       });
 
       vm.dataJadwal = jadwal.data.data[0];
-      console.log(vm.dataJadwal);
       vm.spinner = false;
     }
   },

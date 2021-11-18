@@ -8,7 +8,13 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <ion-card style="margin-top: 50px" v-if="dataJadwal.length == 0" class="tidak-ada-jadwal">
+      <Menu></Menu>
+      <Tab></Tab>
+      <ion-card
+        style="margin-top: 50px"
+        v-if="dataJadwal.length == 0"
+        class="tidak-ada-jadwal"
+      >
         <ion-item color="primary">
           <!-- <ion-icon
             :icon="chevronBackCircleOutline"
@@ -109,6 +115,8 @@ import { ipBackend } from "../../ipBackend";
 import { defineComponent } from "vue";
 import axios from "axios";
 import { chevronBackCircleOutline, logoWhatsapp } from "ionicons/icons";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 
 export default defineComponent({
   setup() {
@@ -119,6 +127,8 @@ export default defineComponent({
   },
   components: {
     IonPage,
+    Menu,
+    Tab,
     IonContent,
     IonGrid,
     IonInput,
@@ -141,7 +151,7 @@ export default defineComponent({
       scanUser: "",
       profile: "",
       spinner: false,
-      noHpUser:"",
+      noHpUser: "",
     };
   },
   async ionViewDidEnter() {
@@ -155,14 +165,12 @@ export default defineComponent({
       headers: { token: token },
     });
     vm.dataJadwal = data.data.data;
-    console.log(vm.dataJadwal);
     const profil = await axios({
       method: "get",
       url: ipBackend + `users/profil`,
       headers: { token: token },
     });
     vm.profile = profil.data.data[0].id;
-    console.log(vm.profile);
 
     const user = await axios({
       method: "get",
@@ -171,7 +179,7 @@ export default defineComponent({
     });
     vm.scanUser = user.data.data;
     vm.spinner = false;
-    vm.noHpUser=vm.scanUser[0].noHpUser;
+    vm.noHpUser = vm.scanUser[0].noHpUser;
   },
   methods: {
     getId(id, pro) {
@@ -257,5 +265,8 @@ h3 {
 }
 ion-icon {
   font-size: 30px;
+}
+ion-card{
+  min-width: 90vw;
 }
 </style>

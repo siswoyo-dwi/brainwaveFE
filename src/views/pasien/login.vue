@@ -1,43 +1,41 @@
 <template>
   <ion-page>
     <ion-content>
-        <div lines="none">
-          <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
-          <ion-item style="margin-top:50px;">
-            <ion-text color="light">Login</ion-text>
-            <img
-              src="../../../assets/Group-38.svg"
-              style="width: 20px; margin-right: 10px"
-              alt=""
-            />
-          </ion-item>
-          <ion-item>
-            <ion-text>Please login to continue using our app.</ion-text>
-          </ion-item>
-        </div>
-        <div id="container" class="loginBox">
-          <h1>Login</h1>
-          <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input
-              class="input"
-              type="email"
-              v-model="username"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" v-model="password"></ion-input>
-          </ion-item>
-          <ion-button
-            :disabled="loading"
-            expand="block"
-            color="light"
-            @click="doLogin()"
-            >Login</ion-button
-          >
-          <p @click="goTo()">Register New User</p>
-        </div>
+      <Menu></Menu>
+      <Tab></Tab>
+      <div lines="none">
+        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
+        <ion-item>
+          <ion-text color="light">Login</ion-text>
+          <img
+            src="../../../assets/Group-38.svg"
+            style="width: 20px; margin-right: 10px"
+            alt=""
+          />
+        </ion-item>
+        <ion-item>
+          <ion-text>Please login to continue using our app.</ion-text>
+        </ion-item>
+      </div>
+      <div id="container" class="loginBox">
+        <h1>Login</h1>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input class="input" type="email" v-model="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" v-model="password"></ion-input>
+        </ion-item>
+        <ion-button
+          :disabled="loading"
+          expand="block"
+          color="light"
+          @click="doLogin()"
+          >Login</ion-button
+        >
+        <p @click="goTo()">Register New User</p>
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -63,9 +61,13 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
 import { chevronBackCircleOutline } from "ionicons/icons";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
+    Menu,
+    Tab,
     IonContent,
     IonPage,
     // IonList,
@@ -101,7 +103,6 @@ export default defineComponent({
         password: vm.password,
         username: vm.username,
       });
-      console.log(post);
       if (post.data.message !== "sukses") {
         const alert = await alertController.create({
           cssClass: "my-custom-class",
@@ -176,7 +177,6 @@ export default defineComponent({
           url: ipBackend + `users/profil`,
         });
         const dataItem = data.data.data[0];
-        console.log(ret.value == `"Dokter"`);
         if (ret.value == `"Dokter"`) {
           vm.$router.push("/profileDokter");
         } else {
@@ -248,5 +248,4 @@ export default defineComponent({
 ion-icon {
   font-size: 20px;
 }
-
 </style>

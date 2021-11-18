@@ -8,6 +8,8 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
+      <Menu></Menu>
+      <Tab></Tab>
       <div class="ion-text-center">
         <ion-text>List Pasien</ion-text>
       </div>
@@ -16,26 +18,30 @@
           :icon="chevronBackCircleOutline"
           @click="$router.go(-1)"
         ></ion-icon> -->
-        <ion-item style="margin-top:50px;" v-for="(Pasien, i) in listPasien" :key="i">
+        <ion-item
+          style="margin-top: 50px"
+          v-for="(Pasien, i) in listPasien"
+          :key="i"
+        >
           <!-- <ion-list> -->
-            <ion-row>
-              <ion-col
-                ><ion-avatar
-                  ><img
-                    v-if="Pasien.profilPicture"
-                    :src="Pasien.profilPicture"
-                    alt="" /></ion-avatar
-                ><img src="../../../assets/avatar.png" alt="" />
-              </ion-col>
-              <ion-col
-                ><ion-label>{{ Pasien.nama }}</ion-label></ion-col
-              >
-              <ion-col
-                ><ion-button @click="goTo(Pasien.id)"
-                  >profile</ion-button
-                ></ion-col
-              >
-            </ion-row>
+          <ion-row>
+            <ion-col
+              ><ion-avatar
+                ><img
+                  v-if="Pasien.profilPicture"
+                  :src="Pasien.profilPicture"
+                  alt="" /></ion-avatar
+              ><img src="../../../assets/avatar.png" alt="" />
+            </ion-col>
+            <ion-col
+              ><ion-label>{{ Pasien.nama }}</ion-label></ion-col
+            >
+            <ion-col
+              ><ion-button @click="goTo(Pasien.id)"
+                >profile</ion-button
+              ></ion-col
+            >
+          </ion-row>
           <!-- </ion-list> -->
         </ion-item>
       </ion-grid>
@@ -64,9 +70,14 @@ import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 import axios from "axios";
 import { chevronBackCircleOutline } from "ionicons/icons";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
+
 export default defineComponent({
   components: {
     IonAvatar,
+    Menu,
+    Tab,
     IonButton,
     IonText,
     IonProgressBar,

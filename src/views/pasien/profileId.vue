@@ -1,10 +1,16 @@
 <template>
   <div v-if="spinner">
-    <ion-progress-bar type="indeterminate" color="primary" value="0.5"></ion-progress-bar>
+    <ion-progress-bar
+      type="indeterminate"
+      color="primary"
+      value="0.5"
+    ></ion-progress-bar>
   </div>
   <ion-page v-else>
     <ion-content>
-      <ion-grid style="margin-top:50px;">
+      <Menu></Menu>
+      <Tab></Tab>
+      <ion-grid>
         <ion-row>
           <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col size="4"></ion-col>
@@ -16,27 +22,23 @@
           <ion-col size="3"></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col
-            >
-              <ion-item class="ion-text-center">
-                <img
-                  v-if="!profile.profilPicture"
-                  src="../../../assets/avatar.png"
-                  alt=""
-                />
-                <ion-avatar v-else>
-                  <img
-                    :src="ip+profile.profilPicture"
-                    alt=""
-                  />
-                </ion-avatar>
-              </ion-item>
-              <ion-item>
-                <ion-grid>
-                  <ion-row>
-                    <strong><h4>USER INFORMATION</h4></strong>
-                  </ion-row>
-                 <ion-item>
+          <ion-col>
+            <ion-item class="ion-text-center">
+              <img
+                v-if="!profile.profilPicture"
+                src="../../../assets/avatar.png"
+                alt=""
+              />
+              <ion-avatar v-else>
+                <img :src="ip + profile.profilPicture" alt="" />
+              </ion-avatar>
+            </ion-item>
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <strong><h4>USER INFORMATION</h4></strong>
+                </ion-row>
+                <ion-item>
                   <img slot="start" src="../../../assets/Group69.svg" alt="" />
                   <ion-text> Full name </ion-text>
                   <ion-text slot="end">{{ profile.nama }} </ion-text>
@@ -64,28 +66,26 @@
                   <ion-text>Body weight</ion-text>
                   <ion-text slot="end"> {{ profile.beratBadan }} kgs </ion-text>
                 </ion-item>
-                </ion-grid>
-              </ion-item>
+              </ion-grid>
+            </ion-item>
 
-              <ion-item>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img src="../../../assets/Group75.svg" alt="" />
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-text>Body weight</ion-text>
-                    </ion-col>
-                    <ion-col size="6">
-                      <div class="ion-text-end">
-                        <ion-text>
-                          {{ profile.beratBadan }} kgs
-                        </ion-text>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="2">
+                    <img src="../../../assets/Group75.svg" alt="" />
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-text>Body weight</ion-text>
+                  </ion-col>
+                  <ion-col size="6">
+                    <div class="ion-text-end">
+                      <ion-text> {{ profile.beratBadan }} kgs </ion-text>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -111,12 +111,15 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
-
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 // import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   components: {
     IonCol,
     IonRow,
+    Menu,
+    Tab,
     // IonList,
     IonProgressBar,
     IonGrid,
@@ -134,7 +137,7 @@ export default defineComponent({
   data() {
     return {
       profile: "",
-      ip:ipBackend,
+      ip: ipBackend,
       age: "",
       spinner: false,
       id: this.$route.params.id,
@@ -197,5 +200,4 @@ img {
 /* ion-icon{
     font-size: 20px;
 } */
-
 </style>

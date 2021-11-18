@@ -8,6 +8,8 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <ion-row id="row1">
           <!-- <ion-icon
@@ -17,7 +19,7 @@
           <ion-col>
             <ion-grid>
               <ion-row>
-                <ion-col style="margin-top:10px;" size="7">
+                <ion-col style="margin-top: 10px" size="7">
                   <ion-text color="light"><h5>Selamat Datang,</h5> </ion-text
                   ><br />
                   <ion-text color="light">{{ profile.nama }} </ion-text>
@@ -27,7 +29,7 @@
                     <img
                       class="imgFotoPribadi"
                       v-if="profile.profilPicture"
-                      :src="ip+profile.profilPicture"
+                      :src="ip + profile.profilPicture"
                     />
                     <img
                       class="imgFotoPribadi"
@@ -43,12 +45,12 @@
         <ion-row id="row2"> </ion-row>
       </ion-grid>
       <!-- <ion-list> -->
-        <ion-item
-          ><ion-button @click="$router.push('/listDokter')"
-            >Info dokter</ion-button
-          ></ion-item
-        >
-        <!-- <ion-item><ion-button>jalankan tes EEG</ion-button></ion-item>
+      <ion-item
+        ><ion-button @click="$router.push('/listDokter')"
+          >Info dokter</ion-button
+        ></ion-item
+      >
+      <!-- <ion-item><ion-button>jalankan tes EEG</ion-button></ion-item>
         <ion-item><ion-button>Riwayat Tes EEG</ion-button></ion-item>
         <ion-item><ion-button>hubungi kontak</ion-button> </ion-item> -->
       <!-- </ion-list> -->
@@ -76,9 +78,14 @@ import {
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
+
 export default defineComponent({
   components: {
     // IonList,
+    Menu,
+    Tab,
     IonItem,
     IonContent,
     IonPage,
@@ -102,7 +109,7 @@ export default defineComponent({
   data() {
     return {
       profile: "",
-      ip:ipBackend,
+      ip: ipBackend,
       spinner: false,
     };
   },

@@ -7,12 +7,14 @@
     ></ion-progress-bar>
   </div>
   <ion-page v-else>
-    <ion-content >
+    <ion-content>
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-card style="margin-top:50px;">
-              <ion-card >
+            <ion-card>
+              <ion-card>
                 <ion-card-header color="primary">
                   <ion-label>
                     <!-- <ion-icon
@@ -164,11 +166,15 @@ import {
   logOutOutline,
   chevronForwardCircleOutline,
 } from "ionicons/icons";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 export default defineComponent({
   components: {
+    Menu,
+    Tab,
     IonCol,
     IonRow,
     // IonList,

@@ -1,17 +1,23 @@
 <template>
   <div v-if="spinner">
-    <ion-progress-bar type="indeterminate" color="primary" value="0.5"></ion-progress-bar>
+    <ion-progress-bar
+      type="indeterminate"
+      color="primary"
+      value="0.5"
+    ></ion-progress-bar>
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <ion-row id="row1">
           <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col>
             <ion-grid>
               <ion-row>
-                <ion-col style="margin-top:10px;" size="7">
-                  <ion-text  color="light"><h5>Selamat Datang,</h5> </ion-text
+                <ion-col size="7">
+                  <ion-text color="light"><h5>Selamat Datang,</h5> </ion-text
                   ><br />
                   <ion-text color="light">{{ profile.nama }} </ion-text>
                 </ion-col>
@@ -20,7 +26,7 @@
                     <img
                       class="imgFotoPribadi"
                       v-if="profile.profilPicture"
-                      :src="ip+profile.profilPicture"
+                      :src="ip + profile.profilPicture"
                     />
                     <img
                       class="imgFotoPribadi"
@@ -36,18 +42,18 @@
         <ion-row id="row2"> </ion-row>
       </ion-grid>
       <!-- <ion-list> -->
-        <ion-item
-          ><ion-button @click="$router.push('/listDokter')"
-            >Info dokter</ion-button
-          ></ion-item
-        >
-        <!-- <ion-item><ion-button>jalankan tes EEG</ion-button></ion-item> -->
-        <ion-item
-          ><ion-button @click="$router.push(`/testHistory/${profile.id}`)"
-            >Riwayat Tes EEG</ion-button
-          ></ion-item
-        >
-        <!-- <ion-item><ion-button>hubungi kontak</ion-button> </ion-item> -->
+      <ion-item
+        ><ion-button @click="$router.push('/listDokter')"
+          >Info dokter</ion-button
+        ></ion-item
+      >
+      <!-- <ion-item><ion-button>jalankan tes EEG</ion-button></ion-item> -->
+      <ion-item
+        ><ion-button @click="$router.push(`/testHistory/${profile.id}`)"
+          >Riwayat Tes EEG</ion-button
+        ></ion-item
+      >
+      <!-- <ion-item><ion-button>hubungi kontak</ion-button> </ion-item> -->
       <!-- </ion-list> -->
     </ion-content>
   </ion-page>
@@ -74,6 +80,8 @@ import {
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
@@ -82,6 +90,8 @@ export default defineComponent({
     IonContent,
     // IonIcon,
     IonPage,
+    Menu,
+    Tab,
     IonButton,
     IonAvatar,
     IonGrid,
@@ -102,7 +112,7 @@ export default defineComponent({
     return {
       profile: "",
       spinner: false,
-      ip:ipBackend,
+      ip: ipBackend,
     };
   },
   async ionViewDidEnter() {
@@ -162,8 +172,8 @@ ion-avatar img {
   flex-wrap: wrap;
   flex-direction: row;
 }
-ion-icon{
-    font-size: 20px;
-    color: white;
+ion-icon {
+  font-size: 20px;
+  color: white;
 }
 </style>

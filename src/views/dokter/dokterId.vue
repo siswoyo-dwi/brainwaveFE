@@ -4,7 +4,8 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      
+      <Menu></Menu>
+      <Tab></Tab>
       <!-- <ion-icon
         :icon="chevronBackCircleOutline"
         @click="$router.go(-1)"
@@ -24,26 +25,46 @@
           <strong><h4>USER INFORMATION</h4></strong>
         </ion-item>
         <ion-item>
-          <img class="img-profile" slot="start" src="../../../assets/Group69.svg" alt="" />
+          <img
+            class="img-profile"
+            slot="start"
+            src="../../../assets/Group69.svg"
+            alt=""
+          />
           <ion-text> Full name </ion-text>
           <ion-text slot="end">{{ profile.nama }} </ion-text>
         </ion-item>
 
         <ion-item>
-          <img class="img-profile" slot="start" src="../../../assets/Group70.svg" alt="" />
+          <img
+            class="img-profile"
+            slot="start"
+            src="../../../assets/Group70.svg"
+            alt=""
+          />
           <ion-text size="4">Age</ion-text>
           <ion-text slot="end"> {{ age }}</ion-text>
         </ion-item>
 
         <ion-item>
-          <img class="img-profile" slot="start" src="../../../assets/Group72.svg" alt="" />
+          <img
+            class="img-profile"
+            slot="start"
+            src="../../../assets/Group72.svg"
+            alt=""
+          />
           <ion-text>Blood type</ion-text>
           <ion-text slot="end">
             {{ profile.golonganDarah }}
           </ion-text>
         </ion-item>
         <ion-item>
-          <img class="img-profile" slot="start" src="../../../assets/Group73.svg" alt="" />
+          <img
+            class="img-profile"
+            slot="start"
+            src="../../../assets/Group73.svg"
+            alt=""
+          />
           <ion-text>Body height</ion-text>
           <ion-text slot="end">
             {{ profile.tinggiBadan }}
@@ -51,7 +72,12 @@
         </ion-item>
 
         <ion-item>
-          <img class="img-profile" slot="start" src="../../../assets/Group75.svg" alt="" />
+          <img
+            class="img-profile"
+            slot="start"
+            src="../../../assets/Group75.svg"
+            alt=""
+          />
           <ion-text>Body weight</ion-text>
           <ion-text slot="end">
             {{ profile.beratBadan }}
@@ -94,6 +120,8 @@ import { defineComponent } from "vue";
 import axios from "axios";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 import { chevronBackCircleOutline, logoWhatsapp } from "ionicons/icons";
 export default defineComponent({
   setup() {
@@ -110,6 +138,8 @@ export default defineComponent({
     // IonRow,
     // IonCol,
     IonText,
+    Menu,
+    Tab,
     IonButton,
     // IonList,
     IonItem,
@@ -175,12 +205,12 @@ ion-button {
   /* width: 90%; */
   border-radius: 5%;
 }
-.img-profile , ion-icon{
+.img-profile,
+ion-icon {
   margin-right: 10px;
 }
-ion-icon{
+ion-icon {
   font-size: 30px;
   color: white;
 }
-
 </style>

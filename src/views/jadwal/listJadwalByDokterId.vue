@@ -8,9 +8,11 @@
   </div>
   <ion-page v-else>
     <ion-content>
+      <Menu></Menu>
+      <Tab></Tab>
       <ion-grid>
         <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
-        <div style="margin-top: 50px" v-if="dataJadwal.length > 0">
+        <div v-if="dataJadwal.length > 0">
           <div v-for="jadwal in dataJadwal" :key="jadwal">
             <ion-card>
               <ion-item>
@@ -69,6 +71,8 @@ import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
 import { defineComponent } from "vue";
 import axios from "axios";
+import Menu from "../menu.vue";
+import Tab from "../tab.vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   setup() {
@@ -79,6 +83,8 @@ export default defineComponent({
   components: {
     IonPage,
     IonContent,
+    Menu,
+    Tab,
     IonGrid,
     IonLabel,
     IonCard,
@@ -111,8 +117,7 @@ export default defineComponent({
 </script>
 
 <style>
-ion-icon{
-    font-size: 20px;
+ion-icon {
+  font-size: 20px;
 }
-
 </style>
