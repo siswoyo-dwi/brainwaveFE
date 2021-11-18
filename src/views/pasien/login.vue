@@ -1,40 +1,43 @@
 <template>
   <ion-page>
-    <ion-content :fullscreen="true">
-      <ion-list lines="none">
-        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
-        <ion-item>
-          <ion-text color="primary">Login</ion-text>
-          <img
-            id="img-home"
-            src="../../../assets/Group-38.svg"
-            style="width: 20px; margin-right: 10px"
-            alt=""
-          />
-        </ion-item>
-        <ion-item>
-          <ion-text>Please login to continue using our app.</ion-text>
-        </ion-item>
-      </ion-list>
-      <div id="container" class="loginBox">
-        <h1>Login</h1>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input class="input" type="email" v-model="username"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" v-model="password"></ion-input>
-        </ion-item>
-        <ion-button
-          :disabled="loading"
-          expand="block"
-          color="primary"
-          @click="doLogin()"
-          >Login</ion-button
-        >
-        <p @click="goTo()">Register New User</p>
-      </div>
+    <ion-content>
+        <div lines="none">
+          <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
+          <ion-item style="margin-top:50px;">
+            <ion-text color="light">Login</ion-text>
+            <img
+              src="../../../assets/Group-38.svg"
+              style="width: 20px; margin-right: 10px"
+              alt=""
+            />
+          </ion-item>
+          <ion-item>
+            <ion-text>Please login to continue using our app.</ion-text>
+          </ion-item>
+        </div>
+        <div id="container" class="loginBox">
+          <h1>Login</h1>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input
+              class="input"
+              type="email"
+              v-model="username"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" v-model="password"></ion-input>
+          </ion-item>
+          <ion-button
+            :disabled="loading"
+            expand="block"
+            color="light"
+            @click="doLogin()"
+            >Login</ion-button
+          >
+          <p @click="goTo()">Register New User</p>
+        </div>
     </ion-content>
   </ion-page>
 </template>
@@ -50,7 +53,7 @@ import {
   // IonCol,
   // IonRow,
   IonText,
-  IonList,
+  // IonList,
   // IonIcon,
   alertController,
 } from "@ionic/vue";
@@ -65,7 +68,7 @@ export default defineComponent({
   components: {
     IonContent,
     IonPage,
-    IonList,
+    // IonList,
     // IonIcon,
     IonItem,
     IonLabel,
@@ -228,7 +231,7 @@ export default defineComponent({
 .loginBox p {
   font-size: 14px;
   text-align: center;
-  color: #3880ff;
+  color: white;
   cursor: pointer;
 }
 
@@ -245,4 +248,5 @@ export default defineComponent({
 ion-icon {
   font-size: 20px;
 }
+
 </style>

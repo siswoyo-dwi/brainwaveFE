@@ -14,7 +14,7 @@
           <ion-col>
             <ion-grid>
               <ion-row>
-                <ion-col size="7">
+                <ion-col style="margin-top:10px;" size="7">
                   <ion-text color="light"><h5>Let Us Know You !</h5> </ion-text
                   ><br />
                   <ion-text color="light"

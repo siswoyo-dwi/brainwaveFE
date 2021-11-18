@@ -9,9 +9,9 @@
   <ion-page v-else>
     <ion-content>
       <ion-grid>
-        <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
-        <div v-if="dataJadwal.length > 0">
-          <ion-list v-for="jadwal in dataJadwal" :key="jadwal">
+        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
+        <div style="margin-top: 50px" v-if="dataJadwal.length > 0">
+          <div v-for="jadwal in dataJadwal" :key="jadwal">
             <ion-card>
               <ion-item>
                 <ion-label>Tanggal Jadwal</ion-label>
@@ -35,15 +35,15 @@
                 </ion-button>
               </ion-item>
             </ion-card>
-          </ion-list>
+          </div>
         </div>
         <div v-else>
           <ion-card>
-            <ion-list>
+            <div>
               <ion-item>
                 <ion-label>belum ada jadwal</ion-label>
               </ion-item>
-            </ion-list>
+            </div>
           </ion-card>
         </div>
       </ion-grid>
@@ -56,10 +56,10 @@ import {
   IonPage,
   IonContent,
   IonGrid,
-  IonList,
+  // IonList,
   IonProgressBar,
   IonItem,
-  IonIcon,
+  // IonIcon,
   IonCard,
   IonLabel,
   IonButton,
@@ -82,8 +82,8 @@ export default defineComponent({
     IonGrid,
     IonLabel,
     IonCard,
-    IonList,
-    IonIcon,
+    // IonList,
+    // IonIcon,
     IonButton,
     IonProgressBar,
     IonItem,

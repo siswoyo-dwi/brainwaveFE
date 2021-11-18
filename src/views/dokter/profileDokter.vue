@@ -37,7 +37,7 @@
         </ion-row>
         <ion-row id="row2"> </ion-row>
       </ion-grid>
-      <ion-list lines="none">
+      <div lines="none">
         <ion-item>
           <ion-button @click="$router.push('/registerjadwal')">
             Register jadwal
@@ -48,7 +48,7 @@
             List jadwal
           </ion-button>
         </ion-item>
-      </ion-list>
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -62,7 +62,7 @@ import {
   IonRow,
   IonCol,
   IonGrid,
-  IonList,
+  // IonList,
   IonItem,
   IonText,
   IonAvatar,
@@ -95,7 +95,7 @@ export default defineComponent({
     IonRow,
     IonButton,
     IonCol,
-    IonList,
+    // IonList,
     IonItem,
     IonText,
     IonGrid,

@@ -4,9 +4,9 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <ion-grid>
+      <ion-grid style="margin-top:50px;">
         <ion-row>
-          <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
+          <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col size="4"></ion-col>
           <ion-col size="5">
             <ion-text class="ion-text-center"
@@ -17,7 +17,7 @@
         </ion-row>
         <ion-row>
           <ion-col
-            ><ion-list>
+            >
               <ion-item class="ion-text-center">
                 <img
                   v-if="!profile.profilPicture"
@@ -86,7 +86,6 @@
                   </ion-row>
                 </ion-grid>
               </ion-item>
-            </ion-list>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -97,14 +96,14 @@
 import {
   IonCol,
   IonRow,
-  IonList,
+  // IonList,
   IonGrid,
   IonItem,
   IonText,
   IonContent,
   IonPage,
   IonProgressBar,
-  IonIcon,
+  // IonIcon,
   IonAvatar,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -113,24 +112,24 @@ import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 
-import { chevronBackCircleOutline } from "ionicons/icons";
+// import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   components: {
     IonCol,
     IonRow,
-    IonList,
+    // IonList,
     IonProgressBar,
     IonGrid,
     IonItem,
     IonContent,
-    IonIcon,
+    // IonIcon,
     IonText,
     IonPage,
     IonAvatar,
   },
   setup() {
     const router = useRouter();
-    return { router, chevronBackCircleOutline };
+    return { router };
   },
   data() {
     return {
@@ -195,8 +194,8 @@ img {
   display: block;
   margin: auto;
 }
-ion-icon{
+/* ion-icon{
     font-size: 20px;
-}
+} */
 
 </style>

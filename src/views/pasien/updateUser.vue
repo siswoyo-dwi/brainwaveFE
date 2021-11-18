@@ -9,13 +9,13 @@
   <ion-page v-else>
     <ion-content :fullscreen="true">
       <ion-grid>
-        <ion-card>
+        <ion-card style="margin-top:50px;">
           <ion-card-header color="primary">
             <ion-label>
-              <ion-icon
+              <!-- <ion-icon
                 :icon="chevronBackCircleOutline"
                 @click="$router.go(-1)"
-              ></ion-icon>
+              ></ion-icon> -->
               <h3>Update My Profile</h3>
             </ion-label>
             <img
@@ -132,11 +132,9 @@
           </ion-item>
         </ion-card>
       </ion-grid>
-      <ion-list>
         <ion-item lines="none"
           ><ion-button @click="update()">Update My form </ion-button>
         </ion-item>
-      </ion-list>
     </ion-content>
   </ion-page>
 </template>
@@ -145,7 +143,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonContent,
-  IonList,
+  // IonList,
   IonItem,
   IonText,
   IonButton,
@@ -177,7 +175,7 @@ import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 
 export default defineComponent({
   components: {
-    IonList,
+    // IonList,
     IonSelect,
     IonProgressBar,
     IonItem,

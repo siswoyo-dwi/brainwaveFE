@@ -2,16 +2,16 @@
   <ion-page>
     <ion-content>
       <ion-grid>
-        <ion-icon
+        <!-- <ion-icon
           :icon="chevronBackCircleOutline"
           @click="$router.go(-1)"
-        ></ion-icon>
+        ></ion-icon> -->
         <ion-row>
-          <ion-col> Register Jadwal </ion-col>
+          <ion-col style="margin-top: 50px"> Register Jadwal </ion-col>
         </ion-row>
       </ion-grid>
       <ion-card>
-        <ion-list>
+        <!-- <ion-list> -->
           <ion-item>
             <ion-label>Tanggal</ion-label>
             <ion-datetime
@@ -38,7 +38,7 @@
           <ion-item>
             <ion-button @click="submit()"> Register Jadwal </ion-button>
           </ion-item>
-        </ion-list>
+        <!-- </ion-list> -->
       </ion-card>
     </ion-content>
   </ion-page>
@@ -54,8 +54,8 @@ import {
   IonCol,
   IonCard,
   IonItem,
-  IonIcon,
-  IonList,
+  // IonIcon,
+  // IonList,
   IonDatetime,
   IonButton,
 } from "@ionic/vue";
@@ -76,9 +76,9 @@ export default defineComponent({
     IonCol,
     IonCard,
     IonItem,
-    IonIcon,
+    // IonIcon,
     IonDatetime,
-    IonList,
+    // IonList,
     IonLabel,
   },
   data() {

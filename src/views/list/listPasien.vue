@@ -12,12 +12,12 @@
         <ion-text>List Pasien</ion-text>
       </div>
       <ion-grid>
-        <ion-icon
+        <!-- <ion-icon
           :icon="chevronBackCircleOutline"
           @click="$router.go(-1)"
-        ></ion-icon>
-        <ion-item v-for="(Pasien, i) in listPasien" :key="i">
-          <ion-list>
+        ></ion-icon> -->
+        <ion-item style="margin-top:50px;" v-for="(Pasien, i) in listPasien" :key="i">
+          <!-- <ion-list> -->
             <ion-row>
               <ion-col
                 ><ion-avatar
@@ -36,7 +36,7 @@
                 ></ion-col
               >
             </ion-row>
-          </ion-list>
+          <!-- </ion-list> -->
         </ion-item>
       </ion-grid>
     </ion-content>
@@ -50,13 +50,13 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonList,
+  // IonList,
   IonProgressBar,
   IonItem,
   IonLabel,
   IonText,
   IonAvatar,
-  IonIcon,
+  // IonIcon,
   IonButton,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -70,8 +70,8 @@ export default defineComponent({
     IonButton,
     IonText,
     IonProgressBar,
-    IonList,
-    IonIcon,
+    // IonList,
+    // IonIcon,
     IonItem,
     IonLabel,
     IonPage,

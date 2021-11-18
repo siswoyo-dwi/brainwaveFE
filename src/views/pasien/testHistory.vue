@@ -12,11 +12,11 @@
                 <ion-col size="7">
                   <ion-grid>
                     <ion-row>
-                      <ion-icon
+                      <!-- <ion-icon
                         :icon="chevronBackCircleOutline"
                         @click="$router.go(-1)"
-                      ></ion-icon>
-                      <ion-text color="light"><h5>Test History</h5> </ion-text>
+                      ></ion-icon> -->
+                      <ion-text style="margin-top:10px;" color="light"><h5>Test History</h5> </ion-text>
                     </ion-row>
                   </ion-grid>
                 </ion-col>
@@ -30,13 +30,13 @@
       <ion-grid>
         <ion-row v-for="scan in scanUser" :key="scan.id">
           <ion-card>
-            <ion-list>
+            <!-- <ion-list> -->
               <ion-item>
                 {{ moment(scan.tanggalJadwal).format("ddd LL") }}
               </ion-item>
               <ion-item> {{ scan.nama }} </ion-item>
               <ion-item> {{ scan.hasil }} </ion-item>
-            </ion-list>
+            <!-- </ion-list> -->
           </ion-card>
         </ion-row>
       </ion-grid>
@@ -50,10 +50,10 @@ import {
   IonPage,
   IonProgressBar,
   IonCard,
-  IonIcon,
+  // IonIcon,
   IonGrid,
   IonRow,
-  IonList,
+  // IonList,
   IonItem,
   IonText,
   IonCol,
@@ -73,9 +73,9 @@ export default defineComponent({
     IonPage,
     IonProgressBar,
     IonCard,
-    IonList,
+    // IonList,
     IonItem,
-    IonIcon,
+    // IonIcon,
     IonGrid,
     IonRow,
     IonCol,

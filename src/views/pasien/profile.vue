@@ -7,130 +7,123 @@
     ></ion-progress-bar>
   </div>
   <ion-page v-else>
-    <ion-content>
+    <ion-content >
       <ion-grid>
         <ion-row>
-          <ion-col
-            ><ion-list>
-              <ion-card>
-                <ion-card>
-                  <ion-card-header color="primary">
-                    <ion-label>
-                      <!-- <ion-icon
+          <ion-col>
+            <ion-card style="margin-top:50px;">
+              <ion-card >
+                <ion-card-header color="primary">
+                  <ion-label>
+                    <!-- <ion-icon
                         :icon="chevronBackCircleOutline"
                         
                         @click="$router.go(-1)"
                       ></ion-icon> -->
-                      <h3>{{ profile.nama }} Profile</h3>
-                    </ion-label>
-                    <img
-                      class="image-profile"
-                      v-if="!profile.profilPicture"
-                      src="../../../assets/avatar.png"
-                      alt=""
-                    />
-                    <img
-                      v-else
-                      class="image-profile"
-                      :src="ip + profile.profilPicture"
-                      alt=""
-                    />
-                  </ion-card-header>
-                </ion-card>
-
-                <ion-item lines="none">
-                  <ion-grid>
-                    <ion-row>
-                      <strong><h4>USER INFORMATION</h4></strong>
-                    </ion-row>
-                  </ion-grid>
-                </ion-item>
-                <ion-item>
-                  <img slot="start" src="../../../assets/Group69.svg" alt="" />
-                  <ion-text> Full name </ion-text>
-                  <ion-text slot="end">{{ profile.nama }} </ion-text>
-                </ion-item>
-                <ion-item>
-                  <img slot="start" src="../../../assets/Group70.svg" alt="" />
-                  <ion-text>Age</ion-text>
-                  <ion-text slot="end"> {{ age }}</ion-text>
-                </ion-item>
-
-                <ion-item>
-                  <img slot="start" src="../../../assets/Group72.svg" alt="" />
-                  <ion-text>Blood type</ion-text>
-                  <ion-text slot="end">
-                    {{ profile.golonganDarah }}
-                  </ion-text>
-                </ion-item>
-                <ion-item>
-                  <img slot="start" src="../../../assets/Group73.svg" alt="" />
-                  <ion-text>Body height</ion-text>
-                  <ion-text slot="end"> {{ profile.tinggiBadan }} cm </ion-text>
-                </ion-item>
-                <ion-item>
-                  <img slot="start" src="../../../assets/Group75.svg" alt="" />
-                  <ion-text>Body weight</ion-text>
-                  <ion-text slot="end"> {{ profile.beratBadan }} kgs </ion-text>
-                </ion-item>
-                <ion-item lines="none">
-                  <ion-text><h4>Medical Record</h4></ion-text>
-                  <div slot="end" @click="$router.push(`/testHistory/${id}`)">
-                    <ion-text color="medium"> See more </ion-text>
-                    <ion-icon
-                      class="grey"
-                      :icon="chevronForwardCircleOutline"
-                    ></ion-icon>
-                  </div>
-                </ion-item>
-                <div v-if="scanUser.length > 0">
-                  <swiper @swiper="setSwiperInstance" :loop="true">
-                    <swiper-slide v-for="scan in scanUser" :key="scan.id">
-                      <ion-card
-                        id="swiper-slide"
-                        style="background-color: #9de2b9"
-                      >
-                        <div class="slider">
-                         
-                          <ion-grid>
-                            <ion-row>
-                              <ion-col>
-                                <div style="text-align: end">
-                                  <ion-text> Illness Classification </ion-text>
-                                </div>
-                              </ion-col>
-                            </ion-row>
-                          </ion-grid>
-                          <div style="margin-top: 50px">
-                           
-                            <h4>{{ scan.hasil }}</h4>
-                            
-                            {{
-                              moment(scan.tanggalJadwal).format("Do MMM YYYY")
-                            }}
-                            
-                          </div>
-                        </div>
-                      </ion-card>
-                    </swiper-slide>
-                  </swiper>
-                </div>
-                <div v-else>
-                  <ion-card>
-                    <ion-item> Belum ada Medical Record </ion-item>
-                  </ion-card>
-                </div>
-                <ion-item
-                  ><ion-button @click="$router.push('/update')"
-                    >Update My Profile</ion-button
-                  >
-                  <ion-button @click="goTo()">Dashboard</ion-button>
-                  <ion-button @click="logout()"
-                    ><ion-icon :icon="logOutOutline"></ion-icon
-                  ></ion-button>
-                </ion-item>
+                    <h3>{{ profile.nama }} Profile</h3>
+                  </ion-label>
+                  <img
+                    class="image-profile"
+                    v-if="!profile.profilPicture"
+                    src="../../../assets/avatar.png"
+                    alt=""
+                  />
+                  <img
+                    v-else
+                    class="image-profile"
+                    :src="ip + profile.profilPicture"
+                    alt=""
+                  />
+                </ion-card-header>
               </ion-card>
-            </ion-list>
+
+              <ion-item lines="none">
+                <ion-grid>
+                  <ion-row>
+                    <strong><h4>USER INFORMATION</h4></strong>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <img slot="start" src="../../../assets/Group69.svg" alt="" />
+                <ion-text> Full name </ion-text>
+                <ion-text slot="end">{{ profile.nama }} </ion-text>
+              </ion-item>
+              <ion-item>
+                <img slot="start" src="../../../assets/Group70.svg" alt="" />
+                <ion-text>Age</ion-text>
+                <ion-text slot="end"> {{ age }}</ion-text>
+              </ion-item>
+
+              <ion-item>
+                <img slot="start" src="../../../assets/Group72.svg" alt="" />
+                <ion-text>Blood type</ion-text>
+                <ion-text slot="end">
+                  {{ profile.golonganDarah }}
+                </ion-text>
+              </ion-item>
+              <ion-item>
+                <img slot="start" src="../../../assets/Group73.svg" alt="" />
+                <ion-text>Body height</ion-text>
+                <ion-text slot="end"> {{ profile.tinggiBadan }} cm </ion-text>
+              </ion-item>
+              <ion-item>
+                <img slot="start" src="../../../assets/Group75.svg" alt="" />
+                <ion-text>Body weight</ion-text>
+                <ion-text slot="end"> {{ profile.beratBadan }} kgs </ion-text>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-text><h4>Medical Record</h4></ion-text>
+                <div slot="end" @click="$router.push(`/testHistory/${id}`)">
+                  <ion-text color="medium"> See more </ion-text>
+                  <ion-icon
+                    class="grey"
+                    :icon="chevronForwardCircleOutline"
+                  ></ion-icon>
+                </div>
+              </ion-item>
+              <div v-if="scanUser.length > 0">
+                <swiper @swiper="setSwiperInstance" :loop="true">
+                  <swiper-slide v-for="scan in scanUser" :key="scan.id">
+                    <ion-card
+                      id="swiper-slide"
+                      style="background-color: #9de2b9"
+                    >
+                      <div class="slider">
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col>
+                              <div style="text-align: end">
+                                <ion-text> Illness Classification </ion-text>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                        <div style="margin-top: 50px">
+                          <h4>{{ scan.hasil }}</h4>
+
+                          {{ moment(scan.tanggalJadwal).format("Do MMM YYYY") }}
+                        </div>
+                      </div>
+                    </ion-card>
+                  </swiper-slide>
+                </swiper>
+              </div>
+              <div v-else>
+                <ion-card>
+                  <ion-item> Belum ada Medical Record </ion-item>
+                </ion-card>
+              </div>
+              <ion-item
+                ><ion-button @click="$router.push('/update')"
+                  >Update My Profile</ion-button
+                >
+                <ion-button @click="goTo()">Dashboard</ion-button>
+                <ion-button @click="logout()"
+                  ><ion-icon :icon="logOutOutline"></ion-icon
+                ></ion-button>
+              </ion-item>
+            </ion-card>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -142,10 +135,14 @@ import {
   alertController,
   IonCol,
   IonRow,
-  IonList,
+  // IonList,
+  // menuController,
+  // IonToolbar,
   IonGrid,
   IonItem,
   IonText,
+  // IonButtons,
+  // IonMenuButton,
   IonContent,
   IonCard,
   IonLabel,
@@ -163,7 +160,7 @@ import "moment/locale/id";
 import "swiper/swiper-bundle.min.css";
 
 import {
-  chevronBackCircleOutline,
+  // chevronBackCircleOutline,
   logOutOutline,
   chevronForwardCircleOutline,
 } from "ionicons/icons";
@@ -174,7 +171,7 @@ export default defineComponent({
   components: {
     IonCol,
     IonRow,
-    IonList,
+    // IonList,
     IonGrid,
     IonItem,
     IonIcon,
@@ -182,8 +179,11 @@ export default defineComponent({
     SwiperSlide,
     IonCard,
     IonCardHeader,
+    // IonMenuButton,
+    // IonButtons,
     IonProgressBar,
     IonContent,
+    // IonToolbar,
     IonText,
     IonButton,
     IonPage,
@@ -197,7 +197,7 @@ export default defineComponent({
     };
     return {
       router,
-      chevronBackCircleOutline,
+      // chevronBackCircleOutline,
       logOutOutline,
       chevronForwardCircleOutline,
       setSwiperInstance,
@@ -255,6 +255,7 @@ export default defineComponent({
         vm.$router.push("/mainDokter");
       }
     },
+
     async logout() {
       let vm = this;
       const alert = await alertController.create({
@@ -312,12 +313,7 @@ ion-button {
 
   border-radius: 50%;
 }
-.ion-text-center {
-  text-align: center;
-}
-.ion-margin {
-  margin-bottom: 10px;
-}
+
 h3 {
   font-weight: 700;
   text-align: center;
@@ -339,9 +335,4 @@ h4 {
 ion-card-header {
   border-radius: 0 0 50% 50%;
 }
-
-.slider {
-  padding: 20px;
-}
-
 </style>

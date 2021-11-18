@@ -2,9 +2,9 @@
   <ion-page>
     <ion-content>
       <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
-      <ion-list lines="none">
-        <ion-item>
-          <ion-text color="primary">Hello there!</ion-text>
+      <div lines="none">
+        <ion-item style="margin-top: 50px">
+          <ion-text color="light">Hello there!</ion-text>
           <img
             class="my2"
             src="../../../assets/Group-38.svg"
@@ -37,29 +37,37 @@
               ></ion-input>
               <ion-input v-else v-model="password"></ion-input>
             </ion-item>
-            <input
-              type="checkbox"
-              class="form-check-input"
-              v-model="cek"
-              value="yes"
-              id="check"
-            />
-            <label class="form-check-label" for="exampleCheck1"
-              >show password</label
-            >
+            <ion-item>
+              <input
+                type="checkbox"
+                style="margin-right: 10px"
+                class="form-check-input"
+                v-model="cek"
+                value="yes"
+                id="check"
+              />
+
+              <label class="form-check-label" for="exampleCheck1"
+                >show password</label
+              >
+            </ion-item>
             <ion-button expand="block" color="primary" @click="doRegister()"
               >Sign Up</ion-button
             >
+            <ion-text color="black">You already have an account?</ion-text
+            ><ion-text @click="$router.push('/login')" color="light">
+              Login
+            </ion-text>
           </div>
         </ion-item>
-        <ion-item>
-          <ion-text 
-            ><p>You already have an account?</p></ion-text
-          ><ion-text color="primary"
+
+        <!-- <ion-item style="text-align: center">
+          <ion-text><p>You already have an account?</p></ion-text
+          ><ion-text color="light"
             ><p @click="$router.push('/login')" class="my2">Login</p></ion-text
           ></ion-item
-        >
-      </ion-list>
+        > -->
+      </div>
       <ion-col>
         <br />
       </ion-col>
@@ -75,7 +83,7 @@ import {
   IonContent,
   // IonGrid,
   IonRow,
-  IonList,
+  // IonList,
   IonCol,
   IonText,
   IonPage,
@@ -99,7 +107,7 @@ export default defineComponent({
     // IonGrid,
     // IonIcon,
     IonRow,
-    IonList,
+    // IonList,
 
     IonCol,
     IonText,
@@ -123,7 +131,6 @@ export default defineComponent({
   methods: {
     async doRegister() {
       let vm = this;
-
       let res = await axios.post(ipBackend + "users/register", {
         password: vm.password,
         username: vm.username,
@@ -144,7 +151,11 @@ export default defineComponent({
           ],
         });
         return alert.present();
-      } else if (res.data.message == "sukses") {
+      } else if (
+        res.data.message == "sukses" &&
+        vm.username.length > 5 &&
+        vm.password > 5
+      ) {
         vm.$router.push("/inputdata");
 
         const alert = await alertController.create({
@@ -155,25 +166,42 @@ export default defineComponent({
             {
               text: "Okay",
               handler: () => {
-                vm.$router.push("/inputdata");
+                vm.$router.push("/login");
               },
             },
           ],
         });
         return alert.present();
       } else {
-        const alertregis = await alertController.create({
-          cssClass: "my-custom-class",
-          header: "Registrasi Gagal!",
-          message: res.response.message,
-          buttons: [
-            {
-              text: "Ok",
-            },
-          ],
-        });
-        return alertregis.present();
+        if (vm.username.length < 5 && vm.password.length < 5) {
+          const alertregis = await alertController.create({
+            cssClass: "my-custom-class",
+            header: "Registrasi Gagal!",
+            message: "username / password tidak sesuai syarat",
+            buttons: [
+              {
+                text: "Ok",
+              },
+            ],
+          });
+          return alertregis.present();
+        } else {
+          const alertregis = await alertController.create({
+            cssClass: "my-custom-class",
+            header: "Registrasi Gagal!",
+            message: res.response.message,
+            buttons: [
+              {
+                text: "Ok",
+              },
+            ],
+          });
+          return alertregis.present();
+        }
       }
+      // } else {
+
+      // }
     },
 
     async logout() {
@@ -234,7 +262,7 @@ export default defineComponent({
 .registerBox p {
   font-size: 14px;
   text-align: center;
-  color: #3880ff;
+  color: white;
   cursor: pointer;
 }
 

@@ -6,12 +6,12 @@
     <ion-content :fullscreen="true">
       <ion-grid>
         <ion-row id="row1">
-          <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
+          <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col>
             <ion-grid>
               <ion-row>
-                <ion-col size="7">
-                  <ion-text color="light"><h5>Selamat Datang,</h5> </ion-text
+                <ion-col style="margin-top:10px;" size="7">
+                  <ion-text  color="light"><h5>Selamat Datang,</h5> </ion-text
                   ><br />
                   <ion-text color="light">{{ profile.nama }} </ion-text>
                 </ion-col>
@@ -35,7 +35,7 @@
         </ion-row>
         <ion-row id="row2"> </ion-row>
       </ion-grid>
-      <ion-list>
+      <!-- <ion-list> -->
         <ion-item
           ><ion-button @click="$router.push('/listDokter')"
             >Info dokter</ion-button
@@ -48,7 +48,7 @@
           ></ion-item
         >
         <!-- <ion-item><ion-button>hubungi kontak</ion-button> </ion-item> -->
-      </ion-list>
+      <!-- </ion-list> -->
     </ion-content>
   </ion-page>
 </template>
@@ -68,19 +68,19 @@ import {
   IonText,
   IonButton,
   IonCol,
-  IonList,
+  // IonList,
   IonItem,
-  IonIcon,
+  // IonIcon,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
 
 export default defineComponent({
   components: {
-    IonList,
+    // IonList,
     IonItem,
     IonContent,
-    IonIcon,
+    // IonIcon,
     IonPage,
     IonButton,
     IonAvatar,

@@ -98,6 +98,11 @@ const routes = [
     name: "testHistory",
     component: () => import("@/views/pasien/testHistory.vue"),
   },
+  {
+    path: "/listsemuajadwal",
+    name: "listsemuajadwal",
+    component: () => import("@/views/list/listJadwal.vue"),
+  },
 
 ];
 

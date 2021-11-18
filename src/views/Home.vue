@@ -1,38 +1,45 @@
 <template>
   <ion-page>
     <ion-content>
-      <ion-list lines="none">
-        <ion-item>
-          <ion-text color="primary">Welcome!</ion-text>
-        </ion-item>
-        <ion-item>
-          <ion-text>Please login first to continue.</ion-text>
-        </ion-item>
+      <div id="header">
+        <div>
+          <ion-item lines="none">
+            <ion-text color="light">Welcome!</ion-text>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-text>Please login first to continue.</ion-text>
+          </ion-item>
 
-        <img id="img-home" src="../../assets/Group-38.svg" alt="" />
-        <ion-text id="text-home">EEG DroMo</ion-text>
+          <img id="img-home" src="../../assets/Group-38.svg" alt="" />
+          <ion-text id="text-home">EEG DroMo</ion-text>
 
-        <ion-item>
-          <ion-button
-            @click="goToRegister"
-            id="button-home"
-            expand="block"
-            color="primary"
+          <ion-item lines="none">
+            <ion-button
+              @click="goToRegister"
+              id="button-home"
+              expand="block"
+              color="primary"
+            >
+              Create an Account
+            </ion-button>
+          </ion-item>
+        </div>
+
+        <div id="line-or">
+          <img class="line-black" src="../../assets/line.svg" alt="" /> OR
+          <img class="line-black" src="../../assets/line.svg" alt="" />
+        </div>
+        <div id="text-login">
+          <ion-text style="margin-left: 5px"
+            ><p>
+              You already have an account?
+              <ion-text color="light"
+                ><p @click="goToLogin()">Login</p></ion-text
+              >
+            </p></ion-text
           >
-            Create an Account
-          </ion-button>
-        </ion-item>
-      </ion-list>
-
-      <div id="line-or">
-        <img class="line-black" src="../../assets/line.svg" alt="" /> OR
-        <img class="line-black" src="../../assets/line.svg" alt="" />
-      </div>
-      <div id="text-login">
-        <ion-text style="margin-left: 5px"
-          ><p>You already have an account?</p></ion-text
-        >
-        <ion-text color="primary"><p @click="goToLogin()">Login</p></ion-text>
+          <!-- <ion-text color="primary"><p @click="goToLogin()">Login</p></ion-text> -->
+        </div>
       </div>
     </ion-content>
   </ion-page>
@@ -44,7 +51,7 @@ import {
   // IonCard,
   // IonCardHeader,
   IonItem,
-  IonList,
+  // IonList,
   IonButton,
   IonText,
 } from "@ionic/vue";
@@ -55,7 +62,7 @@ export default defineComponent({
     IonPage,
     IonContent,
     IonItem,
-    IonList,
+    // IonList,
     // IonCard,
     // IonCardHeader,
     IonButton,
@@ -78,34 +85,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.loginBox {
-  margin: 45% auto;
-  width: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 12px;
-  height: 350px;
-  border-radius: 8px;
-  transform: translateY(18px);
-  box-shadow: 1px 1px 10px rgba(56, 128, 255, 0.25);
-  transition: 0.3s ease-out;
-}
-.loginBox:hover {
-  transform: translateY(-18px);
-  transition: 0.3s ease-in;
-  box-shadow: 10px 10px 10px rgba(56, 128, 255, 0.25);
-}
-.loginBox h1 {
-  text-align: center;
-  margin-top: 4px;
-}
-.loginBox p {
-  font-size: 14px;
-  text-align: center;
-  color: #3880ff;
-  cursor: pointer;
-}
 #img-home {
   display: flex;
   justify-self: center;
@@ -153,5 +132,16 @@ export default defineComponent({
 }
 #text-center {
   text-align: center;
+}
+ion-item {
+  --background: linear-gradient(
+    90deg,
+    rgba(43, 90, 148, 1) 0%,
+    rgba(45, 120, 229, 1) 35%,
+    rgba(45, 112, 229, 1) 100%
+  );
+}
+#header {
+  margin-top: 40px;
 }
 </style>

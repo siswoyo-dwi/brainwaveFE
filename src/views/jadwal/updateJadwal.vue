@@ -5,12 +5,12 @@
   <ion-page v-else>
     <ion-content>
       <ion-grid>
-        <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon>
+        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
         <ion-row>
-          <ion-col> Update Jadwal </ion-col>
+          <ion-col style="margin-top: 50px"> Update Jadwal </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-list>
+      <!-- <ion-list> -->
         <ion-item>
           <ion-label>Tanggal</ion-label>
           <ion-datetime
@@ -49,7 +49,7 @@
         <ion-item>
           <ion-button @click="submit()"> Update Jadwal </ion-button>
         </ion-item>
-      </ion-list>
+      <!-- </ion-list> -->
     </ion-content>
   </ion-page>
 </template>
@@ -63,11 +63,11 @@ import {
   IonRow,
   IonCol,
   IonItem,
-  IonList,
+  // IonList,
   IonDatetime,
   IonButton,
   IonSelect,
-  IonIcon,
+  // IonIcon,
   IonSelectOption,
   IonProgressBar,
 } from "@ionic/vue";
@@ -89,8 +89,8 @@ export default defineComponent({
     IonItem,
     IonProgressBar,
     IonDatetime,
-    IonList,
-    IonIcon,
+    // IonList,
+    // IonIcon,
     IonLabel,
     IonSelect,
     IonSelectOption,

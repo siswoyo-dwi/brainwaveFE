@@ -8,21 +8,21 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <ion-card v-if="dataJadwal.length == 0" class="tidak-ada-jadwal">
+      <ion-card style="margin-top: 50px" v-if="dataJadwal.length == 0" class="tidak-ada-jadwal">
         <ion-item color="primary">
-          <ion-icon
+          <!-- <ion-icon
             :icon="chevronBackCircleOutline"
             @click="$router.go(-1)"
-          ></ion-icon>
+          ></ion-icon> -->
 
           <h3>Jadwal Belum tersedia</h3>
         </ion-item>
       </ion-card>
       <ion-grid v-else>
-        <ion-icon
+        <!-- <ion-icon
           :icon="chevronBackCircleOutline"
           @click="$router.go(-1)"
-        ></ion-icon>
+        ></ion-icon> -->
         <ion-row v-for="jadwal in dataJadwal" :key="jadwal">
           <ion-card>
             <ion-col size="6">
