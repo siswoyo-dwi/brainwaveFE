@@ -26,7 +26,6 @@
                 <strong><h4>USER INFORMATION</h4></strong>
               </ion-row>
             </ion-grid>
-            <ion-list> </ion-list>
             <ion-item>
               <img slot="start" src="../../../assets/Group69.svg" alt="" />
               <ion-text> Full name </ion-text>
@@ -62,7 +61,7 @@
               </ion-text>
             </ion-item>
             <ion-item>
-              <ion-icon :icon="logoWhatsapp"> </ion-icon>
+              <ion-icon  :icon="logoWhatsapp"> </ion-icon>
               <ion-text>Nomor Wa</ion-text>
               <ion-text slot="end">
                 {{ profile.noHpUser }}
@@ -165,4 +164,5 @@ img {
 ion-avatar {
   border-radius: 50%;
 }
+
 </style>

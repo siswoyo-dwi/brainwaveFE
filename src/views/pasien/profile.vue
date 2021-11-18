@@ -83,37 +83,43 @@
                     ></ion-icon>
                   </div>
                 </ion-item>
-                  <div v-if="scanUser.length > 0">
-                    <swiper
-                      @swiper="setSwiperInstance"
-                      
-                      :loop="true"
-                    >
-                      <swiper-slide v-for="scan in scanUser"
-                      :key="scan.id">
-                        <ion-card id="swiper-slide">
-                          <ion-list class="card"  lines="none">
-                            <ion-item class="card" >
-                              <ion-text slot="end">
-                                Illness Classification
-                              </ion-text>
-                            </ion-item >
-                            <ion-item class="card" > 
-                              <h4>{{ scan.hasil }}</h4>
-                            </ion-item>
-                            <ion-item class="card" >
-                              {{ moment(scan.tanggalJadwal).format("Do MMM YYYY") }}
-                            </ion-item>
-                          </ion-list>
-                        </ion-card>
-                      </swiper-slide>
-                    </swiper>
-                  </div>
-                  <div v-else>
-                    <ion-card>
-                      <ion-item> Belum ada Medical Record </ion-item>
-                    </ion-card>
-                  </div>
+                <div v-if="scanUser.length > 0">
+                  <swiper @swiper="setSwiperInstance" :loop="true">
+                    <swiper-slide v-for="scan in scanUser" :key="scan.id">
+                      <ion-card
+                        id="swiper-slide"
+                        style="background-color: #9de2b9"
+                      >
+                        <div class="slider">
+                         
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <div style="text-align: end">
+                                  <ion-text> Illness Classification </ion-text>
+                                </div>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                          <div style="margin-top: 50px">
+                           
+                            <h4>{{ scan.hasil }}</h4>
+                            
+                            {{
+                              moment(scan.tanggalJadwal).format("Do MMM YYYY")
+                            }}
+                            
+                          </div>
+                        </div>
+                      </ion-card>
+                    </swiper-slide>
+                  </swiper>
+                </div>
+                <div v-else>
+                  <ion-card>
+                    <ion-item> Belum ada Medical Record </ion-item>
+                  </ion-card>
+                </div>
                 <ion-item
                   ><ion-button @click="$router.push('/update')"
                     >Update My Profile</ion-button
@@ -230,7 +236,7 @@ export default defineComponent({
       });
       vm.scanUser = user.data.data;
       vm.profile = data.data.data[0];
-   
+
       vm.spinner = false;
       vm.age = Math.floor(
         (new Date().getTime() -
@@ -324,19 +330,18 @@ ion-text {
 }
 h4 {
   font-weight: 700;
+  color: black;
 }
 #swiper-slide {
   width: 70vw;
-  height: 30vh;
+  height: 20vh;
 }
-ion-card-header{
-  border-radius:  0 0 50%  50% ;
+ion-card-header {
+  border-radius: 0 0 50% 50%;
 }
-.card{
-  background-color: turquoise;
-}
-ion-item.card{
-  --background:turquoise;
+
+.slider {
+  padding: 20px;
 }
 
 </style>

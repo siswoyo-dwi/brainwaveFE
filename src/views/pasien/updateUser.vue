@@ -430,4 +430,5 @@ ion-icon {
 ion-card-header {
   border-radius: 0 0 50% 50%;
 }
+
 </style>
