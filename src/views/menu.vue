@@ -7,8 +7,8 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="custom-menu-item">
-      <ion-item button  class="item" @click="$router.push('/profile')">
+    <ion-content  class="custom-menu-item">
+      <ion-item button class="item" @click="$router.push('/profile')">
         <!-- <ion-icon  name="mail" slot="start"></ion-icon> -->
         <ion-label slot="end"> Profile</ion-label>
       </ion-item>
@@ -34,14 +34,14 @@ import {
   IonItem,
   IonMenu,
   IonLabel,
-//   IonIcon,
+  //   IonIcon,
   IonTitle,
   IonToolbar,
   menuController,
   alertController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
-
+import { Storage } from "@capacitor/storage";
 export default defineComponent({
   components: {
     IonContent,
@@ -53,8 +53,12 @@ export default defineComponent({
     IonLabel,
     IonToolbar,
   },
-  setup(){
-const logout =async ()=>{
+
+  methods: {
+    async openMenu() {
+      await menuController.open();
+    },
+    async logout() {
       let vm = this;
       const alert = await alertController.create({
         cssClass: "my-custom-class",
@@ -76,40 +80,12 @@ const logout =async ()=>{
                 key: "token",
                 value: JSON.stringify({}),
               });
-              vm.$router.push("/home");
-            },
-          },
-        ],
-      });
-      return alert.present();
-    }
-  
-    return { logout }
-  },
-  methods: {
-    async openMenu() {
-      await menuController.open();
-    },
-    async keljuar() {
-      let vm = this;
-      const alert = await alertController.create({
-        cssClass: "my-custom-class",
-        header: "Perhatian!",
-        message: "Apakah yakin akan keluar?",
-        buttons: [
-          {
-            text: "Batal",
-            role: "cancel",
-            cssClass: "secondary",
-            handler: (blah) => {
-              console.log("Confirm Cancel:", blah);
-            },
-          },
-          {
-            text: "Ya",
-            handler: async () => {
-              await Storage.set({
-                key: "token",
+               Storage.set({
+                key: "id",
+                value: JSON.stringify({}),
+              });
+               Storage.set({
+                key: "role",
                 value: JSON.stringify({}),
               });
               vm.$router.push("/home");
@@ -133,9 +109,9 @@ const logout =async ()=>{
   margin: auto;
 }
 .custom-menu-item.item {
-pointer-events: auto !important;
+  pointer-events: auto !important;
 }
-ion-menu{
-    margin-top: 50px;
+ion-menu {
+  margin-top: 50px;
 }
 </style>

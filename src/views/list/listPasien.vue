@@ -8,7 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Menu></Menu>
       <Tab></Tab>
       <div class="ion-text-center">
         <ion-text>List Pasien</ion-text>
@@ -70,13 +69,11 @@ import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 import axios from "axios";
 import { chevronBackCircleOutline } from "ionicons/icons";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
     IonAvatar,
-    Menu,
     Tab,
     IonButton,
     IonText,

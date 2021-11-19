@@ -4,12 +4,7 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Menu></Menu>
       <Tab></Tab>
-      <!-- <ion-icon
-        :icon="chevronBackCircleOutline"
-        @click="$router.go(-1)"
-      ></ion-icon> -->
       <ion-card style="margin-top: 50px">
         <ion-item class="ion-text-center">
           <img
@@ -104,14 +99,10 @@
 import {
   IonPage,
   IonContent,
-  // IonRow,
-  // IonCol,
   IonText,
   IonCard,
   IonButton,
   IonProgressBar,
-  // IonList,
-  // IonGrid,
   IonItem,
   IonAvatar,
   IonIcon,
@@ -120,7 +111,6 @@ import { defineComponent } from "vue";
 import axios from "axios";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 import { chevronBackCircleOutline, logoWhatsapp } from "ionicons/icons";
 export default defineComponent({
@@ -135,15 +125,10 @@ export default defineComponent({
     IonIcon,
     IonContent,
     IonProgressBar,
-    // IonRow,
-    // IonCol,
     IonText,
-    Menu,
     Tab,
     IonButton,
-    // IonList,
     IonItem,
-    // IonGrid,
     IonCard,
     IonAvatar,
   },

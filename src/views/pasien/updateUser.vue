@@ -8,16 +8,11 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Menu></Menu>
       <Tab></Tab>
       <ion-grid>
         <ion-card>
           <ion-card-header color="primary">
             <ion-label>
-              <!-- <ion-icon
-                :icon="chevronBackCircleOutline"
-                @click="$router.go(-1)"
-              ></ion-icon> -->
               <h3>Update My Profile</h3>
             </ion-label>
             <img
@@ -174,13 +169,11 @@ import { Storage } from "@capacitor/storage";
 import moment from "moment";
 import "moment/locale/id";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
     // IonList,
-    Menu,
     Tab,
     IonSelect,
     IonProgressBar,

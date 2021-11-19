@@ -8,7 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Menu></Menu>
       <Tab></Tab>
       <ion-card
         style="margin-top: 50px"
@@ -16,23 +15,14 @@
         class="tidak-ada-jadwal"
       >
         <ion-item color="primary">
-          <!-- <ion-icon
-            :icon="chevronBackCircleOutline"
-            @click="$router.go(-1)"
-          ></ion-icon> -->
-
           <h3>Jadwal Belum tersedia</h3>
         </ion-item>
       </ion-card>
       <ion-grid v-else>
-        <!-- <ion-icon
-          :icon="chevronBackCircleOutline"
-          @click="$router.go(-1)"
-        ></ion-icon> -->
         <ion-row
           style="margin-top: 50px"
           v-for="jadwal in dataJadwal"
-          :key="jadwal.id"
+          :key="jadwal"
         >
           <ion-card>
             <ion-col size="4">
@@ -108,14 +98,11 @@ import {
   IonAvatar,
   IonIcon,
   IonItem,
-  //   IonButton,
   IonCard,
-  //   IonInput,
   IonProgressBar,
 } from "@ionic/vue";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -129,7 +116,6 @@ import {
 export default defineComponent({
   components: {
     IonPage,
-    Menu,
     Tab,
     IonAvatar,
     IonContent,
@@ -182,8 +168,9 @@ export default defineComponent({
         url: ipBackend + `jadwal/listAll`,
       });
 
-      vm.dataJadwal = jadwal.data.data[0];
+      vm.dataJadwal = jadwal.data.data;
       vm.spinner = false;
+      console.log(vm.dataJadwal);
     }
   },
   methods: {

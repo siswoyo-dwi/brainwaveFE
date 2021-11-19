@@ -1,19 +1,14 @@
 <template>
   <ion-page>
     <ion-content>
-      <Menu></Menu>
       <Tab></Tab>
       <ion-grid>
-        <!-- <ion-icon
-          :icon="chevronBackCircleOutline"
-          @click="$router.go(-1)"
-        ></ion-icon> -->
+
         <ion-row>
           <ion-col> Register Jadwal </ion-col>
         </ion-row>
       </ion-grid>
       <ion-card>
-        <!-- <ion-list> -->
         <ion-item>
           <ion-label>Tanggal</ion-label>
           <ion-datetime
@@ -40,7 +35,6 @@
         <ion-item>
           <ion-button @click="submit()"> Register Jadwal </ion-button>
         </ion-item>
-        <!-- </ion-list> -->
       </ion-card>
     </ion-content>
   </ion-page>
@@ -63,7 +57,6 @@ import {
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import moment from "moment";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 import "moment/locale/id";
 import { ipBackend } from "@/ipBackend";
@@ -73,7 +66,6 @@ import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   components: {
     IonPage,
-    Menu,
     Tab,
     IonContent,
     IonGrid,

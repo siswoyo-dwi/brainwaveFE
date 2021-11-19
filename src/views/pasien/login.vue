@@ -1,12 +1,10 @@
 <template>
   <ion-page>
     <ion-content>
-      <Menu></Menu>
-      <Tab></Tab>
       <div lines="none">
         <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
         <ion-item>
-          <ion-text color="light">Login</ion-text>
+          <ion-text>Login</ion-text>
           <img
             src="../../../assets/Group-38.svg"
             style="width: 20px; margin-right: 10px"
@@ -61,13 +59,13 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
 import { chevronBackCircleOutline } from "ionicons/icons";
-import Menu from "../menu.vue";
-import Tab from "../tab.vue";
+// import Menu from "../menu.vue";
+// import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
-    Menu,
-    Tab,
+    // Menu,
+    // Tab,
     IonContent,
     IonPage,
     // IonList,

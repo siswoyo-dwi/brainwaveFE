@@ -8,7 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Menu></Menu>
       <Tab></Tab>
       <ion-grid>
         <ion-row id="row1">
@@ -18,10 +17,6 @@
                 <ion-col size="7">
                   <ion-grid>
                     <ion-row>
-                      <!-- <ion-icon
-                        :icon="chevronBackCircleOutline"
-                        @click="$router.go(-1)"
-                      ></ion-icon> -->
                       <ion-text style="margin-top: 10px" color="light"
                         ><h5>Test History</h5>
                       </ion-text>
@@ -66,7 +61,6 @@ import {
   IonText,
   IonCol,
 } from "@ionic/vue";
-// import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { defineComponent } from "vue";
 import { Storage } from "@capacitor/storage";
 import axios from "axios";
@@ -75,12 +69,10 @@ import "moment/locale/id";
 import { chevronBackCircleOutline } from "ionicons/icons";
 import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
-    Menu,
     Tab,
     IonContent,
     IonPage,

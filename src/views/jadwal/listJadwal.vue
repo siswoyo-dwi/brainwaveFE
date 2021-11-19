@@ -8,7 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Menu></Menu>
       <Tab></Tab>
       <ion-card
         style="margin-top: 50px"
@@ -16,19 +15,10 @@
         class="tidak-ada-jadwal"
       >
         <ion-item color="primary">
-          <!-- <ion-icon
-            :icon="chevronBackCircleOutline"
-            @click="$router.go(-1)"
-          ></ion-icon> -->
-
           <h3>Jadwal Belum tersedia</h3>
         </ion-item>
       </ion-card>
       <ion-grid v-else>
-        <!-- <ion-icon
-          :icon="chevronBackCircleOutline"
-          @click="$router.go(-1)"
-        ></ion-icon> -->
         <ion-row v-for="jadwal in dataJadwal" :key="jadwal">
           <ion-card>
             <ion-col size="6">
@@ -103,7 +93,6 @@ import {
   IonFabButton,
   IonCol,
   IonIcon,
-  // alertController,
   IonItem,
   IonButton,
   IonCard,
@@ -115,7 +104,6 @@ import { ipBackend } from "../../ipBackend";
 import { defineComponent } from "vue";
 import axios from "axios";
 import { chevronBackCircleOutline, logoWhatsapp } from "ionicons/icons";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 
 export default defineComponent({
@@ -127,7 +115,6 @@ export default defineComponent({
   },
   components: {
     IonPage,
-    Menu,
     Tab,
     IonContent,
     IonGrid,

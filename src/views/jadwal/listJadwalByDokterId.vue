@@ -8,7 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Menu></Menu>
       <Tab></Tab>
       <ion-grid>
         <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
@@ -71,7 +70,6 @@ import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
 import { defineComponent } from "vue";
 import axios from "axios";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
@@ -83,7 +81,6 @@ export default defineComponent({
   components: {
     IonPage,
     IonContent,
-    Menu,
     Tab,
     IonGrid,
     IonLabel,

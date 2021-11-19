@@ -8,7 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Menu></Menu>
       <Tab></Tab>
       <ion-grid>
         <ion-row>
@@ -111,14 +110,12 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 // import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   components: {
     IonCol,
     IonRow,
-    Menu,
     Tab,
     // IonList,
     IonProgressBar,

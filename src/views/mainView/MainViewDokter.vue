@@ -8,7 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Menu></Menu>
       <Tab></Tab>
       <ion-grid>
         <ion-row id="row1">
@@ -85,13 +84,11 @@ import {
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
-import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
     // IonList,
-    Menu,
     Tab,
     IonItem,
     // IonIcon,

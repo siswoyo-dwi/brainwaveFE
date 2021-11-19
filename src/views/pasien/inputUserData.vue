@@ -8,8 +8,6 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Menu></Menu>
-      <Tab></Tab>
       <ion-grid>
         <ion-row id="row1">
           <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
@@ -133,14 +131,9 @@ import {
 } from "ionicons/icons";
 import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
-import Menu from "../menu.vue";
-import Tab from "../tab.vue";
-
 export default defineComponent({
   components: {
     IonContent,
-    Menu,
-    Tab,
     IonDatetime,
     IonPage,
     IonItem,

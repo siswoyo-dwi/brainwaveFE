@@ -6,9 +6,9 @@
       value="0.5"
     ></ion-progress-bar>
   </div>
+
   <ion-page v-else>
     <ion-content>
-      <Menu></Menu>
       <Tab></Tab>
       <ion-grid>
         <ion-row>
@@ -17,11 +17,6 @@
               <ion-card>
                 <ion-card-header color="primary">
                   <ion-label>
-                    <!-- <ion-icon
-                        :icon="chevronBackCircleOutline"
-                        
-                        @click="$router.go(-1)"
-                      ></ion-icon> -->
                     <h3>{{ profile.nama }} Profile</h3>
                   </ion-label>
                   <img
@@ -77,7 +72,7 @@
               <ion-item lines="none">
                 <ion-text><h4>Medical Record</h4></ion-text>
                 <div slot="end" @click="$router.push(`/testHistory/${id}`)">
-                  <ion-text color="medium"> See more </ion-text>
+                  <ion-text color="dark"> See more </ion-text>
                   <ion-icon
                     class="grey"
                     :icon="chevronForwardCircleOutline"
@@ -166,14 +161,14 @@ import {
   logOutOutline,
   chevronForwardCircleOutline,
 } from "ionicons/icons";
-import Menu from "../menu.vue";
+// import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 export default defineComponent({
   components: {
-    Menu,
+    // Menu,
     Tab,
     IonCol,
     IonRow,
@@ -325,7 +320,7 @@ h3 {
   text-align: center;
 }
 .grey {
-  color: gray !important;
+  color: black !important;
 }
 ion-text {
   font-size: 18px;

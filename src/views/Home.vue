@@ -4,7 +4,7 @@
       <div id="header">
         <div>
           <ion-item lines="none">
-            <ion-text color="light">Welcome!</ion-text>
+            <ion-text >Welcome!</ion-text>
           </ion-item>
           <ion-item lines="none">
             <ion-text>Please login first to continue.</ion-text>
@@ -143,5 +143,8 @@ ion-item {
 }
 #header {
   margin-top: 40px;
+}
+ion-content{
+  z-index: 999999999999999999999999;
 }
 </style>
