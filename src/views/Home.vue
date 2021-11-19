@@ -4,7 +4,7 @@
       <div id="header">
         <div>
           <ion-item lines="none">
-            <ion-text >Welcome!</ion-text>
+            <ion-text color="primary">Welcome!</ion-text>
           </ion-item>
           <ion-item lines="none">
             <ion-text>Please login first to continue.</ion-text>
@@ -33,8 +33,8 @@
           <ion-text style="margin-left: 5px"
             ><p>
               You already have an account?
-              <ion-text color="light"
-                ><p @click="goToLogin()">Login</p></ion-text
+              <ion-text color="primary"
+                ><p @click="goToLogin()" >Login</p></ion-text
               >
             </p></ion-text
           >
@@ -133,18 +133,18 @@ export default defineComponent({
 #text-center {
   text-align: center;
 }
-ion-item {
+/* ion-item {
   --background: linear-gradient(
     90deg,
     rgba(43, 90, 148, 1) 0%,
     rgba(45, 120, 229, 1) 35%,
     rgba(45, 112, 229, 1) 100%
   );
-}
+} */
 #header {
   margin-top: 40px;
 }
-ion-content{
+/* ion-content{
   z-index: 999999999999999999999999;
-}
+} */
 </style>

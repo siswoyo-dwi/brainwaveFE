@@ -8,7 +8,7 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-grid>
         <div
           style="margin-top: 50px"
@@ -17,7 +17,7 @@
           lines="none"
         >
           <ion-card>
-            <ion-card-header color="primary">
+            <ion-card-header >
               <ion-avatar
                 ><img
                   v-if="dokter.profilPicture"
@@ -27,7 +27,7 @@
               </ion-avatar>
             </ion-card-header>
             <ion-item>
-              <ion-label>Name : {{ dokter.nama }}</ion-label>
+              <ion-label><h1><strong> Name : {{ dokter.nama }}</strong></h1> </ion-label>
             </ion-item>
             <ion-item>
               <ion-label>Nomor Wa : {{ dokter.noHpUser }}</ion-label>
@@ -49,6 +49,18 @@
               </ion-fab-list>
             </ion-fab>
           </ion-card>
+          <ion-infinite-scroll
+            @ionInfinite="loadData($event)"
+            threshold="100px"
+            id="infinite-scroll"
+            :disabled="isDisabled"
+          >
+            <ion-infinite-scroll-content
+              loading-spinner="bubbles"
+              loading-text="Loading more data..."
+            >
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
         </div>
       </ion-grid>
     </ion-content>
@@ -68,11 +80,13 @@ import {
   IonItem,
   IonLabel,
   IonAvatar,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonProgressBar,
   IonCard,
   IonIcon,
 } from "@ionic/vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 import axios from "axios";
@@ -89,6 +103,8 @@ export default defineComponent({
     // IonList,
     IonItem,
     IonCard,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     IonProgressBar,
     IonIcon,
     IonLabel,
@@ -105,10 +121,35 @@ export default defineComponent({
   },
 
   setup() {
+    const isDisabled = ref(false);
+    const items = ref([]);
+    const pushData = () => {
+      const max = items.value.length + 20;
+      const min = max - 20;
+      for (let i = min; i < max; i++) {
+        items.value.push(i);
+      }
+    };
+
+    const loadData = (ev) => {
+      setTimeout(() => {
+        pushData();
+        ev.target.complete();
+        if (items.value.length == 1000) {
+          ev.target.disabled = true;
+        }
+      }, 500);
+    };
+
+    pushData();
+
     return {
       chevronBackCircleOutline,
       bookOutline,
       person,
+      isDisabled,
+      loadData,
+      items,
     };
   },
   async ionViewDidEnter() {
@@ -147,7 +188,7 @@ export default defineComponent({
 }
 ion-card {
   min-width: 90%;
-  border-radius: 5%;
+  /* border-radius: 5%; */
 }
 img {
   height: auto;

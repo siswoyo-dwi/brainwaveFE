@@ -3,7 +3,7 @@
     <ion-content>
       <div lines="none">
         <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
-        <ion-item>
+        <ion-item  lines="none">
           <ion-text>Login</ion-text>
           <img
             src="../../../assets/Group-38.svg"
@@ -11,7 +11,7 @@
             alt=""
           />
         </ion-item>
-        <ion-item>
+        <ion-item  lines="none">
           <ion-text>Please login to continue using our app.</ion-text>
         </ion-item>
       </div>
@@ -28,11 +28,11 @@
         <ion-button
           :disabled="loading"
           expand="block"
-          color="light"
+          color="primary"
           @click="doLogin()"
           >Login</ion-button
         >
-        <p @click="goTo()">Register New User</p>
+        <ion-text color="primary"><p @click="goTo()">Register New User</p></ion-text>
       </div>
     </ion-content>
   </ion-page>
@@ -217,6 +217,7 @@ export default defineComponent({
   box-shadow: 1px 1px 10px rgba(56, 128, 255, 0.25);
   transition: 0.3s ease-out;
 }
+
 .loginBox:hover {
   transform: translateY(-18px);
   transition: 0.3s ease-in;
@@ -229,7 +230,6 @@ export default defineComponent({
 .loginBox p {
   font-size: 14px;
   text-align: center;
-  color: white;
   cursor: pointer;
 }
 

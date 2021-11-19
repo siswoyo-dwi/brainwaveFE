@@ -1,7 +1,7 @@
 <template>
   <ion-menu class="menuOptions" side="start" menu-id="first" content-id="main">
     <ion-header>
-      <ion-toolbar translucent>
+      <ion-toolbar color="success" translucent>
         <ion-title>
           <img id="img-home" src="../../assets/Group-38.svg" alt="" />
         </ion-title>
@@ -60,6 +60,7 @@ export default defineComponent({
     },
     async logout() {
       let vm = this;
+       menuController.close();
       const alert = await alertController.create({
         cssClass: "my-custom-class",
         header: "Perhatian!",
@@ -112,6 +113,6 @@ export default defineComponent({
   pointer-events: auto !important;
 }
 ion-menu {
-  margin-top: 50px;
+  margin-top: -10px;
 }
 </style>

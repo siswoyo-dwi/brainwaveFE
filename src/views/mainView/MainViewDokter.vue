@@ -8,7 +8,7 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-grid>
         <ion-row id="row1">
           <!-- <ion-icon

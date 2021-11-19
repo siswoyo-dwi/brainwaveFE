@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content>
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-grid>
 
         <ion-row>

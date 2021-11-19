@@ -54,7 +54,7 @@
               >Sign Up</ion-button
             >
             <ion-text color="black">You already have an account?</ion-text
-            ><ion-text @click="$router.push('/login')" color="light">
+            ><ion-text @click="$router.push('/login')" color="primary">
               Login
             </ion-text>
           </div>

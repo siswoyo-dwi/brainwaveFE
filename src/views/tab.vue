@@ -2,7 +2,7 @@
   <!-- <ion-toolbar> -->
 
   <ion-buttons >
-    <ion-menu-button  color="light" auto-hide="true"></ion-menu-button>
+    <ion-menu-button  auto-hide="true"></ion-menu-button>
     <!-- <ion-menu-button v-else></ion-menu-button> -->
   </ion-buttons>
   <!-- </ion-toolbar> -->

@@ -8,7 +8,7 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-card
         style="margin-top: 50px"
         v-if="dataJadwal.length == 0"
@@ -72,7 +72,7 @@
                 </ion-grid>
               </ion-col>
             </ion-col>
-            <a :href="`http://wa.me/${noHpUser}`">
+            <a :href="`http://wa.me/${jadwal.noHpUser}`">
               <ion-fab vertical="bottom" horizontal="end" slot="fixed">
                 <ion-fab-button>
                   <ion-icon :icon="logoWhatsapp"> </ion-icon>
@@ -81,6 +81,18 @@
             </a>
           </ion-card>
         </ion-row>
+        <ion-infinite-scroll
+          @ionInfinite="loadData($event)"
+          threshold="100px"
+          id="infinite-scroll"
+          :disabled="isDisabled"
+        >
+          <ion-infinite-scroll-content
+            loading-spinner="bubbles"
+            loading-text="Loading more data..."
+          >
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -96,6 +108,8 @@ import {
   IonFabButton,
   IonCol,
   IonAvatar,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonIcon,
   IonItem,
   IonCard,
@@ -104,7 +118,7 @@ import {
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
 import Tab from "../tab.vue";
-import { defineComponent } from "vue";
+import { defineComponent,ref  } from "vue";
 import axios from "axios";
 import {
   chevronBackCircleOutline,
@@ -119,6 +133,8 @@ export default defineComponent({
     Tab,
     IonAvatar,
     IonContent,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     IonGrid,
     IonRow,
     IonFab,
@@ -133,25 +149,43 @@ export default defineComponent({
   },
   data() {
     return {
-      listDokter: "",
       spinner: false,
       ip: ipBackend,
       dataJadwal: "",
-      file: null,
-      id: this.$route.params.id,
-      idx: "",
-      scanUser: "",
-      profile: "",
-      noHpUser: "",
     };
   },
 
   setup() {
+    const isDisabled = ref(false);
+    const items = ref([]);
+    const pushData = () => {
+      const max = items.value.length + 20;
+      const min = max - 20;
+      for (let i = min; i < max; i++) {
+        items.value.push(i);
+      }
+    };
+
+    const loadData = (ev) => {
+      setTimeout(() => {
+        pushData();
+        ev.target.complete();
+        if (items.value.length == 1000) {
+          ev.target.disabled = true;
+        }
+      }, 500);
+    };
+
+    pushData();
+
     return {
       logoWhatsapp,
       chevronBackCircleOutline,
       bookOutline,
       person,
+      isDisabled,
+      loadData,
+      items,
     };
   },
   async ionViewDidEnter() {
@@ -170,7 +204,6 @@ export default defineComponent({
 
       vm.dataJadwal = jadwal.data.data;
       vm.spinner = false;
-      console.log(vm.dataJadwal);
     }
   },
   methods: {
@@ -191,7 +224,7 @@ export default defineComponent({
 }
 ion-card {
   min-width: 90%;
-  border-radius: 5%;
+  /* border-radius: 5%; */
   color: black;
 }
 img {

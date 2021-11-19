@@ -9,16 +9,14 @@
 
   <ion-page v-else>
     <ion-content>
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-card>
-              <ion-card>
-                <ion-card-header color="primary">
-                  <ion-label>
-                    <h3>{{ profile.nama }} Profile</h3>
-                  </ion-label>
+              <ion-card color="primary" id="header">
+                <ion-card-header>
+                    <h3><strong>{{ profile.nama }} Profile</strong></h3>
                   <img
                     class="image-profile"
                     v-if="!profile.profilPicture"
@@ -142,7 +140,7 @@ import {
   // IonMenuButton,
   IonContent,
   IonCard,
-  IonLabel,
+  // IonLabel,
   IonButton,
   IonProgressBar,
   IonCardHeader,
@@ -188,7 +186,7 @@ export default defineComponent({
     IonText,
     IonButton,
     IonPage,
-    IonLabel,
+    // IonLabel,
   },
   setup() {
     const router = useRouter();
@@ -303,7 +301,7 @@ ion-item {
 ion-button {
   margin: 24px auto;
   /* width: 90%; */
-  border-radius: 5%;
+  /* border-radius: 5%; */
 }
 .image-profile {
   height: 150px;
@@ -334,6 +332,10 @@ h4 {
   height: 20vh;
 }
 ion-card-header {
-  border-radius: 0 0 50% 50%;
+  /* border-radius: 0 0 50% 50%; */
+}
+ion-card#header{
+  margin: -20px;
+  border-radius: 0  0 50px 50px;
 }
 </style>

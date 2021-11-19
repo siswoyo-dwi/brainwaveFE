@@ -8,10 +8,10 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-grid>
         <ion-card>
-          <ion-card-header color="primary">
+          <ion-card-header>
             <ion-label>
               <h3>Update My Profile</h3>
             </ion-label>

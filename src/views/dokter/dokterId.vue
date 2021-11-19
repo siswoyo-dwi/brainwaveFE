@@ -4,7 +4,7 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-card style="margin-top: 50px">
         <ion-item class="ion-text-center">
           <img
@@ -188,7 +188,7 @@ ion-item {
 ion-button {
   margin: 24px auto;
   /* width: 90%; */
-  border-radius: 5%;
+  /* border-radius: 5%; */
 }
 .img-profile,
 ion-icon {

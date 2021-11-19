@@ -8,7 +8,7 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-grid>
         <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
         <div v-if="dataJadwal.length > 0">
@@ -36,6 +36,18 @@
                 </ion-button>
               </ion-item>
             </ion-card>
+            <ion-infinite-scroll
+              @ionInfinite="loadData($event)"
+              threshold="100px"
+              id="infinite-scroll"
+              :disabled="isDisabled"
+            >
+              <ion-infinite-scroll-content
+                loading-spinner="bubbles"
+                loading-text="Loading more data..."
+              >
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
           </div>
         </div>
         <div v-else>
@@ -61,6 +73,8 @@ import {
   IonProgressBar,
   IonItem,
   // IonIcon,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonCard,
   IonLabel,
   IonButton,
@@ -68,20 +82,47 @@ import {
 
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import axios from "axios";
 import Tab from "../tab.vue";
 import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   setup() {
+    const isDisabled = ref(false);
+    const items = ref([]);
+    const pushData = () => {
+      const max = items.value.length + 20;
+      const min = max - 20;
+      for (let i = min; i < max; i++) {
+        items.value.push(i);
+      }
+    };
+
+    const loadData = (ev) => {
+      setTimeout(() => {
+        pushData();
+        ev.target.complete();
+        if (items.value.length == 1000) {
+          ev.target.disabled = true;
+        }
+      }, 500);
+    };
+
+    pushData();
+
     return {
       chevronBackCircleOutline,
+      isDisabled,
+      loadData,
+      items,
     };
   },
   components: {
     IonPage,
     IonContent,
     Tab,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     IonGrid,
     IonLabel,
     IonCard,

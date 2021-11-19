@@ -8,7 +8,7 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-card
         style="margin-top: 50px"
         v-if="dataJadwal.length == 0"
@@ -51,6 +51,7 @@
             </ion-col>
             <ion-col size="6" v-if="jadwal.statusJadwal == 'aktif'">
               <ion-input
+              color="primary"
                 @change="getFile"
                 type="file"
                 ref="fileBtn"
@@ -71,14 +72,27 @@
             </ion-col>
           </ion-card>
         </ion-row>
+        <ion-infinite-scroll
+          @ionInfinite="loadData($event)"
+          threshold="100px"
+          id="infinite-scroll"
+          :disabled="isDisabled"
+        >
+          <ion-infinite-scroll-content
+            loading-spinner="bubbles"
+            loading-text="Loading more data..."
+          >
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
       </ion-grid>
-      <a :href="`http://wa.me/${noHpUser}`">
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <a :href="`http://wa.me/${noHpUser}`">
           <ion-fab-button>
             <ion-icon :icon="logoWhatsapp"> </ion-icon>
           </ion-fab-button>
-        </ion-fab>
-      </a>
+        </a>
+      </ion-fab>
     </ion-content>
   </ion-page>
 </template>
@@ -95,27 +109,55 @@ import {
   IonIcon,
   IonItem,
   IonButton,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonCard,
   IonInput,
   IonProgressBar,
 } from "@ionic/vue";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import axios from "axios";
 import { chevronBackCircleOutline, logoWhatsapp } from "ionicons/icons";
 import Tab from "../tab.vue";
 
 export default defineComponent({
   setup() {
+    const isDisabled = ref(false);
+    const items = ref([]);
+    const pushData = () => {
+      const max = items.value.length + 20;
+      const min = max - 20;
+      for (let i = min; i < max; i++) {
+        items.value.push(i);
+      }
+    };
+
+    const loadData = (ev) => {
+      setTimeout(() => {
+        pushData();
+        ev.target.complete();
+        if (items.value.length == 1000) {
+          ev.target.disabled = true;
+        }
+      }, 500);
+    };
+
+    pushData();
     return {
       chevronBackCircleOutline,
       logoWhatsapp,
+      isDisabled,
+      loadData,
+      items,
     };
   },
   components: {
     IonPage,
     Tab,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     IonContent,
     IonGrid,
     IonInput,
@@ -253,7 +295,7 @@ h3 {
 ion-icon {
   font-size: 30px;
 }
-ion-card{
+ion-card {
   min-width: 90vw;
 }
 </style>

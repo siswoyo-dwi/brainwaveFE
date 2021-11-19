@@ -8,7 +8,7 @@
   </div>
   <ion-page v-else>
     <ion-content>
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <ion-grid>
         <ion-row>
           <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->

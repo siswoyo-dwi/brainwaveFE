@@ -8,21 +8,16 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Tab></Tab>
+      <Tab slot="fixed"></Tab>
       <div class="ion-text-center">
         <ion-text>List Pasien</ion-text>
       </div>
       <ion-grid>
-        <!-- <ion-icon
-          :icon="chevronBackCircleOutline"
-          @click="$router.go(-1)"
-        ></ion-icon> -->
         <ion-item
           style="margin-top: 50px"
           v-for="(Pasien, i) in listPasien"
           :key="i"
         >
-          <!-- <ion-list> -->
           <ion-row>
             <ion-col
               ><ion-avatar
@@ -41,8 +36,19 @@
               ></ion-col
             >
           </ion-row>
-          <!-- </ion-list> -->
         </ion-item>
+        <ion-infinite-scroll
+          @ionInfinite="loadData($event)"
+          threshold="100px"
+          id="infinite-scroll"
+          :disabled="isDisabled"
+        >
+          <ion-infinite-scroll-content
+            loading-spinner="bubbles"
+            loading-text="Loading more data..."
+          >
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -62,9 +68,11 @@ import {
   IonText,
   IonAvatar,
   // IonIcon,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonButton,
 } from "@ionic/vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 import axios from "axios";
@@ -78,6 +86,8 @@ export default defineComponent({
     IonButton,
     IonText,
     IonProgressBar,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     // IonList,
     // IonIcon,
     IonItem,
@@ -95,8 +105,32 @@ export default defineComponent({
     };
   },
   setup() {
+    const isDisabled = ref(false);
+    const items = ref([]);
+    const pushData = () => {
+      const max = items.value.length + 20;
+      const min = max - 20;
+      for (let i = min; i < max; i++) {
+        items.value.push(i);
+      }
+    };
+
+    const loadData = (ev) => {
+      setTimeout(() => {
+        pushData();
+        ev.target.complete();
+        if (items.value.length == 1000) {
+          ev.target.disabled = true;
+        }
+      }, 500);
+    };
+
+    pushData();
     return {
       chevronBackCircleOutline,
+      isDisabled,
+      loadData,
+      items,
     };
   },
 
