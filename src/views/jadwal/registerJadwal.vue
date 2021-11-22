@@ -50,15 +50,13 @@ import {
   IonCol,
   IonCard,
   IonItem,
-  // IonIcon,
-  // IonList,
   IonDatetime,
   IonButton,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import moment from "moment";
-import Tab from "../tab.vue";
 import "moment/locale/id";
+import Tab from "../tab.vue";
 import { ipBackend } from "@/ipBackend";
 import { Storage } from "@capacitor/storage";
 import axios from "axios";

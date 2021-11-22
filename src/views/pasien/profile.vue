@@ -78,7 +78,7 @@
                 </div>
               </ion-item>
               <div v-if="scanUser.length > 0">
-                <swiper @swiper="setSwiperInstance" :loop="true">
+                <swiper @swiper="setSwiperInstance" >
                   <swiper-slide v-for="scan in scanUser" :key="scan.id">
                     <ion-card
                       id="swiper-slide"
@@ -235,7 +235,6 @@ export default defineComponent({
       });
       vm.scanUser = user.data.data;
       vm.profile = data.data.data[0];
-
       vm.spinner = false;
       vm.age = Math.floor(
         (new Date().getTime() -
@@ -328,8 +327,8 @@ h4 {
   color: black;
 }
 #swiper-slide {
-  width: 70vw;
-  height: 20vh;
+  width: 300px;
+  height: 200px;
 }
 ion-card-header {
   /* border-radius: 0 0 50% 50%; */

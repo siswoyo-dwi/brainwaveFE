@@ -19,7 +19,7 @@
         </ion-item>
       </ion-card>
       <ion-grid v-else>
-        <ion-row v-for="jadwal in dataJadwal" :key="jadwal">
+        <ion-row v-for="jadwal in dataJadwal" :key="jadwal.id">
           <ion-card>
             <ion-col size="6">
               <ion-grid>
@@ -51,24 +51,16 @@
             </ion-col>
             <ion-col size="6" v-if="jadwal.statusJadwal == 'aktif'">
               <ion-input
-              color="primary"
                 @change="getFile"
                 type="file"
                 ref="fileBtn"
               ></ion-input>
-              <ion-button
-                v-if="getId(jadwal.id, scanUser) === true"
-                @click="submit(jadwal.id)"
-              >
+              <ion-button v-model="cek" @click="submit(jadwal.id)">
                 Kirim Scan
               </ion-button>
-              <div v-else>
-                <ion-button @click="update(jadwal.id)"> update </ion-button>
-                <ion-button @click="cancel(idx)"> cancel </ion-button>
-              </div>
             </ion-col>
             <ion-col size="6" v-else>
-              <ion-button @click="cancel(idx)"> cancel </ion-button>
+              <ion-button disabled v-model="cek"> Kirim Scan </ion-button>
             </ion-col>
           </ion-card>
         </ion-row>
@@ -110,6 +102,7 @@ import {
   IonItem,
   IonButton,
   IonInfiniteScroll,
+  alertController,
   IonInfiniteScrollContent,
   IonCard,
   IonInput,
@@ -153,6 +146,14 @@ export default defineComponent({
       items,
     };
   },
+  watch: {
+    async cek(newVal, oldVal) {
+      if (newVal != oldVal) {
+        console.log("hai");
+        await this.getData();
+      }
+    },
+  },
   components: {
     IonPage,
     Tab,
@@ -177,6 +178,7 @@ export default defineComponent({
       file: null,
       id: this.$route.params.id,
       idx: "",
+      cek: 0,
       scanUser: "",
       profile: "",
       spinner: false,
@@ -193,7 +195,10 @@ export default defineComponent({
       url: ipBackend + `jadwal/listByDokterId/${vm.id}`,
       headers: { token: token },
     });
+    console.log(data);
+    vm.noHpUser=data.data.dataDokter[0].noHpUser;
     vm.dataJadwal = data.data.data;
+    console.log(vm.dataJadwal);
     const profil = await axios({
       method: "get",
       url: ipBackend + `users/profil`,
@@ -208,9 +213,22 @@ export default defineComponent({
     });
     vm.scanUser = user.data.data;
     vm.spinner = false;
-    vm.noHpUser = vm.scanUser[0].noHpUser;
   },
   methods: {
+    async getData() {
+      let vm = this;
+      vm.spinner = true;
+      const ret = await Storage.get({ key: "token" });
+      const token = JSON.parse(ret.value);
+      const user = await axios({
+        method: "get",
+        url: ipBackend + `scanning/listScanningByUserId/${vm.profile}`,
+        headers: { token: token },
+      });
+      vm.scanUser = user.data.data;
+      vm.noHpUser = vm.scanUser[0].noHpUser;
+      vm.spinner = false;
+    },
     getId(id, pro) {
       let vm = this;
       let hasil = true;
@@ -229,12 +247,12 @@ export default defineComponent({
     async submit(index) {
       let vm = this;
       let formData = new FormData();
-      formData.append("file1", vm.file);
+      formData.append("excelFile", vm.file);
       formData.append("jadwalId", index);
       const ret = await Storage.get({ key: "token" });
       const token = JSON.parse(ret.value);
       if (token) {
-        await axios({
+        const data = await axios({
           method: "post",
           headers: {
             "Content-Type": "multipart/form-data",
@@ -243,11 +261,24 @@ export default defineComponent({
           url: ipBackend + `scanning/registerMobile`,
           data: formData,
         });
-        vm.$router.push("/profile");
+        console.log(data.data.scanningId);
+        const user = await axios({
+          method: "get",
+          url: ipBackend + `scanning/detailsById/${data.data.scanningId}`,
+          headers: { token: token },
+        });
+        const alert = await alertController.create({
+          cssClass: "my-custom-class",
+          header: "Sukses",
+          message: user.data.data[0].hasil,
+        });
+        return alert.present();
       }
+      vm.cek += 1;
     },
     async update(index) {
       let vm = this;
+
       let formData = new FormData();
       formData.append("file1", vm.file);
       formData.append("id", vm.idx);
@@ -264,12 +295,14 @@ export default defineComponent({
           url: ipBackend + `scanning/updateMobile`,
           data: formData,
         });
-        vm.$router.push("/profile");
+        // vm.$router.push("/profile");
+        vm.cek += 1;
       }
     },
 
     async cancel(index) {
       const vm = this;
+      console.log(index);
       const ret = await Storage.get({ key: "token" });
       const token = JSON.parse(ret.value);
       if (token) {
@@ -281,7 +314,8 @@ export default defineComponent({
           url: ipBackend + `scanning/delete`,
           data: { id: index },
         });
-        vm.$router.push("/profile");
+        // vm.$router.push("/profile");
+        vm.cek += 1;
       }
     },
   },

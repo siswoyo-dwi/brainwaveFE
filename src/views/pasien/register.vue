@@ -2,7 +2,7 @@
   <ion-page>
     <ion-content>
       <div lines="none">
-        <ion-item>
+        <ion-item lines="none">
           <ion-text>Hello there!</ion-text>
           <img
             class="my2"
@@ -11,13 +11,13 @@
             alt=""
           />
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-text
             >Please enter your email address and your password to Sign Up to our
             app.</ion-text
           >
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <div id="container" class="registerBox">
             <ion-item lines="full">
               <ion-label position="floating">Email</ion-label>
@@ -126,7 +126,7 @@ export default defineComponent({
         password: vm.password,
         username: vm.username,
       });
-
+      console.log(res.data.message);
       if (res.data.message !== "sukses") {
         const alert = await alertController.create({
           cssClass: "my-custom-class",
@@ -142,13 +142,7 @@ export default defineComponent({
           ],
         });
         return alert.present();
-      } else if (
-        res.data.message == "sukses" &&
-        vm.username.length > 5 &&
-        vm.password > 5
-      ) {
-        vm.$router.push("/inputdata");
-
+      } else if (res.data.message == "sukses") {
         const alert = await alertController.create({
           cssClass: "my-custom-class",
           header: "Sukses!",
@@ -164,35 +158,18 @@ export default defineComponent({
         });
         return alert.present();
       } else {
-        if (vm.username.length < 5 && vm.password.length < 5) {
-          const alertregis = await alertController.create({
-            cssClass: "my-custom-class",
-            header: "Registrasi Gagal!",
-            message: "username / password tidak sesuai syarat",
-            buttons: [
-              {
-                text: "Ok",
-              },
-            ],
-          });
-          return alertregis.present();
-        } else {
-          const alertregis = await alertController.create({
-            cssClass: "my-custom-class",
-            header: "Registrasi Gagal!",
-            message: res.response.message,
-            buttons: [
-              {
-                text: "Ok",
-              },
-            ],
-          });
-          return alertregis.present();
-        }
+        const alertregis = await alertController.create({
+          cssClass: "my-custom-class",
+          header: "Registrasi Gagal!",
+          message: res.data.message,
+          buttons: [
+            {
+              text: "Ok",
+            },
+          ],
+        });
+        return alertregis.present();
       }
-      // } else {
-
-      // }
     },
 
     async logout() {

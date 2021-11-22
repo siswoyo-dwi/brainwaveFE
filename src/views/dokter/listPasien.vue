@@ -13,30 +13,34 @@
         <ion-text>List Pasien</ion-text>
       </div>
       <ion-grid>
-        <ion-item
+        <ion-card
           style="margin-top: 50px"
-          v-for="(Pasien, i) in listPasien"
-          :key="i"
+          v-for="Pasien in listPasien"
+          :key="Pasien.id"
         >
-          <ion-row>
-            <ion-col
-              ><ion-avatar
-                ><img
-                  v-if="Pasien.profilPicture"
-                  :src="Pasien.profilPicture"
-                  alt="" /></ion-avatar
-              ><img src="../../../assets/avatar.png" alt="" />
-            </ion-col>
-            <ion-col
-              ><ion-label>{{ Pasien.nama }}</ion-label></ion-col
-            >
-            <ion-col
-              ><ion-button @click="goTo(Pasien.id)"
-                >profile</ion-button
-              ></ion-col
-            >
-          </ion-row>
-        </ion-item>
+          <ion-list>
+            <ion-item>
+              <ion-text>Nama: </ion-text
+              ><ion-text slot="end">{{ Pasien.nama }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text>Gol Darah: </ion-text
+              ><ion-text slot="end">{{ Pasien.golonganDarah }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text>Tinggi: </ion-text
+              ><ion-text slot="end">{{ Pasien.tinggiBadan }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text>Berat: </ion-text
+              ><ion-text slot="end">{{ Pasien.beratBadan }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text>Scanning: </ion-text
+              ><ion-text slot="end">{{moment(Pasien.waktuScanning).format('LL') }}</ion-text>
+            </ion-item>
+          </ion-list>
+        </ion-card>
         <ion-infinite-scroll
           @ionInfinite="loadData($event)"
           threshold="100px"
@@ -59,18 +63,18 @@ import {
   IonPage,
   IonContent,
   IonGrid,
-  IonRow,
-  IonCol,
   // IonList,
   IonProgressBar,
   IonItem,
-  IonLabel,
+  //   IonLabel,
   IonText,
-  IonAvatar,
+  //   IonAvatar,
   // IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-  IonButton,
+  IonList,
+  IonCard,
+  //   IonButton,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
 import { Storage } from "@capacitor/storage";
@@ -78,30 +82,32 @@ import { ipBackend } from "@/ipBackend";
 import axios from "axios";
 import { chevronBackCircleOutline } from "ionicons/icons";
 import Tab from "../tab.vue";
+import  moment  from "moment";
+import "moment/locale/id";
 
 export default defineComponent({
   components: {
-    IonAvatar,
+    // IonAvatar,
     Tab,
-    IonButton,
+    IonList,
+    IonCard,
+    // IonButton,
     IonText,
     IonProgressBar,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
-    // IonList,
-    // IonIcon,
     IonItem,
-    IonLabel,
+    // IonLabel,
     IonPage,
     IonContent,
     IonGrid,
-    IonRow,
-    IonCol,
   },
   data() {
     return {
+      moment,
       listPasien: "",
       spinner: false,
+      id: this.$route.params.id,
     };
   },
   setup() {
@@ -145,10 +151,11 @@ export default defineComponent({
         headers: {
           token: token,
         },
-        url: ipBackend + `users/listByRole/Pasien`,
+        url: ipBackend + `scanning/listScanningByJadwalId/${vm.id}`,
       });
 
       vm.listPasien = dataPasien.data.data;
+      console.log(vm.listPasien);
       vm.spinner = false;
     }
   },
@@ -179,5 +186,5 @@ ion-content {
     rgba(255, 255, 255, 1) 50%,
     rgba(255, 255, 255, 1) 100%
   );
-} 
+}
 </style>

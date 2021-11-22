@@ -17,36 +17,49 @@
           lines="none"
         >
           <ion-card>
-            <ion-card-header >
-              <ion-avatar
-                ><img
-                  v-if="dokter.profilPicture"
-                  :src="ip + dokter.profilPicture"
-                  alt=""
-                /><img src="../../../assets/avatar.png" alt="" />
-              </ion-avatar>
-            </ion-card-header>
-            <ion-item>
-              <ion-label><h1><strong> Name : {{ dokter.nama }}</strong></h1> </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Nomor Wa : {{ dokter.noHpUser }}</ion-label>
-            </ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="3">
+                  <ion-avatar
+                    ><img
+                      v-if="dokter.profilPicture"
+                      :src="ip + dokter.profilPicture"
+                      alt=""
+                    /><img src="../../../assets/avatar.png" alt="" />
+                  </ion-avatar>
+                </ion-col>
+
+                <ion-col size="9">
+                  <ion-row>
+                    <ion-col size="4">Name </ion-col>
+                    <ion-col size="8">: {{ dokter.nama }}</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="4">Nomor Wa </ion-col>
+                    <ion-col size="8">: {{ dokter.noHpUser }}</ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
             <ion-fab vertical="bottom" horizontal="end">
               <ion-fab-button>Info</ion-fab-button>
 
-              <ion-fab-list side="top">
-                <ion-fab-button :icon="person" @click="goTo(dokter.id)"
+              <ion-fab-list side="start">
+                <ion-fab-button
+                  color="secondary"
+                  :icon="person"
+                  @click="goTo(dokter.id)"
                   ><ion-icon :icon="person" alt="profile"></ion-icon
                 ></ion-fab-button>
-              </ion-fab-list>
-
-              <ion-fab-list side="start">
-                <ion-fab-button @click="booking(dokter.id)"
+                <ion-fab-button color="tertiary" @click="booking(dokter.id)"
                   ><ion-icon :icon="bookOutline" alt="booking"></ion-icon
                 ></ion-fab-button>
               </ion-fab-list>
+
+              <!-- <ion-fab-list side="start">
+                
+              </ion-fab-list> -->
             </ion-fab>
           </ion-card>
           <ion-infinite-scroll
@@ -72,13 +85,15 @@ import {
   IonPage,
   IonContent,
   IonGrid,
-  IonCardHeader,
+  // IonCardHeader,
   IonFab,
   IonFabButton,
   IonFabList,
+  IonRow,
+  IonCol,
   // IonList,
-  IonItem,
-  IonLabel,
+  // IonItem,
+  // IonLabel,
   IonAvatar,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
@@ -98,16 +113,18 @@ export default defineComponent({
     IonFab,
     IonFabButton,
     IonFabList,
-    IonCardHeader,
+    IonRow,
+    IonCol,
+    // IonCardHeader,
     Tab,
     // IonList,
-    IonItem,
+    // IonItem,
     IonCard,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
     IonProgressBar,
     IonIcon,
-    IonLabel,
+    // IonLabel,
     IonPage,
     IonContent,
     IonGrid,
@@ -181,14 +198,23 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .ion-text-center {
   text-align: center;
   margin-top: 20px;
 }
 ion-card {
   min-width: 90%;
+  /* min-height: 1000px; */
   /* border-radius: 5%; */
+}
+ion-content {
+  --background: linear-gradient(
+    180deg,
+    rgba(43, 150, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 img {
   height: auto;

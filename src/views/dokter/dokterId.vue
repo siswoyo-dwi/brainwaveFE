@@ -5,8 +5,8 @@
   <ion-page v-else>
     <ion-content>
       <Tab slot="fixed"></Tab>
-      <ion-card style="margin-top: 50px">
-        <ion-item class="ion-text-center">
+      <ion-card x style="margin-top: 50px">
+        <ion-item color="primary" class="ion-text-center">
           <img
             v-if="!profile.profilPicture"
             src="../../../assets/avatar.png"
@@ -31,55 +31,14 @@
         </ion-item>
 
         <ion-item>
-          <img
-            class="img-profile"
-            slot="start"
-            src="../../../assets/Group70.svg"
-            alt=""
-          />
-          <ion-text size="4">Age</ion-text>
-          <ion-text slot="end"> {{ age }}</ion-text>
+          <ion-icon slot="start" id="home" :icon="home"></ion-icon>
+
+          <ion-text size="4">Address</ion-text>
+          <ion-text slot="end"> {{ profile.alamat }}</ion-text>
         </ion-item>
 
         <ion-item>
-          <img
-            class="img-profile"
-            slot="start"
-            src="../../../assets/Group72.svg"
-            alt=""
-          />
-          <ion-text>Blood type</ion-text>
-          <ion-text slot="end">
-            {{ profile.golonganDarah }}
-          </ion-text>
-        </ion-item>
-        <ion-item>
-          <img
-            class="img-profile"
-            slot="start"
-            src="../../../assets/Group73.svg"
-            alt=""
-          />
-          <ion-text>Body height</ion-text>
-          <ion-text slot="end">
-            {{ profile.tinggiBadan }}
-          </ion-text>
-        </ion-item>
-
-        <ion-item>
-          <img
-            class="img-profile"
-            slot="start"
-            src="../../../assets/Group75.svg"
-            alt=""
-          />
-          <ion-text>Body weight</ion-text>
-          <ion-text slot="end">
-            {{ profile.beratBadan }}
-          </ion-text>
-        </ion-item>
-        <ion-item>
-          <ion-icon :icon="logoWhatsapp"> </ion-icon>
+          <ion-icon :icon="logoWhatsapp"  id="wa"> </ion-icon>
           <ion-text>Nomor Wa</ion-text>
           <ion-text slot="end">
             {{ profile.noHpUser }}
@@ -112,12 +71,13 @@ import axios from "axios";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 import Tab from "../tab.vue";
-import { chevronBackCircleOutline, logoWhatsapp } from "ionicons/icons";
+import { chevronBackCircleOutline, logoWhatsapp, home } from "ionicons/icons";
 export default defineComponent({
   setup() {
     return {
       chevronBackCircleOutline,
       logoWhatsapp,
+      home,
     };
   },
   components: {
@@ -196,6 +156,11 @@ ion-icon {
 }
 ion-icon {
   font-size: 30px;
-  color: white;
+}
+ion-icon#wa{
+  color: aquamarine;
+}
+ion-icon#home{
+  color: aqua;
 }
 </style>

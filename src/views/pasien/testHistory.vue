@@ -32,13 +32,43 @@
       </ion-grid>
       <ion-grid>
         <ion-row v-for="scan in scanUser" :key="scan.id">
-          <ion-card>
+          <ion-card color="success">
             <!-- <ion-list> -->
             <ion-item>
-              {{ moment(scan.tanggalJadwal).format("ddd LL") }}
+              <ion-text slot="start">Tanggal</ion-text
+              ><ion-text slot="end">{{
+                moment(scan.tanggalJadwal).format("LL")
+              }}</ion-text>
             </ion-item>
-            <ion-item> {{ scan.nama }} </ion-item>
-            <ion-item> {{ scan.hasil }} </ion-item>
+            <ion-item
+              ><ion-text slot="start">Nama</ion-text
+              ><ion-text slot="end">{{ scan.nama }}</ion-text>
+            </ion-item>
+            <ion-item
+              ><ion-text slot="start">Jam Mulai</ion-text
+              ><ion-text slot="end"> {{ scan.jamMulai }}</ion-text>
+            </ion-item>
+            <ion-item
+              ><ion-text slot="start">Jam Selesai</ion-text
+              ><ion-text slot="end">{{ scan.jamSelesai }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text slot="start">Hasil</ion-text
+              ><ion-text slot="end"> {{ scan.hasil }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text slot="start">Scanning</ion-text
+              ><ion-text slot="end"> {{ moment(scan.WaktuScanning).format("LL") }}</ion-text>
+            </ion-item>
+
+            <ion-input @change="getFile" type="file" ref="fileBtn"></ion-input>
+            <ion-item size="6" v-if="scan.statusJadwal == 'aktif'">
+              <ion-button @click="update(scan.id)"> update </ion-button>
+              <ion-button @click="cancel(scan.id)"> cancel </ion-button>
+            </ion-item>
+            <ion-item size="6" v-else>
+              <ion-button @click="cancel(scan.id)"> cancel </ion-button>
+            </ion-item>
             <!-- </ion-list> -->
           </ion-card>
         </ion-row>
@@ -56,6 +86,8 @@ import {
   // IonIcon,
   IonGrid,
   IonRow,
+  IonInput,
+  IonButton,
   // IonList,
   IonItem,
   IonText,
@@ -71,6 +103,7 @@ import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
 import Tab from "../tab.vue";
 
+
 export default defineComponent({
   components: {
     Tab,
@@ -83,6 +116,8 @@ export default defineComponent({
     // IonIcon,
     IonGrid,
     IonRow,
+    IonInput,
+    IonButton,
     IonCol,
     IonText,
   },
@@ -98,6 +133,7 @@ export default defineComponent({
       dataJadwal: "",
       scanUser: "",
       id: this.$route.params.id,
+      file: null,
     };
   },
   async ionViewDidEnter() {
@@ -112,6 +148,52 @@ export default defineComponent({
     });
     vm.scanUser = user.data.data;
     vm.spinner = false;
+  },
+  methods: {
+    async getFile(event) {
+      const vm = this;
+      vm.file = event.target.files[0];
+    },
+    async update(index) {
+      let vm = this;
+      const set = await Storage.get({ key: "id" });
+      const id = JSON.parse(set.value);
+      let formData = new FormData();
+      formData.append("file1", vm.file);
+      formData.append("id", id);
+      formData.append("jadwalId", index);
+      const ret = await Storage.get({ key: "token" });
+      const token = JSON.parse(ret.value);
+      if (token) {
+        await axios({
+          method: "post",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            token: token,
+          },
+          url: ipBackend + `scanning/updateMobile`,
+          data: formData,
+        });
+        vm.$router.push("/profile");
+      }
+    },
+
+    async cancel(index) {
+      const vm = this;
+      const ret = await Storage.get({ key: "token" });
+      const token = JSON.parse(ret.value);
+      if (token) {
+        await axios({
+          method: "post",
+          headers: {
+            token: token,
+          },
+          url: ipBackend + `scanning/delete`,
+          data: { id: index },
+        });
+        vm.$router.push("/profile");
+      }
+    },
   },
 });
 </script>
@@ -138,6 +220,6 @@ ion-icon {
 }
 ion-card {
   width: 100%;
-  max-height: 200px;
+  min-height: 200px;
 }
 </style>

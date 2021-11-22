@@ -7,21 +7,20 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content  class="custom-menu-item">
-      <ion-item button class="item" @click="$router.push('/profile')">
-        <!-- <ion-icon  name="mail" slot="start"></ion-icon> -->
+    <ion-content class="custom-menu-item">
+      <ion-item button class="item" @click="profile()">
         <ion-label slot="end"> Profile</ion-label>
       </ion-item>
       <ion-item button @click="$router.push('/listdokter')">
-        <!-- <ion-icon name="paper-plane" slot="start"></ion-icon> -->
         <ion-label slot="end"> Dokter</ion-label>
       </ion-item>
-      <ion-item button @click="$router.push('/listsemuajadwal')">
-        <!-- <ion-icon name="heart" slot="start"></ion-icon> -->
+      <ion-item button @click="History()">
+        <ion-label slot="end"> History</ion-label>
+      </ion-item>
+      <ion-item button @click="jadwal()">
         <ion-label slot="end"> Jadwal</ion-label>
       </ion-item>
       <ion-item button @click="logout()">
-        <!-- <ion-icon name="archive" slot="start"></ion-icon> -->
         <ion-label slot="end"> Log Out</ion-label>
       </ion-item>
     </ion-content>
@@ -42,6 +41,7 @@ import {
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Storage } from "@capacitor/storage";
+import { useRouter } from "vue-router";
 export default defineComponent({
   components: {
     IonContent,
@@ -53,14 +53,46 @@ export default defineComponent({
     IonLabel,
     IonToolbar,
   },
-
+  setup() {
+    const router = useRouter();
+    return { router };
+  },
+  ionViewDidEnter() {
+    console.log("hai");
+  },
   methods: {
+    async profile() {
+      const vm = this;
+      const role = await Storage.get({ key: "role" });
+
+      if (role.value == `"Dokter"`) {
+        vm.$router.push("/profileDokter");
+      } else if (role.value == `"Pasien"`) {
+        vm.$router.push("/profile");
+      }
+    },
+    async History() {
+      const vm = this;
+      const id = await Storage.get({ key: "id" });
+      vm.$router.push(`/testHistory/${id.value.substring(1,id.value.length-1)}`);
+    },
+    async jadwal() {
+      const vm = this;
+      const role = await Storage.get({ key: "role" });
+
+      if (role.value == `"Dokter"`) {
+        vm.$router.push("/listJadwalByDokterId");
+      } else if (role.value == `"Pasien"`) {
+        vm.$router.push("/listsemuajadwal");
+      }
+    },
+    open() {},
     async openMenu() {
       await menuController.open();
     },
     async logout() {
       let vm = this;
-       menuController.close();
+      menuController.close();
       const alert = await alertController.create({
         cssClass: "my-custom-class",
         header: "Perhatian!",
@@ -81,11 +113,11 @@ export default defineComponent({
                 key: "token",
                 value: JSON.stringify({}),
               });
-               Storage.set({
+              Storage.set({
                 key: "id",
                 value: JSON.stringify({}),
               });
-               Storage.set({
+              Storage.set({
                 key: "role",
                 value: JSON.stringify({}),
               });

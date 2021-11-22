@@ -20,14 +20,12 @@
         <ion-label>Tanggal</ion-label>
         <ion-datetime
           v-model="tanggalJadwal"
-          display-format="YYYY:MM:DD"
         ></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Jam Mulai</ion-label>
         <ion-datetime
           display-format="HH:mm"
-          minute-values="0,15,30,45"
           v-model="jamMulai"
         ></ion-datetime>
       </ion-item>
@@ -35,7 +33,6 @@
         <ion-label>Jam selesai</ion-label>
         <ion-datetime
           display-format="HH:mm"
-          minute-values="0,15,30,45"
           v-model="jamSelesai"
         ></ion-datetime>
       </ion-item>
@@ -125,7 +122,7 @@ export default defineComponent({
       url: ipBackend + `jadwal/detailsById/${vm.id}`,
       headers: { token: token },
     });
-    vm.tanggalJadwal = data.data.data[0].tanggalJadwal;
+    vm.tanggalJadwal =data.data.data[0].tanggalJadwal;
     vm.jamMulai = data.data.data[0].jamMulai;
     vm.jamSelesai = data.data.data[0].jamSelesai;
     vm.statusJadwal = data.data.data[0].statusJadwal;
@@ -155,7 +152,7 @@ export default defineComponent({
           url: ipBackend + `jadwal/update`,
           data: data,
         });
-        vm.$router.push("/listJadwalByDokterId");
+        vm.$router.push("/profileDokter");
       }
     },
   },

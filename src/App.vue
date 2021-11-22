@@ -1,10 +1,12 @@
 <template>
-  <ion-app>
-    <Menu></Menu>
-    <!-- <Tab></Tab> -->
-    <!-- <Menu></Menu> -->
-    <ion-router-outlet id="main" />
-  </ion-app>
+  <body>
+    <ion-app>
+      <Menu></Menu>
+      <!-- <Tab></Tab> -->
+      <!-- <Menu></Menu> -->
+      <ion-router-outlet id="main" />
+    </ion-app>
+  </body>
 </template>
 
 <script>
@@ -59,7 +61,7 @@ ion-item {
   ); */
   /* --background: rgb(210, 241, 243); */
   border: transparent solid 1px;
-    border-radius: 20px;
+  border-radius: 20px;
 
   /* padding: 20px; */
   color: black;
@@ -71,13 +73,13 @@ ion-card {
     rgb(150, 220, 180, 1) 75%,
     rgb(97, 245, 134) 100%
   ); */
-  --background: rgb(216, 227, 245);
+  /* --background: rgb(216, 227, 245); */
   padding: 20px;
   border-radius: 20px;
 }
 ion-button {
   --background: rgb(140, 183, 240);
-    border-radius: 20px;
+  border-radius: 20px;
 
   color: black;
 }

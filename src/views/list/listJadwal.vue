@@ -10,7 +10,6 @@
     <ion-content :fullscreen="true">
       <Tab slot="fixed"></Tab>
       <ion-card
-        style="margin-top: 50px"
         v-if="dataJadwal.length == 0"
         class="tidak-ada-jadwal"
       >
@@ -20,58 +19,51 @@
       </ion-card>
       <ion-grid v-else>
         <ion-row
-          style="margin-top: 50px"
           v-for="jadwal in dataJadwal"
-          :key="jadwal"
+          :key="jadwal.id"
         >
-          <ion-card>
-            <ion-col size="4">
-              <ion-avatar>
-                <img
-                  v-if="!jadwal.profilPicture"
-                  src="../../../assets/avatar.png"
-                  alt=""
-                />
-                <img v-else :src="ip + jadwal.profilPicture" alt="" />
-              </ion-avatar>
-            </ion-col>
-            <ion-col size="8">
-              <ion-col size="6">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="5"> Dokter </ion-col>
-                    <ion-col size="7">
-                      {{ jadwal.nama }}
-                    </ion-col>
-                  </ion-row>
+          <ion-card @click="$router.push(`/detailJadwal/${jadwal.jadwalId}`)">
+            <ion-item lines="none">
+              <ion-label>
+                <ion-col size="6">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="5"> Dokter </ion-col>
+                      <ion-col size="7">
+                        {{ jadwal.nama }}
+                      </ion-col>
+                    </ion-row>
 
-                  <ion-row>
-                    <ion-col size="5">Tanggal Jadwal</ion-col>
-                    <ion-col size="7">{{
-                      jadwal.tanggalJadwal.substring(0, 10)
-                    }}</ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="5"> jam Mulai </ion-col>
-                    <ion-col size="7">
-                      {{ jadwal.jamMulai }}
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="5"> Jam Selesai </ion-col>
-                    <ion-col size="7">
-                      {{ jadwal.jamSelesai }}
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="5"> Status </ion-col>
-                    <ion-col size="7">
-                      {{ jadwal.statusJadwal }}
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-col>
-            </ion-col>
+                    <ion-row>
+                      <ion-col size="5">Tanggal Jadwal</ion-col>
+                      <ion-col size="7">{{
+                        jadwal.tanggalJadwal.substring(0, 10)
+                      }}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="5"> jam Mulai </ion-col>
+                      <ion-col size="7">
+                        {{ jadwal.jamMulai }}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="5"> Jam Selesai </ion-col>
+                      <ion-col size="7">
+                        {{ jadwal.jamSelesai }}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="5"> Status </ion-col>
+                      <ion-col size="7">
+                        {{ jadwal.statusJadwal }}
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-label>
+            </ion-item>
+            <ion-col size="4"> </ion-col>
+            <ion-col size="8"> </ion-col>
             <a :href="`http://wa.me/${jadwal.noHpUser}`">
               <ion-fab vertical="bottom" horizontal="end" slot="fixed">
                 <ion-fab-button>
@@ -107,10 +99,11 @@ import {
   IonFab,
   IonFabButton,
   IonCol,
-  IonAvatar,
+  // IonAvatar,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonIcon,
+  IonLabel,
   IonItem,
   IonCard,
   IonProgressBar,
@@ -118,7 +111,7 @@ import {
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "../../ipBackend";
 import Tab from "../tab.vue";
-import { defineComponent,ref  } from "vue";
+import { defineComponent, ref } from "vue";
 import axios from "axios";
 import {
   chevronBackCircleOutline,
@@ -131,7 +124,8 @@ export default defineComponent({
   components: {
     IonPage,
     Tab,
-    IonAvatar,
+    // IonAvatar,
+      IonLabel,
     IonContent,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
@@ -217,14 +211,14 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .ion-text-center {
   text-align: center;
   margin-top: 20px;
 }
 ion-card {
   min-width: 90%;
-  /* border-radius: 5%; */
+  border-radius: 25px;
   color: black;
 }
 img {
@@ -233,4 +227,12 @@ img {
 ion-icon {
   font-size: 20px;
 }
+ion-content {
+  --background: linear-gradient(
+    180deg,
+    rgba(43, 150, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+} 
 </style>
