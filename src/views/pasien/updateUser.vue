@@ -8,11 +8,14 @@
   </div>
   <ion-page v-else>
     <ion-content :fullscreen="true">
-      <Tab slot="fixed"></Tab>
       <ion-grid>
         <ion-card>
-          <ion-card-header>
+          <ion-card-header color="primary">
             <ion-label>
+              <ion-icon
+                :icon="chevronBackCircleOutline"
+                @click="$router.go(-1)"
+              ></ion-icon>
               <h3>Update My Profile</h3>
             </ion-label>
             <img
@@ -129,9 +132,11 @@
           </ion-item>
         </ion-card>
       </ion-grid>
-      <ion-item lines="none"
-        ><ion-button @click="update()">Update My form </ion-button>
-      </ion-item>
+      <ion-list>
+        <ion-item lines="none"
+          ><ion-button @click="update()">Update My form </ion-button>
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ion-page>
 </template>
@@ -140,7 +145,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonContent,
-  // IonList,
+  IonList,
   IonItem,
   IonText,
   IonButton,
@@ -169,12 +174,10 @@ import { Storage } from "@capacitor/storage";
 import moment from "moment";
 import "moment/locale/id";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
-    // IonList,
-    Tab,
+    IonList,
     IonSelect,
     IonProgressBar,
     IonItem,
@@ -193,6 +196,7 @@ export default defineComponent({
     IonFabButton,
     IonIcon,
     IonGrid,
+  
   },
   setup() {
     const router = useRouter();
@@ -426,4 +430,5 @@ ion-icon {
 ion-card-header {
   border-radius: 0 0 50% 50%;
 }
+
 </style>

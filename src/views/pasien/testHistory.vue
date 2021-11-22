@@ -139,6 +139,7 @@ export default defineComponent({
   async ionViewDidEnter() {
     let vm = this;
     vm.spinner = true;
+    console.log('hai');
     const ret = await Storage.get({ key: "token" });
     const token = JSON.parse(ret.value);
     const user = await axios({
@@ -146,6 +147,7 @@ export default defineComponent({
       url: ipBackend + `scanning/listScanningByUserId/${vm.id}`,
       headers: { token: token },
     });
+    console.log(user);
     vm.scanUser = user.data.data;
     vm.spinner = false;
   },

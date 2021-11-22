@@ -22,7 +22,22 @@ const routes = [
     name: "register",
     component: () => import("@/views/pasien/register.vue"),
   },
-
+  // {
+  //   path: "/main",
+  //   name: "main",
+  //   component: () => import("@/views/mainView/MainViewPasient.vue"),
+  //   meta: {
+  //     auth: true,
+  //   },
+  // },
+  // {
+  //   path: "/mainDokter",
+  //   name: "mainDokter",
+  //   component: () => import("@/views/mainView/MainViewDokter.vue"),
+  //   meta: {
+  //     auth: true,
+  //   },
+  // },
   {
     path: "/update",
     name: "update",
@@ -186,6 +201,8 @@ router.beforeEach(async (to, from, next) => {
       ("/profileDokter");
     }
   }
+
+  next();
 });
 
 export default router;
