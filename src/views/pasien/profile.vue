@@ -16,7 +16,9 @@
             <ion-card>
               <ion-card color="primary" id="header">
                 <ion-card-header>
-                    <h3><strong>{{ profile.nama }} Profile</strong></h3>
+                  <h3>
+                    <strong>{{ profile.nama }} Profile</strong>
+                  </h3>
                   <img
                     class="image-profile"
                     v-if="!profile.profilPicture"
@@ -78,7 +80,7 @@
                 </div>
               </ion-item>
               <div v-if="scanUser.length > 0">
-                <swiper @swiper="setSwiperInstance" >
+                <swiper @swiper="setSwiperInstance">
                   <swiper-slide v-for="scan in scanUser" :key="scan.id">
                     <ion-card
                       id="swiper-slide"
@@ -113,7 +115,6 @@
                 ><ion-button @click="$router.push('/update')"
                   >Update My Profile</ion-button
                 >
-                <ion-button @click="goTo()">Dashboard</ion-button>
                 <ion-button @click="logout()"
                   ><ion-icon :icon="logOutOutline"></ion-icon
                 ></ion-button>
@@ -245,15 +246,6 @@ export default defineComponent({
   },
 
   methods: {
-    goTo() {
-      const vm = this;
-      if (vm.profile.role == "Pasien") {
-        vm.$router.push("/main");
-      } else {
-        vm.$router.push("/mainDokter");
-      }
-    },
-
     async logout() {
       let vm = this;
       const alert = await alertController.create({
@@ -333,8 +325,8 @@ h4 {
 ion-card-header {
   /* border-radius: 0 0 50% 50%; */
 }
-ion-card#header{
+ion-card#header {
   margin: -20px;
-  border-radius: 0  0 50px 50px;
+  border-radius: 0 0 50px 50px;
 }
 </style>
