@@ -50,17 +50,12 @@
               </ion-grid>
             </ion-col>
             <ion-col size="6" v-if="jadwal.statusJadwal == 'aktif'">
-              <ion-input
-                @change="getFile"
-                type="file"
-                ref="fileBtn"
-              ></ion-input>
-              <ion-button v-model="cek" @click="submit(jadwal.id)">
-                Kirim Scan
+              <ion-button @click="$router.push(`/detailJadwal/${jadwal.id}`)">
+                Detail
               </ion-button>
             </ion-col>
             <ion-col size="6" v-else>
-              <ion-button disabled v-model="cek"> Kirim Scan </ion-button>
+              <ion-button disabled v-model="cek"> Detail </ion-button>
             </ion-col>
           </ion-card>
         </ion-row>
@@ -105,7 +100,6 @@ import {
   alertController,
   IonInfiniteScrollContent,
   IonCard,
-  IonInput,
   IonProgressBar,
 } from "@ionic/vue";
 import { Storage } from "@capacitor/storage";
@@ -160,7 +154,6 @@ export default defineComponent({
     IonInfiniteScrollContent,
     IonContent,
     IonGrid,
-    IonInput,
     IonProgressBar,
     IonFab,
     IonFabButton,
@@ -196,6 +189,7 @@ export default defineComponent({
     });
     vm.noHpUser=data.data.dataDokter[0].noHpUser;
     vm.dataJadwal = data.data.data;
+    console.log(vm.dataJadwal);
     const profil = await axios({
       method: "get",
       url: ipBackend + `users/profil`,
@@ -268,6 +262,7 @@ export default defineComponent({
           header: "Sukses",
           message: user.data.data[0].hasil,
         });
+        vm.$router.push('/profile')
         return alert.present();
       }
       vm.cek += 1;

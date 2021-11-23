@@ -107,6 +107,7 @@ export default defineComponent({
       id: this.$route.params.id,
       cek: 0,
       spinner: false,
+      noHpUser:"",
     };
   },
   async ionViewDidEnter() {
@@ -134,8 +135,8 @@ export default defineComponent({
         url: ipBackend + `scanning/listScanningByUserId/${vm.profile}`,
         headers: { token: token },
       });
-      vm.scanUser = user.data.data;
-      vm.noHpUser = vm.scanUser[0].noHpUser;
+      vm.dataJadwal = user.data.data;
+      vm.noHpUser = vm.dataJadwal[0].noHpUser;
       vm.spinner = false;
     },
     getId(id, pro) {
@@ -180,7 +181,7 @@ export default defineComponent({
           header: "Sukses",
           message: user.data.data[0].hasil,
         });
-         vm.file = null
+        vm.$router.push('/listsemuajadwal')
         return alert.present();
       }
       vm.cek += 1;
