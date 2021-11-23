@@ -180,6 +180,7 @@ export default defineComponent({
           header: "Sukses",
           message: user.data.data[0].hasil,
         });
+         vm.file = null
         return alert.present();
       }
       vm.cek += 1;
