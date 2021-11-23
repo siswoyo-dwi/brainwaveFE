@@ -63,13 +63,7 @@ export default defineComponent({
   methods: {
     async profile() {
       const vm = this;
-      const role = await Storage.get({ key: "role" });
-
-      if (role.value == `"Dokter"`) {
-        vm.$router.push("/profileDokter");
-      } else if (role.value == `"Pasien"`) {
         vm.$router.push("/profile");
-      }
     },
     async History() {
       const vm = this;

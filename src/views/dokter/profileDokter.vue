@@ -178,16 +178,11 @@ import {
   IonInfiniteScroll,
   IonList,
   IonGrid,
-  // IonRow,
-  // IonCol,
-  // IonGrid,
-  // IonList,
   IonInfiniteScrollContent,
   IonDatetime,
   IonItem,
   IonText,
   IonAvatar,
-  // IonIcon,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
 import moment from "moment";

@@ -183,26 +183,14 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const token = await Storage.get({ key: "token" });
-  const role = await Storage.get({ key: "role" });
-
+  console.log(token.value);
   if (to.matched.some((record) => record.meta.auth)) {
     if (token.value != `{}`) {
       next();
-      return;
+    }else{
+      next('/')
     }
-    next("/");
-  } else {
-    if (token.value == `{}`) {
-      next();
-      return;
-    } else if (role.value == `"Pasien"`) {
-      next("/profile");
-    } else if (role.value == `"Dokter"`) {
-      ("/profileDokter");
-    }
-  }
-
-  next();
+  }next()
 });
 
 export default router;

@@ -79,7 +79,11 @@
               placeholder=""
             ></ion-datetime>
           </ion-item>
-
+          <ion-item>
+            <ion-input v-model="foto" type="file">
+              foto
+            </ion-input>
+          </ion-item>
           <ion-item>
             <img slot="start" src="../../../assets/Group72.svg" alt="" />
 
@@ -292,6 +296,8 @@ export default defineComponent({
       const ret = await Storage.get({ key: "token" });
       const token = JSON.parse(ret.value);
       if (token) {
+        console.log(formData);
+        console.log(vm.foto);
         await axios({
           method: "post",
           headers: {

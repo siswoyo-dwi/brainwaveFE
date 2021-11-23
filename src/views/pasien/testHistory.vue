@@ -61,14 +61,14 @@
               ><ion-text slot="end"> {{ moment(scan.WaktuScanning).format("LL") }}</ion-text>
             </ion-item>
 
-            <ion-input @change="getFile" type="file" ref="fileBtn"></ion-input>
+            <!-- <ion-input @change="getFile" type="file" ref="fileBtn"></ion-input>
             <ion-item size="6" v-if="scan.statusJadwal == 'aktif'">
-              <ion-button @click="update(scan.id)"> update </ion-button>
-              <ion-button @click="cancel(scan.id)"> cancel </ion-button>
+              <ion-button @click="update(scan.jadwalId)"> update </ion-button>
+              <ion-button @click="cancel(scan.scanningId)"> cancel </ion-button>
             </ion-item>
             <ion-item size="6" v-else>
-              <ion-button @click="cancel(scan.id)"> cancel </ion-button>
-            </ion-item>
+              <ion-button @click="cancel(scan.scanningId)"> cancel </ion-button>
+            </ion-item> -->
             <!-- </ion-list> -->
           </ion-card>
         </ion-row>
@@ -86,8 +86,8 @@ import {
   // IonIcon,
   IonGrid,
   IonRow,
-  IonInput,
-  IonButton,
+  // IonInput,
+  // IonButton,
   // IonList,
   IonItem,
   IonText,
@@ -116,8 +116,8 @@ export default defineComponent({
     // IonIcon,
     IonGrid,
     IonRow,
-    IonInput,
-    IonButton,
+    // IonInput,
+    // IonButton,
     IonCol,
     IonText,
   },
@@ -167,7 +167,8 @@ export default defineComponent({
       const ret = await Storage.get({ key: "token" });
       const token = JSON.parse(ret.value);
       if (token) {
-        await axios({
+        console.log(formData);
+       const data =   await axios({
           method: "post",
           headers: {
             "Content-Type": "multipart/form-data",
@@ -176,6 +177,7 @@ export default defineComponent({
           url: ipBackend + `scanning/updateMobile`,
           data: formData,
         });
+        console.log(data);
         vm.$router.push("/profile");
       }
     },
