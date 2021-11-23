@@ -181,16 +181,19 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(async (to, from, next) => {
-  const token = await Storage.get({ key: "token" });
-  console.log(token.value);
-  if (to.matched.some((record) => record.meta.auth)) {
-    if (token.value != `{}`) {
-      next();
-    }else{
-      next('/')
-    }
-  }next()
-});
 
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some((record) => record.meta.auth)) {
+    const get = await Storage.get({ key: "token" });
+    const token = get.value.substring(1, get.value - 1);
+    console.log(token);
+    if (token && token.length>2) {
+      next();
+      return;
+    }
+    next("/login");
+  }
+
+  next();
+});
 export default router;
