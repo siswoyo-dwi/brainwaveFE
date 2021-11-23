@@ -181,16 +181,16 @@ router.beforeEach(async (to, from, next) => {
     if (token && token.length > 2) {
       next();
       return;
+    } else {
+      next("/login");
     }
-    next("/login");
   } else if (to.matched.some((record) => record.meta.guest)) {
     if (token.length <= 2) {
       next();
       return;
+    } else {
+      next("/profile");
     }
-    next("/profile");
   }
-
-  next();
 });
 export default router;
