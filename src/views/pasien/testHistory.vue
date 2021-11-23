@@ -33,7 +33,6 @@
       <ion-grid>
         <ion-row v-for="scan in scanUser" :key="scan.id">
           <ion-card color="success">
-            <!-- <ion-list> -->
             <ion-item>
               <ion-text slot="start">Tanggal</ion-text
               ><ion-text slot="end">{{
@@ -58,18 +57,10 @@
             </ion-item>
             <ion-item>
               <ion-text slot="start">Scanning</ion-text
-              ><ion-text slot="end"> {{ moment(scan.WaktuScanning).format("LL") }}</ion-text>
+              ><ion-text slot="end">
+                {{ moment(scan.WaktuScanning).format("LL") }}</ion-text
+              >
             </ion-item>
-
-            <!-- <ion-input @change="getFile" type="file" ref="fileBtn"></ion-input>
-            <ion-item size="6" v-if="scan.statusJadwal == 'aktif'">
-              <ion-button @click="update(scan.jadwalId)"> update </ion-button>
-              <ion-button @click="cancel(scan.scanningId)"> cancel </ion-button>
-            </ion-item>
-            <ion-item size="6" v-else>
-              <ion-button @click="cancel(scan.scanningId)"> cancel </ion-button>
-            </ion-item> -->
-            <!-- </ion-list> -->
           </ion-card>
         </ion-row>
       </ion-grid>
@@ -83,12 +74,8 @@ import {
   IonPage,
   IonProgressBar,
   IonCard,
-  // IonIcon,
   IonGrid,
   IonRow,
-  // IonInput,
-  // IonButton,
-  // IonList,
   IonItem,
   IonText,
   IonCol,
@@ -103,7 +90,6 @@ import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
 import Tab from "../tab.vue";
 
-
 export default defineComponent({
   components: {
     Tab,
@@ -111,13 +97,9 @@ export default defineComponent({
     IonPage,
     IonProgressBar,
     IonCard,
-    // IonList,
     IonItem,
-    // IonIcon,
     IonGrid,
     IonRow,
-    // IonInput,
-    // IonButton,
     IonCol,
     IonText,
   },
@@ -139,7 +121,6 @@ export default defineComponent({
   async ionViewDidEnter() {
     let vm = this;
     vm.spinner = true;
-    console.log('hai');
     const ret = await Storage.get({ key: "token" });
     const token = JSON.parse(ret.value);
     const user = await axios({
@@ -147,7 +128,6 @@ export default defineComponent({
       url: ipBackend + `scanning/listScanningByUserId/${vm.id}`,
       headers: { token: token },
     });
-    console.log(user);
     vm.scanUser = user.data.data;
     vm.spinner = false;
   },
@@ -167,8 +147,7 @@ export default defineComponent({
       const ret = await Storage.get({ key: "token" });
       const token = JSON.parse(ret.value);
       if (token) {
-        console.log(formData);
-       const data =   await axios({
+        await axios({
           method: "post",
           headers: {
             "Content-Type": "multipart/form-data",
@@ -177,7 +156,6 @@ export default defineComponent({
           url: ipBackend + `scanning/updateMobile`,
           data: formData,
         });
-        console.log(data);
         vm.$router.push("/profile");
       }
     },

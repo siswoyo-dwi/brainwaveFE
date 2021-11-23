@@ -38,7 +38,6 @@
               >
             </p></ion-text
           >
-          <!-- <ion-text color="primary"><p @click="goToLogin()">Login</p></ion-text> -->
         </div>
       </div>
     </ion-content>
@@ -48,10 +47,7 @@
 import {
   IonPage,
   IonContent,
-  // IonCard,
-  // IonCardHeader,
   IonItem,
-  // IonList,
   IonButton,
   IonText,
 } from "@ionic/vue";
@@ -62,9 +58,6 @@ export default defineComponent({
     IonPage,
     IonContent,
     IonItem,
-    // IonList,
-    // IonCard,
-    // IonCardHeader,
     IonButton,
     IonText,
   },

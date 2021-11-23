@@ -181,13 +181,11 @@ const router = createRouter({
   routes,
 });
 
-
 router.beforeEach(async (to, from, next) => {
+  const get = await Storage.get({ key: "token" });
+  const token = get.value
   if (to.matched.some((record) => record.meta.auth)) {
-    const get = await Storage.get({ key: "token" });
-    const token = get.value.substring(1, get.value - 1);
-    console.log(token);
-    if (token && token.length>2) {
+    if (token && token.length > 2) {
       next();
       return;
     }

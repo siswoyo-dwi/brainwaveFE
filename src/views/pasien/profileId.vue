@@ -11,7 +11,6 @@
       <Tab slot="fixed"></Tab>
       <ion-grid>
         <ion-row>
-          <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col size="4"></ion-col>
           <ion-col size="5">
             <ion-text class="ion-text-center"
@@ -95,14 +94,12 @@
 import {
   IonCol,
   IonRow,
-  // IonList,
   IonGrid,
   IonItem,
   IonText,
   IonContent,
   IonPage,
   IonProgressBar,
-  // IonIcon,
   IonAvatar,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -111,18 +108,15 @@ import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
 import { ipBackend } from "@/ipBackend";
 import Tab from "../tab.vue";
-// import { chevronBackCircleOutline } from "ionicons/icons";
 export default defineComponent({
   components: {
     IonCol,
     IonRow,
     Tab,
-    // IonList,
     IonProgressBar,
     IonGrid,
     IonItem,
     IonContent,
-    // IonIcon,
     IonText,
     IonPage,
     IonAvatar,

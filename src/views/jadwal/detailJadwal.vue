@@ -121,7 +121,6 @@ export default defineComponent({
     });
     vm.dataJadwal = data.data.data[0];
 
-    console.log(vm.dataJadwal);
     vm.spinner = false;
   },
   methods: {

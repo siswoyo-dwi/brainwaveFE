@@ -73,9 +73,7 @@
 <script>
 import {
   IonContent,
-  // IonGrid,
   IonRow,
-  // IonList,
   IonCol,
   IonText,
   IonPage,
@@ -83,7 +81,6 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  // IonIcon,
   alertController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -96,10 +93,7 @@ import { useRouter } from "vue-router";
 export default defineComponent({
   components: {
     IonContent,
-    // IonGrid,
-    // IonIcon,
     IonRow,
-    // IonList,
     IonCol,
     IonText,
     IonPage,
@@ -126,7 +120,6 @@ export default defineComponent({
         password: vm.password,
         username: vm.username,
       });
-      console.log(res.data.message);
       if (res.data.message !== "sukses") {
         const alert = await alertController.create({
           cssClass: "my-custom-class",

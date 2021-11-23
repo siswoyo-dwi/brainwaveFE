@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
-// import { setHeaderToken } from "./store/utils/auth";
 import { IonicVue } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
@@ -23,13 +22,6 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-// import { Storage } from "@capacitor/storage";
-
-// const token = Storage.get("CapacitorStorage.token");
-
-// const setToken = async () => {
-//   await Storage.get({ key: 'token' });
-// };
 
 const app = createApp(App)
   .use(IonicVue)

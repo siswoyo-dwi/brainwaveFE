@@ -9,25 +9,18 @@
   <ion-page v-else>
     <ion-content>
       <Tab slot="fixed"></Tab>
-      <ion-grid>
-        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
+      <ion-grid style="margin-top: 50px">
         <ion-row>
           <ion-col> Update Jadwal </ion-col>
         </ion-row>
       </ion-grid>
-      <!-- <ion-list> -->
       <ion-item>
         <ion-label>Tanggal</ion-label>
-        <ion-datetime
-          v-model="tanggalJadwal"
-        ></ion-datetime>
+        <ion-datetime v-model="tanggalJadwal"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Jam Mulai</ion-label>
-        <ion-datetime
-          display-format="HH:mm"
-          v-model="jamMulai"
-        ></ion-datetime>
+        <ion-datetime display-format="HH:mm" v-model="jamMulai"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Jam selesai</ion-label>
@@ -47,7 +40,6 @@
       <ion-item>
         <ion-button @click="submit()"> Update Jadwal </ion-button>
       </ion-item>
-      <!-- </ion-list> -->
     </ion-content>
   </ion-page>
 </template>
@@ -61,11 +53,9 @@ import {
   IonRow,
   IonCol,
   IonItem,
-  // IonList,
   IonDatetime,
   IonButton,
   IonSelect,
-  // IonIcon,
   IonSelectOption,
   IonProgressBar,
 } from "@ionic/vue";
@@ -89,8 +79,6 @@ export default defineComponent({
     IonItem,
     IonProgressBar,
     IonDatetime,
-    // IonList,
-    // IonIcon,
     IonLabel,
     IonSelect,
     IonSelectOption,
@@ -122,7 +110,7 @@ export default defineComponent({
       url: ipBackend + `jadwal/detailsById/${vm.id}`,
       headers: { token: token },
     });
-    vm.tanggalJadwal =data.data.data[0].tanggalJadwal;
+    vm.tanggalJadwal = data.data.data[0].tanggalJadwal;
     vm.jamMulai = data.data.data[0].jamMulai;
     vm.jamSelesai = data.data.data[0].jamSelesai;
     vm.statusJadwal = data.data.data[0].statusJadwal;

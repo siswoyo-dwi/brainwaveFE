@@ -63,18 +63,13 @@ import {
   IonPage,
   IonContent,
   IonGrid,
-  // IonList,
   IonProgressBar,
   IonItem,
-  //   IonLabel,
   IonText,
-  //   IonAvatar,
-  // IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonList,
   IonCard,
-  //   IonButton,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
 import { Storage } from "@capacitor/storage";
@@ -87,17 +82,14 @@ import "moment/locale/id";
 
 export default defineComponent({
   components: {
-    // IonAvatar,
     Tab,
     IonList,
     IonCard,
-    // IonButton,
     IonText,
     IonProgressBar,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
     IonItem,
-    // IonLabel,
     IonPage,
     IonContent,
     IonGrid,
@@ -155,7 +147,6 @@ export default defineComponent({
       });
 
       vm.listPasien = dataPasien.data.data;
-      console.log(vm.listPasien);
       vm.spinner = false;
     }
   },

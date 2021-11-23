@@ -2,7 +2,6 @@
   <ion-page>
     <ion-content>
       <div lines="none">
-        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
         <ion-item  lines="none">
           <ion-text>Login</ion-text>
           <img
@@ -46,11 +45,7 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  // IonCol,
-  // IonRow,
   IonText,
-  // IonList,
-  // IonIcon,
   alertController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
@@ -59,23 +54,15 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { ipBackend } from "@/ipBackend";
 import { chevronBackCircleOutline } from "ionicons/icons";
-// import Menu from "../menu.vue";
-// import Tab from "../tab.vue";
 
 export default defineComponent({
   components: {
-    // Menu,
-    // Tab,
     IonContent,
     IonPage,
-    // IonList,
-    // IonIcon,
     IonItem,
     IonLabel,
     IonInput,
     IonButton,
-    // IonCol,
-    // IonRow,
     IonText,
   },
   data() {

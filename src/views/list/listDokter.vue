@@ -56,10 +56,6 @@
                   ><ion-icon :icon="bookOutline" alt="booking"></ion-icon
                 ></ion-fab-button>
               </ion-fab-list>
-
-              <!-- <ion-fab-list side="start">
-                
-              </ion-fab-list> -->
             </ion-fab>
           </ion-card>
           <ion-infinite-scroll
@@ -85,15 +81,11 @@ import {
   IonPage,
   IonContent,
   IonGrid,
-  // IonCardHeader,
   IonFab,
   IonFabButton,
   IonFabList,
   IonRow,
   IonCol,
-  // IonList,
-  // IonItem,
-  // IonLabel,
   IonAvatar,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
@@ -115,16 +107,12 @@ export default defineComponent({
     IonFabList,
     IonRow,
     IonCol,
-    // IonCardHeader,
     Tab,
-    // IonList,
-    // IonItem,
     IonCard,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
     IonProgressBar,
     IonIcon,
-    // IonLabel,
     IonPage,
     IonContent,
     IonGrid,

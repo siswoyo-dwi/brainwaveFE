@@ -72,9 +72,7 @@ export default defineComponent({
     IonCol,
     IonCard,
     IonItem,
-    // IonIcon,
     IonDatetime,
-    // IonList,
     IonLabel,
   },
   data() {

@@ -149,7 +149,6 @@ export default defineComponent({
   watch: {
     async cek(newVal, oldVal) {
       if (newVal != oldVal) {
-        console.log("hai");
         await this.getData();
       }
     },
@@ -195,10 +194,8 @@ export default defineComponent({
       url: ipBackend + `jadwal/listByDokterId/${vm.id}`,
       headers: { token: token },
     });
-    console.log(data);
     vm.noHpUser=data.data.dataDokter[0].noHpUser;
     vm.dataJadwal = data.data.data;
-    console.log(vm.dataJadwal);
     const profil = await axios({
       method: "get",
       url: ipBackend + `users/profil`,
@@ -261,7 +258,6 @@ export default defineComponent({
           url: ipBackend + `scanning/registerMobile`,
           data: formData,
         });
-        console.log(data.data.scanningId);
         const user = await axios({
           method: "get",
           url: ipBackend + `scanning/detailsById/${data.data.scanningId}`,
@@ -295,14 +291,12 @@ export default defineComponent({
           url: ipBackend + `scanning/updateMobile`,
           data: formData,
         });
-        // vm.$router.push("/profile");
         vm.cek += 1;
       }
     },
 
     async cancel(index) {
       const vm = this;
-      console.log(index);
       const ret = await Storage.get({ key: "token" });
       const token = JSON.parse(ret.value);
       if (token) {
@@ -314,7 +308,6 @@ export default defineComponent({
           url: ipBackend + `scanning/delete`,
           data: { id: index },
         });
-        // vm.$router.push("/profile");
         vm.cek += 1;
       }
     },

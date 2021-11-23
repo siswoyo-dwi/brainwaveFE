@@ -225,11 +225,7 @@ export default defineComponent({
   },
   watch: {
     async cek(newValue, oldValue) {
-      console.log(newValue !== oldValue);
-
       if (newValue !== oldValue) {
-        console.log(newValue !== oldValue);
-
         await this.getJadwal();
       }
     },
@@ -254,25 +250,20 @@ export default defineComponent({
   },
   components: {
     IonPage,
-    // IonIcon,
     Tab,
     IonContent,
     IonProgressBar,
-    // IonRow,
     IonInfiniteScroll,
     IonDatetime,
     IonButton,
     IonCard,
     IonLabel,
-    // IonCol,
     IonList,
     IonGrid,
-    // IonList,
     IonItem,
     IonInfiniteScrollContent,
 
     IonText,
-    // IonGrid,
     IonAvatar,
   },
   async ionViewDidEnter() {
@@ -307,7 +298,6 @@ export default defineComponent({
         url: ipBackend + `users/listPasienByDokterId/${id}`,
       });
       vm.listPasien = pasien.data.data;
-      console.log(vm.listPasien);
       vm.spinner = false;
     }
   },
@@ -357,7 +347,6 @@ export default defineComponent({
     },
     async submit() {
       let vm = this;
-      console.log(vm.cek);
       vm.loading = true;
       const tanggal = moment(vm.tanggalJadwal).format("YYYY/MM/DD");
       const jamMulai = moment(vm.jamMulai).format("HH:mm ");
@@ -384,9 +373,6 @@ export default defineComponent({
         vm.jamSelesai = "";
         vm.loading = false;
         vm.cek += 1;
-        console.log(vm.cek);
-
-        // vm.$router.push("/listJadwalByDokterId");
       }
     },
   },

@@ -2,8 +2,6 @@
   <body>
     <ion-app>
       <Menu></Menu>
-      <!-- <Tab></Tab> -->
-      <!-- <Menu></Menu> -->
       <ion-router-outlet id="main" />
     </ion-app>
   </body>
@@ -13,14 +11,12 @@
 import { IonApp, IonRouterOutlet } from "@ionic/vue";
 import { defineComponent } from "vue";
 import Menu from "./views/menu.vue";
-// import Tab from "./views/tab.vue";
 import { Storage } from "@capacitor/storage";
 
 export default defineComponent({
   name: "App",
   components: {
     Menu,
-    // Tab,
     IonApp,
     IonRouterOutlet,
   },

@@ -317,11 +317,9 @@ import "moment/locale/id";
 import "swiper/swiper-bundle.min.css";
 
 import {
-  // chevronBackCircleOutline,
   logOutOutline,
   chevronForwardCircleOutline,
 } from "ionicons/icons";
-// import Menu from "../menu.vue";
 import Tab from "../tab.vue";
 import { useRouter } from "vue-router";
 import { Storage } from "@capacitor/storage";
@@ -412,11 +410,7 @@ export default defineComponent({
   },
   watch: {
     async cek(newValue, oldValue) {
-      console.log(newValue !== oldValue);
-
       if (newValue !== oldValue) {
-        console.log(newValue !== oldValue);
-
         await this.getJadwal();
       }
     },
@@ -438,7 +432,6 @@ export default defineComponent({
       vm.id = JSON.parse(set.value);
       const get = await Storage.get({ key: "role" });
       vm.role = get.value.substring(1, get.value.length-1);
-      console.log(vm.role,',,<<<')
       const user = await axios({
         method: "get",
         url: ipBackend + `scanning/listScanningByUserId/${vm.id}`,
@@ -481,7 +474,6 @@ export default defineComponent({
         url: ipBackend + `users/listPasienByDokterId/${id}`,
       });
       vm.listPasien = pasien.data.data;
-      console.log(vm.listPasien);
       vm.spinner = false;
     }
   },
@@ -532,7 +524,6 @@ export default defineComponent({
     },
     async submit() {
       let vm = this;
-      console.log(vm.cek);
       vm.loading = true;
       const tanggal = moment(vm.tanggalJadwal).format("YYYY/MM/DD");
       const jamMulai = moment(vm.jamMulai).format("HH:mm ");
@@ -559,9 +550,6 @@ export default defineComponent({
         vm.jamSelesai = "";
         vm.loading = false;
         vm.cek += 1;
-        console.log(vm.cek);
-
-        // vm.$router.push("/listJadwalByDokterId");
       }
     },
     async logout() {

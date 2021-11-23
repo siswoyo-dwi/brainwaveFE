@@ -9,19 +9,13 @@
   <ion-page v-else>
     <ion-content :fullscreen="true">
       <Tab slot="fixed"></Tab>
-      <ion-card
-        v-if="dataJadwal.length == 0"
-        class="tidak-ada-jadwal"
-      >
+      <ion-card v-if="dataJadwal.length == 0" class="tidak-ada-jadwal">
         <ion-item color="primary">
           <h3>Jadwal Belum tersedia</h3>
         </ion-item>
       </ion-card>
       <ion-grid v-else>
-        <ion-row
-          v-for="jadwal in dataJadwal"
-          :key="jadwal.id"
-        >
+        <ion-row v-for="jadwal in dataJadwal" :key="jadwal.id">
           <ion-card @click="$router.push(`/detailJadwal/${jadwal.jadwalId}`)">
             <ion-item lines="none">
               <ion-label>
@@ -99,7 +93,6 @@ import {
   IonFab,
   IonFabButton,
   IonCol,
-  // IonAvatar,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonIcon,
@@ -124,8 +117,7 @@ export default defineComponent({
   components: {
     IonPage,
     Tab,
-    // IonAvatar,
-      IonLabel,
+    IonLabel,
     IonContent,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
@@ -136,9 +128,7 @@ export default defineComponent({
     IonCol,
     IonIcon,
     IonItem,
-    // IonButton,
     IonCard,
-    //   IonInput,
     IonProgressBar,
   },
   data() {
@@ -234,5 +224,5 @@ ion-content {
     rgba(255, 255, 255, 1) 50%,
     rgba(255, 255, 255, 1) 100%
   );
-} 
+}
 </style>

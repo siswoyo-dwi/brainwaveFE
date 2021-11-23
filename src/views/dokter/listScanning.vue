@@ -12,7 +12,6 @@
       <ion-grid>
         <ion-row v-for="scan in scanUser" :key="scan.id">
           <ion-card color="success">
-            <!-- <ion-list> -->
             <ion-item>
               <ion-text slot="start">Tanggal</ion-text
               ><ion-text slot="end">{{
@@ -35,7 +34,6 @@
                 {{ moment(scan.WaktuScanning).format("HH:mm") }}</ion-text
               >
             </ion-item>
-            <!-- </ion-list> -->
           </ion-card>
         </ion-row>
       </ion-grid>
@@ -89,7 +87,6 @@ export default defineComponent({
       scanUser: "",
       id: this.$route.params.id,
       file: null,
-
     };
   },
   async ionViewDidEnter() {
@@ -103,7 +100,6 @@ export default defineComponent({
       headers: { token: token },
     });
     vm.scanUser = user.data.data;
-    console.log(vm.scanUser);
     vm.spinner = false;
   },
   methods: {},

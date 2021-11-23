@@ -10,7 +10,6 @@
     <ion-content :fullscreen="true">
       <ion-grid>
         <ion-row id="row1">
-          <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
           <ion-col>
             <ion-grid>
               <ion-row>

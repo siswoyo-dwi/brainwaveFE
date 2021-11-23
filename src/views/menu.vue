@@ -33,7 +33,6 @@ import {
   IonItem,
   IonMenu,
   IonLabel,
-  //   IonIcon,
   IonTitle,
   IonToolbar,
   menuController,
@@ -47,7 +46,6 @@ export default defineComponent({
     IonContent,
     IonHeader,
     IonItem,
-    // IonIcon,
     IonMenu,
     IonTitle,
     IonLabel,
@@ -58,7 +56,6 @@ export default defineComponent({
     return { router };
   },
   ionViewDidEnter() {
-    console.log("hai");
   },
   methods: {
     async profile() {

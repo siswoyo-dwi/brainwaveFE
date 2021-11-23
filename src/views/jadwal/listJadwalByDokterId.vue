@@ -10,7 +10,6 @@
     <ion-content>
       <Tab slot="fixed"></Tab>
       <ion-grid>
-        <!-- <ion-icon :icon="chevronBackCircleOutline" @click="$router.go(-1)"></ion-icon> -->
         <div v-if="dataJadwal.length > 0">
           <div v-for="jadwal in dataJadwal" :key="jadwal">
             <ion-card>
@@ -69,10 +68,8 @@ import {
   IonPage,
   IonContent,
   IonGrid,
-  // IonList,
   IonProgressBar,
   IonItem,
-  // IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonCard,
@@ -126,8 +123,6 @@ export default defineComponent({
     IonGrid,
     IonLabel,
     IonCard,
-    // IonList,
-    // IonIcon,
     IonButton,
     IonProgressBar,
     IonItem,
