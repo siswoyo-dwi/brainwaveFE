@@ -96,7 +96,7 @@ export default defineComponent({
     const token = JSON.parse(ret.value);
     const user = await axios({
       method: "get",
-      url: ipBackend + `scanning/listScanningByUserId/${vm.id}`,
+      url: ipBackend + `scanning/listScanningUserByDokterLogin/${vm.id}`,
       headers: { token: token },
     });
     vm.scanUser = user.data.data;
