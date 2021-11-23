@@ -48,14 +48,6 @@ const routes = [
     },
   },
   {
-    path: "/profileDokter",
-    name: "profileDokter",
-    component: () => import("@/views/dokter/profileDokter.vue"),
-    meta: {
-      auth: true,
-    },
-  },
-  {
     path: "/inputdata",
     name: "inputdata",
     component: () => import("@/views/pasien/inputUserData.vue"),

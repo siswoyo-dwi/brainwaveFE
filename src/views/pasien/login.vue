@@ -163,7 +163,7 @@ export default defineComponent({
         });
         const dataItem = data.data.data[0];
         if (ret.value == `"Dokter"`) {
-          vm.$router.push("/profileDokter");
+          vm.$router.push("/profile");
         } else {
           if (
             dataItem.golonganDarah == null ||

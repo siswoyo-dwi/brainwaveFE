@@ -140,7 +140,7 @@ export default defineComponent({
           url: ipBackend + `jadwal/update`,
           data: data,
         });
-        vm.$router.push("/profileDokter");
+        vm.$router.push("/profile");
       }
     },
   },

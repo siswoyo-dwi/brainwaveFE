@@ -207,11 +207,11 @@
                 <ion-label>Status Jadwal</ion-label>
                 {{ jadwal.statusJadwal }}
               </ion-item>
-              <ion-item size="3">
-                <ion-button slot="start" @click="$router.push(`/updateJadwal/${jadwal.id}`)">
+              <ion-item>
+                <ion-button @click="$router.push(`/updateJadwal/${jadwal.id}`)">
                   update
                 </ion-button>
-                <ion-button slot="end" @click="$router.push(`/listPasien/${jadwal.id}`)">
+                <ion-button slot="end"  @click="$router.push(`/listPasien/${jadwal.id}`)">
                   Pasien
                 </ion-button>
               </ion-item>
