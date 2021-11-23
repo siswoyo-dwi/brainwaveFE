@@ -11,33 +11,26 @@ const routes = [
     path: "/home",
     name: "home",
     component: () => import("@/views/Home.vue"),
+    meta: {
+      guest: true,
+    },
   },
   {
     path: "/login",
     name: "login",
     component: () => import("@/views/pasien/login.vue"),
+    meta: {
+      guest: true,
+    },
   },
   {
     path: "/register",
     name: "register",
     component: () => import("@/views/pasien/register.vue"),
+    meta: {
+      guest: true,
+    },
   },
-  // {
-  //   path: "/main",
-  //   name: "main",
-  //   component: () => import("@/views/mainView/MainViewPasient.vue"),
-  //   meta: {
-  //     auth: true,
-  //   },
-  // },
-  // {
-  //   path: "/mainDokter",
-  //   name: "mainDokter",
-  //   component: () => import("@/views/mainView/MainViewDokter.vue"),
-  //   meta: {
-  //     auth: true,
-  //   },
-  // },
   {
     path: "/update",
     name: "update",
@@ -183,13 +176,19 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const get = await Storage.get({ key: "token" });
-  const token = get.value
+  const token = get.value;
   if (to.matched.some((record) => record.meta.auth)) {
     if (token && token.length > 2) {
       next();
       return;
     }
     next("/login");
+  } else if (to.matched.some((record) => record.meta.guest)) {
+    if (token.length <= 2) {
+      next();
+      return;
+    }
+    next("/profile");
   }
 
   next();

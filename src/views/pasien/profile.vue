@@ -34,42 +34,42 @@
                 </ion-card-header>
               </ion-card>
 
-              <ion-item lines="none">
+              <ion-item class="pasien" lines="none">
                 <ion-grid>
                   <ion-row>
                     <strong><h4>USER INFORMATION</h4></strong>
                   </ion-row>
                 </ion-grid>
               </ion-item>
-              <ion-item>
+              <ion-item class="pasien">
                 <img slot="start" src="../../../assets/Group69.svg" alt="" />
                 <ion-text> Full name </ion-text>
                 <ion-text slot="end">{{ profile.nama }} </ion-text>
               </ion-item>
-              <ion-item>
+              <ion-item class="pasien">
                 <img slot="start" src="../../../assets/Group70.svg" alt="" />
                 <ion-text>Age</ion-text>
                 <ion-text slot="end"> {{ age }}</ion-text>
               </ion-item>
 
-              <ion-item>
+              <ion-item class="pasien">
                 <img slot="start" src="../../../assets/Group72.svg" alt="" />
                 <ion-text>Blood type</ion-text>
                 <ion-text slot="end">
                   {{ profile.golonganDarah }}
                 </ion-text>
               </ion-item>
-              <ion-item>
+              <ion-item class="pasien">
                 <img slot="start" src="../../../assets/Group73.svg" alt="" />
                 <ion-text>Body height</ion-text>
                 <ion-text slot="end"> {{ profile.tinggiBadan }} cm </ion-text>
               </ion-item>
-              <ion-item>
+              <ion-item class="pasien">
                 <img slot="start" src="../../../assets/Group75.svg" alt="" />
                 <ion-text>Body weight</ion-text>
                 <ion-text slot="end"> {{ profile.beratBadan }} kgs </ion-text>
               </ion-item>
-              <ion-item lines="none">
+              <ion-item class="pasien" lines="none">
                 <ion-text><h4>Medical Record</h4></ion-text>
                 <div slot="end" @click="$router.push(`/testHistory/${id}`)">
                   <ion-text color="dark"> See more </ion-text>
@@ -108,14 +108,14 @@
               </div>
               <div v-else>
                 <ion-card>
-                  <ion-item> Belum ada Medical Record </ion-item>
+                  <ion-item  class="pasien"> Belum ada Medical Record </ion-item>
                 </ion-card>
               </div>
-              <ion-item
-                ><ion-button @click="$router.push('/update')"
+              <ion-item  class="pasien"
+                ><ion-button slot="start"  class="pasien" @click="$router.push('/update')"
                   >Update My Profile</ion-button
                 >
-                <ion-button @click="logout()"
+                <ion-button  slot="end" class="pasien" @click="logout()"
                   ><ion-icon :icon="logOutOutline"></ion-icon
                 ></ion-button>
               </ion-item>
@@ -591,11 +591,11 @@ ion-content {
   justify-self: center;
   margin: auto;
 }
-ion-item {
+ion-item.pasien {
   margin: 24px auto;
   /* width: 70%; */
 }
-ion-button {
+ion-button.pasien {
   margin: 24px auto;
   /* width: 90%; */
   /* border-radius: 5%; */
@@ -628,9 +628,7 @@ h4 {
   width: 300px;
   height: 200px;
 }
-ion-card-header {
-  /* border-radius: 0 0 50% 50%; */
-}
+
 ion-card#header {
   margin: -20px;
   border-radius: 0 0 50px 50px;
