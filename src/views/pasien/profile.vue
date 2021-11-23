@@ -190,7 +190,7 @@
       <div v-show="jadwal">
         <div v-if="dataJadwal.length > 0">
           <div v-for="jadwal in dataJadwal" :key="jadwal.id">
-            <ion-card @click="$router.push(`/listPasien/${jadwal.id}`)">
+            <ion-card>
               <ion-item>
                 <ion-label>Tanggal Jadwal</ion-label>
                 {{ moment(jadwal.tanggalJadwal).format("YYYY/MM/DD") }}
@@ -208,8 +208,11 @@
                 {{ jadwal.statusJadwal }}
               </ion-item>
               <ion-item size="3">
-                <ion-button @click="$router.push(`/updateJadwal/${jadwal.id}`)">
+                <ion-button slot="start" @click="$router.push(`/updateJadwal/${jadwal.id}`)">
                   update
+                </ion-button>
+                <ion-button slot="end" @click="$router.push(`/listPasien/${jadwal.id}`)">
+                  Pasien
                 </ion-button>
               </ion-item>
             </ion-card>
