@@ -78,8 +78,7 @@
               placeholder=""
             ></ion-datetime>
           </ion-item>
-          <ion-item>
-          </ion-item>
+
           <ion-item>
             <img slot="start" src="../../../assets/Group72.svg" alt="" />
 
